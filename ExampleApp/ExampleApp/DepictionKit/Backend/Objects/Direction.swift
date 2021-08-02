@@ -8,7 +8,7 @@
 import Foundation
 
 /// Class to generate alignment
-public enum Alignment {
+public enum Direction {
     
     case horizontal
     case vertical
@@ -17,7 +17,7 @@ public enum Alignment {
         switch input {
         case "horizontal": self = .horizontal
         case "vertical": self = .vertical
-        default: throw Alignment.Error.invalid_alignment(input: input)
+        default: throw Direction.Error.invalid_alignment(input: input)
         }
     }
     

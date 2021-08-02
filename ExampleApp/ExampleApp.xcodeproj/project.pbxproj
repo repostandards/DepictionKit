@@ -22,10 +22,11 @@
 		E13FFA4626B72FE800F64440 /* Test.xib in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA4526B72FE800F64440 /* Test.xib */; };
 		E13FFA4826B732DB00F64440 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4726B732DB00F64440 /* Theme.swift */; };
 		E13FFA4C26B7375500F64440 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4B26B7375500F64440 /* VideoPlayer.swift */; };
-		E13FFA4E26B74B5A00F64440 /* Seperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4D26B74B5A00F64440 /* Seperator.swift */; };
+		E13FFA4E26B74B5A00F64440 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4D26B74B5A00F64440 /* Separator.swift */; };
 		E13FFA5026B74C1A00F64440 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4F26B74C1A00F64440 /* Direction.swift */; };
 		E13FFA5226B74D7200F64440 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5126B74D7200F64440 /* Spacer.swift */; };
 		E13FFA5526B7510F00F64440 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5426B7510F00F64440 /* TextView.swift */; };
+		E1F8E9A326B86720005DA5DB /* DepictionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,11 +47,12 @@
 		E13FFA4526B72FE800F64440 /* Test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test.xib; sourceTree = "<group>"; };
 		E13FFA4726B732DB00F64440 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E13FFA4B26B7375500F64440 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
-		E13FFA4D26B74B5A00F64440 /* Seperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seperator.swift; sourceTree = "<group>"; };
+		E13FFA4D26B74B5A00F64440 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		E13FFA4F26B74C1A00F64440 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		E13FFA5126B74D7200F64440 /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
 		E13FFA5326B74FBE00F64440 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E13FFA5426B7510F00F64440 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				E13FFA3126B72F7600F64440 /* Backend */,
 				E13FFA3A26B72F7600F64440 /* Depiction.swift */,
+				E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */,
 				E13FFA3B26B72F7600F64440 /* Views */,
 			);
 			path = DepictionKit;
@@ -140,7 +143,7 @@
 			children = (
 				E13FFA3C26B72F7600F64440 /* HeaderView.swift */,
 				E13FFA4B26B7375500F64440 /* VideoPlayer.swift */,
-				E13FFA4D26B74B5A00F64440 /* Seperator.swift */,
+				E13FFA4D26B74B5A00F64440 /* Separator.swift */,
 				E13FFA5126B74D7200F64440 /* Spacer.swift */,
 				E13FFA5426B7510F00F64440 /* TextView.swift */,
 				E13FFA4526B72FE800F64440 /* Test.xib */,
@@ -224,7 +227,7 @@
 				E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */,
 				E13FFA4826B732DB00F64440 /* Theme.swift in Sources */,
 				E13FFA4226B72F7700F64440 /* UIColor+Extensions.swift in Sources */,
-				E13FFA4E26B74B5A00F64440 /* Seperator.swift in Sources */,
+				E13FFA4E26B74B5A00F64440 /* Separator.swift in Sources */,
 				E13FFA5026B74C1A00F64440 /* Direction.swift in Sources */,
 				E13FFA4426B72F7700F64440 /* HeaderView.swift in Sources */,
 				E13FFA5526B7510F00F64440 /* TextView.swift in Sources */,
@@ -234,6 +237,7 @@
 				E13FFA3F26B72F7700F64440 /* DepictionView.swift in Sources */,
 				E13FFA4026B72F7700F64440 /* Color.swift in Sources */,
 				E13FFA5226B74D7200F64440 /* Spacer.swift in Sources */,
+				E1F8E9A326B86720005DA5DB /* DepictionContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +378,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -395,6 +400,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

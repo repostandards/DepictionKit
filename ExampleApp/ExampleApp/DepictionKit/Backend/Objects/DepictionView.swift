@@ -5,13 +5,14 @@
 //  Created by Andromeda on 01/08/2021.
 //
 
-import Foundation
+import UIKit
 
 /// Trampoline class for handling children views
 public final class DepictionView {
     
     private let name: String
     private let properties: [String: AnyHashable]
+    internal let view: UIView
     
     enum Error: LocalizedError {
         case invalid_name(input: [String: AnyHashable])
@@ -27,10 +28,38 @@ public final class DepictionView {
         }
     }
     
-    init(for input: [String: AnyHashable]) throws {
+    init(for input: [String: AnyHashable], theme: Theme) throws {
         guard let name = input["name"] as? String else { throw DepictionView.Error.invalid_name(input: input) }
-        guard let properties = input["properties"] as? [String: AnyHashable] else { throw DepictionView.Error.invalid_properties(input: input) }
+        let properties = input["properties"] as? [String: AnyHashable] ?? [String: AnyHashable]()
         self.name = name
         self.properties = properties
+        switch name {
+        case "HeadingView":
+            do {
+                view = try HeaderView(input: properties, theme: theme)
+            } catch {
+                throw error
+            }
+        case "VideoPlayer":
+            do {
+                view = try VideoPlayer(input: properties)
+            } catch {
+                throw error
+            }
+        case "Separator":
+            do {
+                view = try Separator(input: properties, theme: theme)
+            } catch {
+                throw error
+            }
+        case "Spacer": view = Spacer(input: properties)
+        case "TextView":
+            do {
+                view = try TextView(input: properties, theme: theme)
+            } catch {
+                throw error
+            }
+        default: throw DepictionView.Error.invalid_view(view: name)
+        }
     }
 }

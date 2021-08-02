@@ -49,7 +49,7 @@ final public class VideoPlayer: UIView {
     
     init(input: [String: Any]) throws {
         playerView = UIView()
-
+        
         guard let _url = input["url"] as? String,
               let url = URL(string: _url) else { throw VideoPlayer.Error.invalid_url(string: input["url"] as? String) }
         guard let alt_text = input["alt_text"] as? String else { throw VideoPlayer.Error.invalid_alt_text }

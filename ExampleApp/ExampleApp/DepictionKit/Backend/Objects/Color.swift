@@ -32,15 +32,17 @@ final public class Color {
     init(for input: Any) throws {
         if let dict = input as? [String: String],
            let _light_mode = dict["light_theme"],
-           let _dark_mode = dict["dark_mode"],
+           let _dark_theme = dict["dark_theme"],
            let light_mode = UIColor.color(from: _light_mode),
-           let dark_mode = UIColor.color(from: _dark_mode) {
+           let dark_mode = UIColor.color(from: _dark_theme) {
             self.light_mode = light_mode
             self.dark_mode = dark_mode
+            return
         } else if let string = input as? String,
                   let color = UIColor.color(from: string) {
             self.light_mode = color
             self.dark_mode = color
+            return
         }
         throw Color.Error.invalid_color(input: input)
     }

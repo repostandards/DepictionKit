@@ -37,8 +37,8 @@ final public class HeaderView: UIView {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         ])
         
         let auto_wrap = input["auto_wrap"] as? Bool ?? true
@@ -106,7 +106,7 @@ final public class HeaderView: UIView {
 }
 
 /*
- HeadingView: {
+ HeaderView: {
          /**
           * The text to display
           * Required
