@@ -115,6 +115,7 @@ final public class DepictionContainer: UIView {
             self?.layoutDepiction(json: json, theme: theme)
         }
         task.resume()
+
     }
     
     private func layoutDepiction(json: [String: Any], theme: Theme) {

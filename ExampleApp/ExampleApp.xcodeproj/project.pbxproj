@@ -27,6 +27,7 @@
 		E13FFA5226B74D7200F64440 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5126B74D7200F64440 /* Spacer.swift */; };
 		E13FFA5526B7510F00F64440 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5426B7510F00F64440 /* TextView.swift */; };
 		E1F8E9A326B86720005DA5DB /* DepictionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */; };
+		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		E13FFA5326B74FBE00F64440 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E13FFA5426B7510F00F64440 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
+		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				E13FFA3026B72F7600F64440 /* DepictionKit */,
 				E13FFA0526B72E6A00F64440 /* AppDelegate.swift */,
 				E13FFA0926B72E6A00F64440 /* ViewController.swift */,
+				E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */,
 				E13FFA0E26B72E6B00F64440 /* Assets.xcassets */,
 				E13FFA1026B72E6B00F64440 /* LaunchScreen.storyboard */,
 				E13FFA1326B72E6B00F64440 /* Info.plist */,
@@ -236,6 +239,7 @@
 				E13FFA0626B72E6A00F64440 /* AppDelegate.swift in Sources */,
 				E13FFA3F26B72F7700F64440 /* DepictionView.swift in Sources */,
 				E13FFA4026B72F7700F64440 /* Color.swift in Sources */,
+				E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */,
 				E13FFA5226B74D7200F64440 /* Spacer.swift in Sources */,
 				E1F8E9A326B86720005DA5DB /* DepictionContainer.swift in Sources */,
 			);

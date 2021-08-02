@@ -7,16 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DepictionViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    init(url: URL) {
+        super.init(nibName: nil, bundle: nil)
         
         view.backgroundColor = .white
         let theme = Theme(text_color: .label, background_color: .systemBackground, tint_color: .systemBlue, dark_mode: true)
         
-        let url = URL(string: "https://hastebin.com/raw/ogigisicez")!
         let depictionView = DepictionContainer(url: url, presentationController: self, theme: theme)
         view.addSubview(depictionView)
         NSLayoutConstraint.activate([
@@ -25,6 +23,10 @@ class ViewController: UIViewController {
             depictionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             depictionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
 }
