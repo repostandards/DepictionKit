@@ -8,7 +8,7 @@
 import UIKit
 
 /// Display a string of text as a heading
-final public class HeaderView: UIView {
+final public class HeadingView: UIView {
     
     private let label = UILabel()
     private var text_color: Color?
@@ -25,7 +25,7 @@ final public class HeaderView: UIView {
     }
     
     init(input: [String: Any], theme: Theme) throws {
-        guard let text = input["text"] as? String else { throw HeaderView.Error.invalid_text(view: input) }
+        guard let text = input["text"] as? String else { throw HeadingView.Error.invalid_text(view: input) }
         self.theme = theme
         super.init(frame: .zero)
         
@@ -33,6 +33,7 @@ final public class HeaderView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
+        label.accessibilityLabel = text
         label.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),

@@ -36,13 +36,13 @@ public final class DepictionView {
         switch name {
         case "HeadingView":
             do {
-                view = try HeaderView(input: properties, theme: theme)
+                view = try HeadingView(input: properties, theme: theme)
             } catch {
                 throw error
             }
-        case "VideoPlayer":
+        case "VideoView":
             do {
-                view = try VideoPlayer(input: properties)
+                view = try VideoView(input: properties)
             } catch {
                 throw error
             }

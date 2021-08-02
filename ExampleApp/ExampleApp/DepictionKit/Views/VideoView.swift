@@ -10,7 +10,7 @@ import WebKit
 import AVKit
 
 #warning("Constraints need to be finished for this, I can't figure it out")
-final public class VideoPlayer: UIView {
+final public class VideoView: UIView {
     
     private var playerLooper: AVPlayerLooper?
     private var playerView: UIView
@@ -35,6 +35,7 @@ final public class VideoPlayer: UIView {
         case invalid_player_size
         case invalid_player
         case invalid_autoplay
+        case unknown_alignment_error
         
         public var errorDescription: String? {
             switch self {
@@ -43,6 +44,7 @@ final public class VideoPlayer: UIView {
             case .invalid_player_size: return "VideoPlayer has invalid argument: player_size"
             case .invalid_player: return "VideoPlayer has invalid arugment: player"
             case .invalid_autoplay: return "VideoPlayer has invalid arugment: autoplay"
+            case .unknown_alignment_error: return "VideoPlayer had unknown alignment error"
             }
         }
     }
@@ -51,11 +53,11 @@ final public class VideoPlayer: UIView {
         playerView = UIView()
         
         guard let _url = input["url"] as? String,
-              let url = URL(string: _url) else { throw VideoPlayer.Error.invalid_url(string: input["url"] as? String) }
-        guard let alt_text = input["alt_text"] as? String else { throw VideoPlayer.Error.invalid_alt_text }
+              let url = URL(string: _url) else { throw VideoView.Error.invalid_url(string: input["url"] as? String) }
+        guard let alt_text = input["alt_text"] as? String else { throw VideoView.Error.invalid_alt_text }
         guard let player_size = input["player_size"] as? [String: Int],
               let height = player_size["height"],
-              let width = player_size["width"] else { throw VideoPlayer.Error.invalid_player_size }
+              let width = player_size["width"] else { throw VideoView.Error.invalid_player_size }
         self.height = CGFloat(height)
         self.width = CGFloat(width)
         var alignment: NSTextAlignment = .left
@@ -79,7 +81,7 @@ final public class VideoPlayer: UIView {
             switch _player {
             case "web": player = .web
             case "native": player = .native
-            default: throw VideoPlayer.Error.invalid_player
+            default: throw VideoView.Error.invalid_player
             }
         }
         
@@ -90,7 +92,7 @@ final public class VideoPlayer: UIView {
                 case "disabled": autoplay = .disabled
                 case "once": autoplay = .once
                 case "loop": autoplay = .loop
-                default: throw VideoPlayer.Error.invalid_autoplay
+                default: throw VideoView.Error.invalid_autoplay
                 }
             }
         }
@@ -112,7 +114,9 @@ final public class VideoPlayer: UIView {
                 player.play()
             }
         } else {
-            let webView = WKWebView(frame: .zero)
+            let configuration = WKWebViewConfiguration()
+            configuration.allowsInlineMediaPlayback = true
+            let webView = WKWebView(frame: .zero, configuration: configuration)
             webView.load(URLRequest(url: url))
             webView.scrollView.isScrollEnabled = false
             playerView = webView
@@ -122,6 +126,43 @@ final public class VideoPlayer: UIView {
         playerView.layer.cornerRadius = CGFloat(cornerRadius)
         playerView.layer.cornerCurve = .continuous
         playerView.accessibilityLabel = alt_text
+        playerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(playerView)
+        
+        var constraints: [NSLayoutConstraint] = [
+            playerView.aspectRatioConstraint(CGFloat(width) / CGFloat(height)),
+            playerView.topAnchor.constraint(equalTo: topAnchor),
+            playerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            playerView.widthAnchor.constraint(equalToConstant: CGFloat(width))
+        ]
+        
+        switch alignment {
+        case .left:
+            constraints.append(playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5))
+            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
+            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            lesserTrailing.priority = UILayoutPriority(750)
+            constraints.append(lesserTrailing)
+        case .right:
+            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
+            constraints.append(playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5)
+            lesserLeading.priority = UILayoutPriority(750)
+            constraints.append(lesserLeading)
+        case .center:
+            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
+            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: 5))
+            constraints.append(playerView.centerXAnchor.constraint(equalTo: centerXAnchor))
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5)
+            lesserLeading.priority = UILayoutPriority(750)
+            constraints.append(lesserLeading)
+            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            lesserTrailing.priority = UILayoutPriority(750)
+            constraints.append(lesserTrailing)
+        default: throw VideoView.Error.unknown_alignment_error
+        }
+        
+        NSLayoutConstraint.activate(constraints)
     }
     
     required init?(coder: NSCoder) {

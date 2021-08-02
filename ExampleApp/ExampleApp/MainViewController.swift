@@ -16,13 +16,16 @@ class MainViewController: UIViewController {
     
     private let dataSource: [ExampleDepiction] = [
         ExampleDepiction(name: "Example 1", url: URL(string: "https://hastebin.com/raw/ogigisicez")!),
-        ExampleDepiction(name: "Example 2", url: URL(string: "https://hastebin.com/raw/xibujeyaga")!)
+        ExampleDepiction(name: "Example 2", url: URL(string: "https://hastebin.com/raw/xibujeyaga")!),
+        ExampleDepiction(name: "Example 3", url: URL(string: "https://hastebin.com/raw/cewejeyifi")!)
     ]
     
     private var tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(view.frame)
 
         // Do any additional setup after loading the view.
         view.addSubview(tableView)
