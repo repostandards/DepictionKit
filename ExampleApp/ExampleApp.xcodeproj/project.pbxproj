@@ -76,7 +76,11 @@
 				E13FFA0426B72E6A00F64440 /* ExampleApp */,
 				E13FFA0326B72E6A00F64440 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		E13FFA0326B72E6A00F64440 /* Products */ = {
 			isa = PBXGroup;
