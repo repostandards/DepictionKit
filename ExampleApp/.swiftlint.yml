@@ -1,0 +1,5 @@
+# TODO: Clean up and make these errors again
+disabled_rules:
+  - identifier_name
+  - trailing_whitespace
+  - cyclomatic_complexity
