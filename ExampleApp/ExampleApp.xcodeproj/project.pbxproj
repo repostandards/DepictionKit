@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,7 @@
 		4E63060B26BA565200144776 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5126B74D7200F64440 /* Spacer.swift */; };
 		4E63060C26BA565200144776 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3C26B72F7600F64440 /* HeadingView.swift */; };
 		4E63060D26BA565200144776 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA5426B7510F00F64440 /* TextView.swift */; };
+		4E63061226BA5D4100144776 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 4E63061126BA5D4100144776 /* Down */; };
 		E13FFA0626B72E6A00F64440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0526B72E6A00F64440 /* AppDelegate.swift */; };
 		E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0926B72E6A00F64440 /* ViewController.swift */; };
 		E13FFA0F26B72E6B00F64440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA0E26B72E6B00F64440 /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E63061226BA5D4100144776 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +235,9 @@
 			dependencies = (
 			);
 			name = DepictionKit;
+			packageProductDependencies = (
+				4E63061126BA5D4100144776 /* Down */,
+			);
 			productName = DepictionKit;
 			productReference = 4E6305EE26BA558200144776 /* DepictionKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -282,6 +287,9 @@
 				Base,
 			);
 			mainGroup = E13FF9F926B72E6A00F64440;
+			packageReferences = (
+				4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */,
+			);
 			productRefGroup = E13FFA0326B72E6A00F64440 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -644,6 +652,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E63061126BA5D4100144776 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E13FF9FA26B72E6A00F64440 /* Project object */;
 }
