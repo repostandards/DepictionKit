@@ -124,7 +124,9 @@ final public class VideoView: UIView, DepictionViewDelegate {
         
         playerView.clipsToBounds = true
         playerView.layer.cornerRadius = CGFloat(cornerRadius)
-        playerView.layer.cornerCurve = .continuous
+        if #available(iOS 13, *) {
+            playerView.layer.cornerCurve = .continuous
+        }
         playerView.accessibilityLabel = alt_text
         playerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(playerView)

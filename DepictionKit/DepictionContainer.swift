@@ -62,7 +62,7 @@ final public class DepictionContainer: UIView {
         
         self.presentationController = presentationController
         
-        let loadingIndicator = UIActivityIndicatorView(style: .medium)
+        let loadingIndicator = UIActivityIndicatorView(style: .gray)
         addSubview(loadingIndicator)
         NSLayoutConstraint.activate([
             loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
