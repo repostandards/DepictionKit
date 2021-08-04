@@ -8,15 +8,23 @@
 import UIKit
 import WebKit
 import SafariServices
+import Down
+
+// To re-export the Down error type from DepictionKit.
+public typealias DownError = DownErrors
 
 final public class TextView: UIView {
     
-    private var webView: WKWebView?
+    private let webView: WKWebView
+
+    private var webViewHeightConstraint: NSLayoutConstraint!
+    private var contentSizeObserver: NSKeyValueObservation!
     
     private var theme: Theme
+    private let content: String
     private var tint_override: Color?
     
-    enum Format {
+    enum Format: String {
         case markdown
         case html
     }
@@ -24,11 +32,13 @@ final public class TextView: UIView {
     enum Error: LocalizedError {
         case invalid_content
         case invalid_format
+        case markdown_error(downError: DownError)
         
         public var errorDescription: String? {
             switch self {
-            case .invalid_content: return "TextView has invalid arugment: content"
-            case .invalid_format: return "TextView has invalid arugment: format"
+            case .invalid_content: return "TextView has invalid argument: content"
+            case .invalid_format: return "TextView has invalid argument: format"
+            case .markdown_error(downError: _): return "TextView failed to render Markdown"
             }
         }
     }
@@ -47,7 +57,9 @@ final public class TextView: UIView {
         configuration.mediaTypesRequiringUserActionForPlayback = .all
         configuration.ignoresViewportScaleLimits = false
         configuration.dataDetectorTypes = []
-        configuration._overrideContentSecurityPolicy = "default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts"
+        configuration._overrideContentSecurityPolicy = """
+        default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts
+        """
         if #available(iOS 14, *) {
             configuration._loadsSubresources = false
             configuration.defaultWebpagePreferences.allowsContentJavaScript = false
@@ -62,13 +74,25 @@ final public class TextView: UIView {
     
     init(input: [String: Any], theme: Theme) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
-        var format: Format
-        switch input["format"] as? String {
-        case "markdown": format = .markdown
-        case "html": format = .html
-        default: throw TextView.Error.invalid_content
+
+        let format = Format(rawValue: input["format"] as? String ?? "")
+        switch format {
+        case .none, .some(.markdown):
+            let down = Down(markdownString: content)
+            do {
+                self.content = try down.toHTML(.default)
+            } catch let error as DownErrors {
+                throw Error.markdown_error(downError: error)
+            }
+
+        case .some(.html):
+            self.content = content
+
+        // TODO: Make sure we handle the case of an invalid value somehow?
+//        default:
+//            throw TextView.Error.invalid_format
         }
-        
+
         var tint_override: Color?
         if let _tint_override = input["tint_override"] {
             do {
@@ -81,36 +105,198 @@ final public class TextView: UIView {
         self.theme = theme
         
         webView = WKWebView(frame: .zero, configuration: Self.webViewConfiguration)
+
         super.init(frame: .zero)
+
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.scrollView.isScrollEnabled = false
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.isOpaque = false
+        addSubview(webView)
+
+        webViewHeightConstraint = webView.heightAnchor.constraint(equalToConstant: 0)
+        contentSizeObserver = webView.scrollView.observe(\.contentSize, options: .new) { _, change in
+            self.webViewHeightDidChange(change.newValue?.height ?? 0)
+        }
+
+        NSLayoutConstraint.activate([
+            webView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            webView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            webView.topAnchor.constraint(equalTo: self.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            webViewHeightConstraint
+        ])
+
+        loadWebView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private func loadWebView() {
+        // TODO: This is a placeholder for now
+        let marginEdgeInsets = UIEdgeInsets(top: 13, left: 16, bottom: 13, right: 16)
+
+        let htmlString = """
+        <!DOCTYPE html>
+        <html theme="\(theme.dark_mode ? "dark" : "light")" style="\(cssVariables)">
+        <base target="_blank">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <style>
+        body {
+            margin: \(marginEdgeInsets.top)px \(marginEdgeInsets.right)px \(marginEdgeInsets.bottom)px \(marginEdgeInsets.left)px;
+            background: transparent;
+            font: -apple-system-body;
+            color: var(--label-color);
+            -webkit-text-size-adjust: none;
+        }
+        pre, xmp, plaintext, listing, tt, code, kbd, samp {
+            font-family: ui-monospace, Menlo;
+        }
+        a {
+            text-decoration: none;
+            color: var(--tint-color);
+        }
+        p, h1, h2, h3, h4, h5, h6, ul, ol {
+            margin: 0 0 16px 0;
+        }
+        body > *:last-child {
+            margin-bottom: 0;
+        }
+        </style>
+        <body>\(content)</body>
+        </html>
+        """
+        print("----- \(htmlString)")
+
+        webView.loadHTMLString(htmlString, baseURL: nil)
+        self.setNeedsLayout()
+    }
+
+    private var cssVariables: String {
+        // TODO: Come up with values for the placeholders, or remove them. Not all are used by
+        // DepictionKit. Some are provided for HTML depictions to take advantage of.
+        """
+        --tint-color: \(tint_override?.color(for: traitCollection).cssString ?? theme.tint_color.cssString);
+        --background-color: \(theme.background_color.cssString);
+        --content-background-color: \("#fff");
+        --highlight-color: \("#c00");
+        --separator-color: \("#696969");
+        --label-color: \(theme.text_color.cssString);
+        """.replacingOccurrences(of: "\n", with: " ")
+    }
+
+    private func themeDidChange() {
+        // TODO: Hook this up when we make it possible to change interface style live without
+        // recreating the entire view hierarchy
+        if #available(iOS 14, *) {
+            // Safer, uses variable injection, but only supported on iOS 14+.
+            let injectJS = """
+            document.documentElement.setAttribute("style", value);
+            """
+            webView.callAsyncJavaScript(injectJS,
+                                        arguments: [ "value": cssVariables ],
+                                        in: nil,
+                                        in: .defaultClient,
+                                        completionHandler: nil)
+        } else {
+            // Be careful that escaping may be needed for the old method. Currently we don’t need to
+            // escape since we know cssVariables doesn’t have any weird symbols in it.
+            let injectJS = """
+            document.documentElement.setAttribute("style", "\(cssVariables)");
+            """
+            webView.evaluateJavaScript(injectJS, completionHandler: nil)
+        }
+    }
+
+    private func webViewHeightDidChange(_ height: CGFloat) {
+        webViewHeightConstraint.constant = height
+        // May need to call layoutIsNeeded, idk yet
+    }
     
 }
 
-/*
- /**
-      * Display a paragraph of text formatted with Markdown (+HTML)
-      */
-     TextView: {
-         /**
-          * The text to display.
-          * Required
-          */
-         content: string
+extension TextView: WKUIDelegate {
+    public func webView(_ webView: WKWebView, previewingViewControllerForElement elementInfo: WKPreviewElementInfo, defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
+        guard let url = elementInfo.linkURL,
+              let scheme = url.scheme else {
+            return nil
+        }
+        if scheme == "http" || scheme == "https" {
+            let viewController = SFSafariViewController(url: url)
+            viewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
+            return viewController
+        }
+        return nil
+    }
 
-         /**
-          * Text formatting style to use (Markdown Flavour).
-          * @default 'markdown'
-          */
-         format?: 'markdown' | 'html'
+    public func webView(_ webView: WKWebView, commitPreviewingViewController previewingViewController: UIViewController) {
+        // TODO: This
+//        if previewingViewController.isKind(of: SFSafariViewController.self) {
+//            parentViewController?.present(previewingViewController, animated: true, completion: nil)
+//        } else {
+//            parentViewController?.navigationController?.pushViewController(previewingViewController, animated: true)
+//        }
+    }
 
-         /**
-          * Tint color override for links and key words
-          * Defaults to none (conforms to global tint if available)
-          */
-         tint_override?: Color
-     }
- */
+    @available(iOS 13, *)
+    public func webView(_ webView: WKWebView, contextMenuConfigurationForElement elementInfo: WKContextMenuElementInfo, completionHandler: @escaping (UIContextMenuConfiguration?) -> Void) {
+        let url = elementInfo.linkURL
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: {
+            if let url = url,
+               url.scheme == "http" || url.scheme == "https" {
+                let viewController = SFSafariViewController(url: url)
+                viewController.preferredControlTintColor = self.theme.tint_color
+                return viewController
+            }
+            return nil
+        }, actionProvider: { children in
+            UIMenu(children: children)
+        })
+        completionHandler(configuration)
+    }
+
+    @available(iOS 13, *)
+    public func webView(_ webView: WKWebView, contextMenuForElement elementInfo: WKContextMenuElementInfo, willCommitWithAnimator animator: UIContextMenuInteractionCommitAnimating) {
+        guard let url = elementInfo.linkURL else {
+            return
+        }
+        animator.addAnimations {
+            // TODO: This
+//            if let viewController = animator.previewViewController as? SFSafariViewController {
+//                self.parentViewController?.present(viewController, animated: true, completion: nil)
+//            } else {
+//                _ = DepictionButton.processAction(url.absoluteString, parentViewController: self.parentViewController, openExternal: false)
+//            }
+        }
+    }
+}
+
+extension TextView: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.cancel)
+            return
+        }
+        switch navigationAction.navigationType {
+        case .linkActivated, .formSubmitted:
+            // User tapped a link inside the web view.
+            // TODO: Open the link
+            break
+//            _ = DepictionButton.processAction(url.absoluteString, parentViewController: self.parentViewController, openExternal: false)
+
+        case .other:
+            // The navigation type will be .other and URL will be about:blank when loading an
+            // HTML string.
+            if url.absoluteString == "about:blank" {
+                decisionHandler(.allow)
+                return
+            }
+
+        default: break
+        }
+        decisionHandler(.cancel)
+    }
+}
