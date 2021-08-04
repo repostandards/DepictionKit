@@ -37,7 +37,7 @@ final public class Depiction {
         var tint_color: Color?
         if let _tint_color = json["tint_color"] {
             do {
-                tint_color = try Color.init(for: _tint_color)
+                tint_color = try Color.init(for: _tint_color, inferDarkColorIfNeeded: true)
             } catch {
                 throw error
             }
