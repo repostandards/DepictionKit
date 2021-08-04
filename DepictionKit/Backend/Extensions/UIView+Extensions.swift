@@ -7,10 +7,16 @@
 
 import UIKit
 
-extension UIView {
+internal extension UIView {
     
     func aspectRatioConstraint(_ ratio: CGFloat) -> NSLayoutConstraint {
-        NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: self, attribute: .width, multiplier: ratio, constant: 0)
+        NSLayoutConstraint(item: self,
+                           attribute: .height,
+                           relatedBy: .equal,
+                           toItem: self,
+                           attribute: .width,
+                           multiplier: ratio,
+                           constant: 0)
     }
     
 }

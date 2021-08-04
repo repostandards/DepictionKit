@@ -15,6 +15,7 @@ internal protocol DepictionViewDelegate: AnyObject {
 }
 
 // Default implementations of protocol optional requirements
+// swiftlint:disable unused_setter_value
 internal extension DepictionViewDelegate {
 
     var delegate: DepictionContainerDelegate? {
@@ -28,3 +29,4 @@ internal extension DepictionViewDelegate {
     }
 
 }
+// swiftlint:enable unused_setter_value

@@ -9,7 +9,7 @@ let package = Package(
     ],
     products: [
         .library(name: "DepictionKit",
-                 targets: ["DepictionKit"]),
+                 targets: ["DepictionKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/johnxnguyen/Down.git",

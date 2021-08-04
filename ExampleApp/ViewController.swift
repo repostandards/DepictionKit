@@ -32,7 +32,11 @@ class DepictionViewController: UIViewController {
     }
 
     private func configureTheme() -> Theme {
-        Theme(text_color: .label, background_color: .systemBackground, tint_color: .systemBlue, separator_color: .separator, dark_mode: true)
+        Theme(text_color: .label,
+              background_color: .systemBackground,
+              tint_color: .systemBlue,
+              separator_color: .separator,
+              dark_mode: true)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -43,4 +47,3 @@ class DepictionViewController: UIViewController {
     }
 
 }
-

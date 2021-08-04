@@ -43,11 +43,16 @@ class MainViewController: UIViewController {
         tableView.backgroundColor = .clear
         view.backgroundColor = .white
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Custom", style: .done, target: self, action: #selector(requestCustomLink))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Custom",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(requestCustomLink))
     }
     
     @objc private func requestCustomLink() {
-        let alert = UIAlertController(title: "Custom Depiction Link", message: "Must be a raw link to the JSON", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Custom Depiction Link",
+                                      message: "Must be a raw link to the JSON",
+                                      preferredStyle: .alert)
         alert.addTextField { textField in
             textField.placeholder = "URL"
             textField.keyboardType = .URL
@@ -72,7 +77,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(DepictionViewController(url: dataSource[indexPath.row].url), animated: true)
+        navigationController?.pushViewController(DepictionViewController(url: dataSource[indexPath.row].url),
+                                                 animated: true)
     }
 }
 
