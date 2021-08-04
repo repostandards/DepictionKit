@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DepictionKit
 
 struct ExampleDepiction {
     var name: String

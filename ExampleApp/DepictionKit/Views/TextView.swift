@@ -62,13 +62,11 @@ final public class TextView: UIView {
     
     init(input: [String: Any], theme: Theme) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
-        var format: Format = .markdown
-        if let _format = input["format"] as? String {
-            switch _format {
-            case "markdown": format = .markdown
-            case "html": format = .html
-            default: throw TextView.Error.invalid_content
-            }
+        var format: Format
+        switch input["format"] as? String {
+        case "markdown": format = .markdown
+        case "html": format = .html
+        default: throw TextView.Error.invalid_content
         }
         
         var tint_override: Color?

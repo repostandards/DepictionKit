@@ -39,7 +39,7 @@ final public class DepictionContainer: UIView {
         return view
     }()
     
-    init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme) {
+    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme) {
         self.theme = theme
         super.init(frame: .zero)
         
@@ -50,7 +50,7 @@ final public class DepictionContainer: UIView {
         fetchDepiction(url: url, loginToken: loginToken, theme: theme)
     }
     
-    init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
+    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
         self.theme = theme
         super.init(frame: .zero)
         
@@ -69,7 +69,7 @@ final public class DepictionContainer: UIView {
         layoutDepiction(json: json, theme: theme)
     }
     
-    init(data: Data, presentationController: UIViewController, theme: Theme) throws {
+    public init(data: Data, presentationController: UIViewController, theme: Theme) throws {
         self.theme = theme
         super.init(frame: .zero)
         

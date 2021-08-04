@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DepictionKit
 
 class DepictionViewController: UIViewController {
     
