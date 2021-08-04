@@ -28,7 +28,7 @@ final public class Depiction {
     public let tint_color: Color?
     public let children: [DepictionView]
  
-    init(json: [String: Any], theme: Theme) throws {
+    init(json: [String: Any], theme: Theme, delegate: DepictionContainerDelegate) throws {
         guard let schema = json["$schema"] as? String else {
             throw Depiction.Error.missing_schema
         }
@@ -55,7 +55,7 @@ final public class Depiction {
         var childrenViews = [DepictionView]()
         do {
             for child in children {
-                let view = try DepictionView(for: child, theme: theme)
+                let view = try DepictionView(for: child, theme: theme, delegate: delegate)
                 childrenViews.append(view)
             }
         } catch {

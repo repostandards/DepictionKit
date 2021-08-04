@@ -7,12 +7,14 @@
 
 import UIKit
 
+typealias AnyDepictionView = UIView & DepictionViewDelegate
+
 /// Trampoline class for handling children views
 public final class DepictionView {
     
     private let name: String
     private let properties: [String: AnyHashable]
-    internal let view: UIView
+    internal let view: AnyDepictionView
     
     enum Error: LocalizedError {
         case invalid_name(input: [String: AnyHashable])
@@ -28,39 +30,25 @@ public final class DepictionView {
         }
     }
     
-    init(for input: [String: AnyHashable], theme: Theme) throws {
+    init(for input: [String: AnyHashable], theme: Theme, delegate: DepictionContainerDelegate) throws {
         guard let name = input["name"] as? String else { throw DepictionView.Error.invalid_name(input: input) }
         let properties = input["properties"] as? [String: AnyHashable] ?? [String: AnyHashable]()
         self.name = name
         self.properties = properties
         switch name {
         case "HeadingView":
-            do {
-                view = try HeadingView(input: properties, theme: theme)
-            } catch {
-                throw error
-            }
+            view = try HeadingView(input: properties, theme: theme)
         case "VideoView":
-            do {
-                view = try VideoView(input: properties)
-            } catch {
-                throw error
-            }
+            view = try VideoView(input: properties)
         case "Separator":
-            do {
-                view = try Separator(input: properties, theme: theme)
-            } catch {
-                throw error
-            }
-        case "Spacer": view = Spacer(input: properties)
+            view = try Separator(input: properties, theme: theme)
+        case "Spacer":
+            view = Spacer(input: properties)
         case "TextView":
-            do {
-                view = try TextView(input: properties, theme: theme)
-            } catch {
-                throw error
-            }
+            view = try TextView(input: properties, theme: theme)
         default:
-            view = UIView()
+            view = Placeholder()
         }
+        view.delegate = delegate
     }
 }

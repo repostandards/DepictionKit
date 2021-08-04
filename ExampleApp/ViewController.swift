@@ -9,14 +9,15 @@ import UIKit
 import DepictionKit
 
 class DepictionViewController: UIViewController {
+
+    private var depictionView: DepictionContainer!
     
     init(url: URL) {
         super.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = .white
-        let theme = Theme(text_color: .label, background_color: .systemBackground, tint_color: .systemBlue, dark_mode: true)
+        view.backgroundColor = .systemBackground
         
-        let depictionView = DepictionContainer(url: url, presentationController: self, theme: theme)
+        depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme())
         view.addSubview(depictionView)
         NSLayoutConstraint.activate([
             depictionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -28,6 +29,17 @@ class DepictionViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func configureTheme() -> Theme {
+        Theme(text_color: .label, background_color: .systemBackground, tint_color: .systemBlue, separator_color: .separator, dark_mode: true)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        // Reconfigure the depiction theme
+        depictionView.theme = configureTheme()
     }
 
 }

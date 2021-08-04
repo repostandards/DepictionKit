@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final public class DepictionContainer: UIView {
     
@@ -21,7 +22,11 @@ final public class DepictionContainer: UIView {
     
     private var depiction: Depiction?
     private weak var presentationController: UIViewController?
-    private var theme: Theme
+
+    public weak var delegate: DepictionDelegate?
+    public var theme: Theme {
+        didSet { themeDidChange() }
+    }
     
     private var loadingIndicator: UIActivityIndicatorView?
     
@@ -82,6 +87,10 @@ final public class DepictionContainer: UIView {
         }
         layoutDepiction(json: json, theme: theme)
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func meta() {
         addSubview(scrollView)
@@ -129,7 +138,7 @@ final public class DepictionContainer: UIView {
         loadingIndicator?.removeFromSuperview()
         let depiction: Depiction
         do {
-            depiction = try Depiction(json: json, theme: theme)
+            depiction = try Depiction(json: json, theme: theme, delegate: self)
         } catch {
             NSLog(error.localizedDescription)
             return
@@ -144,9 +153,58 @@ final public class DepictionContainer: UIView {
             ])
         }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    private func themeDidChange() {
+        backgroundColor = theme.background_color
+
+        // Pass the new theme down to all subviews
+        for view in contentView.arrangedSubviews {
+            if let view = view as? AnyDepictionView {
+                view.theme = theme
+            }
+        }
     }
     
+}
+
+extension DepictionContainer: DepictionContainerDelegate {
+
+    internal func openURL(_ url: URL, inAppIfPossible inApp: Bool) {
+        delegate?.openURL(url) { handled in
+            if handled {
+                // Do nothing, the delegate has handled this URL.
+                return
+            }
+
+            // Try opening as universal link first
+            UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { success in
+                if success {
+                    // Cool! We’re done.
+                    return
+                }
+
+                if inApp && (url.scheme == "http" || url.scheme == "https") {
+                    // Push Safari View Controller.
+                    let viewController = self.configureSafariViewController(for: url)
+                    self.presentationController?.present(viewController, animated: true, completion: nil)
+                } else {
+                    // Attempt a traditional URL open.
+                    // TODO: Report failure to the user somehow?
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
+    }
+
+    func configureSafariViewController(for url: URL) -> SFSafariViewController {
+        assert(url.scheme == "http" || url.scheme == "https")
+        let viewController = SFSafariViewController(url: url)
+        viewController.preferredControlTintColor = theme.tint_color
+        return viewController
+    }
+
+    func present(_ viewController: UIViewController, animated: Bool) {
+        presentationController?.present(viewController, animated: animated, completion: nil)
+    }
+
 }

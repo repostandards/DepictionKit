@@ -13,14 +13,17 @@ import Down
 // To re-export the Down error type from DepictionKit.
 public typealias DownError = DownErrors
 
-final public class TextView: UIView {
+final public class TextView: UIView, DepictionViewDelegate {
     
     private let webView: WKWebView
 
     private var webViewHeightConstraint: NSLayoutConstraint!
     private var contentSizeObserver: NSKeyValueObservation!
     
-    private var theme: Theme
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
+
     private let content: String
     private var tint_override: Color?
     
@@ -60,15 +63,15 @@ final public class TextView: UIView {
         configuration.setValue("""
         default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts
         """,
-                               forKey: "_overrideContentSecurityPolicy")
+                               forKey: "overrideContentSecurityPolicy")
         if #available(iOS 14, *) {
-            configuration.setValue(false, forKey: "_loadsSubresources")
+            configuration.setValue(false, forKey: "loadsSubresources")
             configuration.defaultWebpagePreferences.allowsContentJavaScript = false
         }
         if #available(iOS 15, *) {
-            configuration.setValue(Set<String>(), forKey: "_allowedNetworkHosts")
+            configuration.setValue(Set<String>(), forKey: "allowedNetworkHosts")
         } else if #available(iOS 14, *) {
-            configuration.setValue(false, forKey: "_loadsFromNetwork")
+            configuration.setValue(false, forKey: "loadsFromNetwork")
         }
         return configuration
     }()
@@ -180,7 +183,7 @@ final public class TextView: UIView {
         // TODO: Come up with values for the placeholders, or remove them. Not all are used by
         // DepictionKit. Some are provided for HTML depictions to take advantage of.
         """
-        --tint-color: \(tint_override?.color(for: traitCollection).cssString ?? theme.tint_color.cssString);
+        --tint-color: \(tint_override?.color(for: theme).cssString ?? theme.tint_color.cssString);
         --background-color: \(theme.background_color.cssString);
         --content-background-color: \("#fff");
         --highlight-color: \("#c00");

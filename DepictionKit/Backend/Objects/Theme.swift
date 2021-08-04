@@ -14,12 +14,14 @@ public final class Theme {
     public let text_color: UIColor
     public let background_color: UIColor
     public let tint_color: UIColor
+    public let separator_color: UIColor
     public let dark_mode: Bool
     
-    public init(text_color: UIColor, background_color: UIColor, tint_color: UIColor, dark_mode: Bool) {
+    public init(text_color: UIColor, background_color: UIColor, tint_color: UIColor, separator_color: UIColor, dark_mode: Bool) {
         self.text_color = text_color
         self.background_color = background_color
         self.tint_color = tint_color
+        self.separator_color = separator_color
         self.dark_mode = dark_mode
     }
     

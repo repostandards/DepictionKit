@@ -8,11 +8,14 @@
 import UIKit
 
 /// Display a string of text as a heading
-final public class HeadingView: UIView {
+final public class HeadingView: UIView, DepictionViewDelegate {
     
     private let label = UILabel()
     private var text_color: Color?
-    private var theme: Theme
+
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
     
     enum Error: LocalizedError {
         case invalid_text(view: [String: Any])
@@ -79,19 +82,10 @@ final public class HeadingView: UIView {
         }
         label.textAlignment = alignment
         
-        themeReload(nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(themeReload(_:)),
-                                               name: Theme.change,
-                                               object: nil)
+        themeDidChange()
     }
     
-    @objc private func themeReload(_ notification: Notification?) {
-        if let notification = notification,
-           let theme = notification.object as? Theme {
-            self.theme = theme
-        }
-        
+    private func themeDidChange() {
         backgroundColor = theme.background_color
         if let text_color = text_color {
             label.textColor = theme.dark_mode ? text_color.dark_mode : text_color.light_mode

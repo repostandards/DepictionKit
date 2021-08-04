@@ -7,9 +7,12 @@
 
 import UIKit
 
-final public class Separator: UIView {
-    
-    private var theme: Theme
+final public class Separator: UIView, DepictionViewDelegate {
+
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
+
     private let separator = UIView()
     
     init(input: [String: Any], theme: Theme) throws {
@@ -44,24 +47,16 @@ final public class Separator: UIView {
                 separator.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
         }
-        
-        themeReload(nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(themeReload(_:)),
-                                               name: Theme.change,
-                                               object: nil)
+
+        themeDidChange()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func themeReload(_ notification: Notification?) {
-        if let notification = notification,
-           let theme = notification.object as? Theme {
-            self.theme = theme
-        }
-        separator.backgroundColor = .label
+    private func themeDidChange() {
+        separator.backgroundColor = theme.text_color
     }
 }
 

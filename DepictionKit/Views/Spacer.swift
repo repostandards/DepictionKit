@@ -7,9 +7,8 @@
 
 import UIKit
 
-final public class Spacer: UIView {
+final public class Spacer: UIView, DepictionViewDelegate {
 
-    
     init(input: [String: Any]) {
         var spacing = 10
         if let _spacing = input["spacing"] as? Int {

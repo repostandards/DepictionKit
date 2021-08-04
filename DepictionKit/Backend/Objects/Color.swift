@@ -15,15 +15,8 @@ final public class Color {
     /// Color to display in dark mode
     public let dark_mode: UIColor
 
-    public func color(for traitCollection: UITraitCollection) -> UIColor {
-        switch traitCollection.userInterfaceStyle {
-        case .light, .unspecified:
-            return light_mode
-        case .dark:
-            return dark_mode
-        @unknown default:
-            return light_mode
-        }
+    public func color(for theme: Theme) -> UIColor {
+        return theme.dark_mode ? dark_mode : light_mode
     }
     
     enum Error: LocalizedError {

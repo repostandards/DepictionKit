@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E35616B26BA7C9100828D09 /* DepictionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E35616A26BA7C9100828D09 /* DepictionDelegate.swift */; };
+		4E35616D26BA7CF100828D09 /* DepictionContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E35616C26BA7CF100828D09 /* DepictionContainerDelegate.swift */; };
+		4E35616F26BA7D6800828D09 /* DepictionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E35616E26BA7D6800828D09 /* DepictionViewDelegate.swift */; };
+		4E35617126BA7F2000828D09 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E35617026BA7F2000828D09 /* Placeholder.swift */; };
 		4E6305F226BA558200144776 /* DepictionKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E6305F026BA558200144776 /* DepictionKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E6305F526BA558200144776 /* DepictionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6305EE26BA558200144776 /* DepictionKit.framework */; };
 		4E6305F626BA558200144776 /* DepictionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6305EE26BA558200144776 /* DepictionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,6 +64,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E35616A26BA7C9100828D09 /* DepictionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepictionDelegate.swift; sourceTree = "<group>"; };
+		4E35616C26BA7CF100828D09 /* DepictionContainerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainerDelegate.swift; sourceTree = "<group>"; };
+		4E35616E26BA7D6800828D09 /* DepictionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionViewDelegate.swift; sourceTree = "<group>"; };
+		4E35617026BA7F2000828D09 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		4E6305EE26BA558200144776 /* DepictionKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DepictionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E6305F026BA558200144776 /* DepictionKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DepictionKit.h; sourceTree = "<group>"; };
 		4E6305F126BA558200144776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +125,9 @@
 				E13FFA3126B72F7600F64440 /* Backend */,
 				E13FFA3A26B72F7600F64440 /* Depiction.swift */,
 				E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */,
+				4E35616C26BA7CF100828D09 /* DepictionContainerDelegate.swift */,
+				4E35616E26BA7D6800828D09 /* DepictionViewDelegate.swift */,
+				4E35616A26BA7C9100828D09 /* DepictionDelegate.swift */,
 				E13FFA3B26B72F7600F64440 /* Views */,
 				4E6305F026BA558200144776 /* DepictionKit.h */,
 				4E6305F126BA558200144776 /* Info.plist */,
@@ -202,6 +213,7 @@
 				E13FFA5126B74D7200F64440 /* Spacer.swift */,
 				E13FFA5426B7510F00F64440 /* TextView.swift */,
 				E13FFA4526B72FE800F64440 /* Test.xib */,
+				4E35617026BA7F2000828D09 /* Placeholder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,7 +290,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E13FF9FD26B72E6A00F64440 /* Build configuration list for PBXProject "ExampleApp" */;
+			buildConfigurationList = E13FF9FD26B72E6A00F64440 /* Build configuration list for PBXProject "DepictionKit" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -351,14 +363,18 @@
 				4E63060026BA563F00144776 /* FontAlignment.swift in Sources */,
 				4E6305FF26BA563F00144776 /* Theme.swift in Sources */,
 				4E6305FB26BA55CA00144776 /* Depiction.swift in Sources */,
+				4E35617126BA7F2000828D09 /* Placeholder.swift in Sources */,
 				4E63060626BA563F00144776 /* DepictionView.swift in Sources */,
 				4E63060126BA563F00144776 /* Color.swift in Sources */,
 				4E63060226BA563F00144776 /* String+Extensions.swift in Sources */,
+				4E35616B26BA7C9100828D09 /* DepictionDelegate.swift in Sources */,
 				4E63060426BA563F00144776 /* UIView+Extensions.swift in Sources */,
 				4E63060D26BA565200144776 /* TextView.swift in Sources */,
 				4E63060526BA563F00144776 /* UIColor+Extensions.swift in Sources */,
+				4E35616D26BA7CF100828D09 /* DepictionContainerDelegate.swift in Sources */,
 				4E63060B26BA565200144776 /* Spacer.swift in Sources */,
 				4E63060726BA563F00144776 /* FontWeight.swift in Sources */,
+				4E35616F26BA7D6800828D09 /* DepictionViewDelegate.swift in Sources */,
 				4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */,
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
 				4E63060A26BA565200144776 /* VideoView.swift in Sources */,
@@ -633,7 +649,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E13FF9FD26B72E6A00F64440 /* Build configuration list for PBXProject "ExampleApp" */ = {
+		E13FF9FD26B72E6A00F64440 /* Build configuration list for PBXProject "DepictionKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E13FFA1426B72E6B00F64440 /* Debug */,

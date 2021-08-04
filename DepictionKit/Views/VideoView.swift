@@ -10,7 +10,7 @@ import WebKit
 import AVKit
 
 #warning("Constraints need to be finished for this, I can't figure it out")
-final public class VideoView: UIView {
+final public class VideoView: UIView, DepictionViewDelegate {
     
     private var playerLooper: AVPlayerLooper?
     private var playerView: UIView
