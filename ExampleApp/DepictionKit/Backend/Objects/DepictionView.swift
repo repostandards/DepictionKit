@@ -59,7 +59,8 @@ public final class DepictionView {
             } catch {
                 throw error
             }
-        default: throw DepictionView.Error.invalid_view(view: name)
+        default:
+            view = UIView()
         }
     }
 }
