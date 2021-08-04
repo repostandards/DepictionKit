@@ -19,7 +19,8 @@ final public class TextView: UIView, DepictionViewDelegate {
 
     private var webViewHeightConstraint: NSLayoutConstraint!
     private var contentSizeObserver: NSKeyValueObservation!
-    
+
+    internal weak var delegate: DepictionContainerDelegate?
     internal var theme: Theme {
         didSet { themeDidChange() }
     }
@@ -55,14 +56,15 @@ final public class TextView: UIView, DepictionViewDelegate {
         // - JavaScript can only be executed by code injected by Sileo.
         // Note: The CSP has "allow-scripts", which might seem contradictory, but this is only to
         // allow our own injected JavaScript to execute. The webpage still can’t run its own JS.
+        // "allow-popups" ensures only navigation to a new “popup” window is allowed, which we catch
+        // and open natively.
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
         configuration.mediaTypesRequiringUserActionForPlayback = .all
         configuration.ignoresViewportScaleLimits = false
         configuration.dataDetectorTypes = []
-        configuration.setValue("""
-        default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts
-        """,
+        // swiftlint:disable:next line_length
+        configuration.setValue("default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts allow-popups",
                                forKey: "overrideContentSecurityPolicy")
         if #available(iOS 14, *) {
             configuration.setValue(false, forKey: "loadsSubresources")
@@ -79,9 +81,9 @@ final public class TextView: UIView, DepictionViewDelegate {
     init(input: [String: Any], theme: Theme) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
 
-        let format = Format(rawValue: input["format"] as? String ?? "")
+        let format = Format(rawValue: input["format"] as? String ?? "markdown")
         switch format {
-        case .none, .some(.markdown):
+        case .markdown:
             let down = Down(markdownString: content)
             do {
                 self.content = try down.toHTML(.default)
@@ -89,12 +91,11 @@ final public class TextView: UIView, DepictionViewDelegate {
                 throw Error.markdown_error(downError: error)
             }
 
-        case .some(.html):
+        case .html:
             self.content = content
 
-        // TODO: Make sure we handle the case of an invalid value somehow?
-//        default:
-//            throw TextView.Error.invalid_format
+        default:
+            throw TextView.Error.invalid_format
         }
 
         var tint_override: Color?
@@ -140,7 +141,7 @@ final public class TextView: UIView, DepictionViewDelegate {
     }
 
     private func loadWebView() {
-        // TODO: This is a placeholder for now
+        // TODO: This inset is a placeholder for now
         let marginEdgeInsets = UIEdgeInsets(top: 13, left: 16, bottom: 13, right: 16)
 
         let htmlString = """
@@ -150,7 +151,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <style>
         body {
-            margin: \(marginEdgeInsets.top)px \(marginEdgeInsets.right)px \(marginEdgeInsets.bottom)px \(marginEdgeInsets.left)px;
+            margin: \(marginEdgeInsets.cssString);
             background: transparent;
             font: -apple-system-body;
             color: var(--label-color);
@@ -173,28 +174,25 @@ final public class TextView: UIView, DepictionViewDelegate {
         <body>\(content)</body>
         </html>
         """
-        print("----- \(htmlString)")
 
         webView.loadHTMLString(htmlString, baseURL: nil)
-        self.setNeedsLayout()
     }
 
     private var cssVariables: String {
         // TODO: Come up with values for the placeholders, or remove them. Not all are used by
         // DepictionKit. Some are provided for HTML depictions to take advantage of.
+        // TODO: Also try and come up with more that might be useful?
         """
         --tint-color: \(tint_override?.color(for: theme).cssString ?? theme.tint_color.cssString);
         --background-color: \(theme.background_color.cssString);
         --content-background-color: \("#fff");
         --highlight-color: \("#c00");
-        --separator-color: \("#696969");
+        --separator-color: \(theme.separator_color.cssString);
         --label-color: \(theme.text_color.cssString);
         """.replacingOccurrences(of: "\n", with: " ")
     }
 
     private func themeDidChange() {
-        // TODO: Hook this up when we make it possible to change interface style live without
-        // recreating the entire view hierarchy
         if #available(iOS 14, *) {
             // Safer, uses variable injection, but only supported on iOS 14+.
             let injectJS = """
@@ -223,36 +221,35 @@ final public class TextView: UIView, DepictionViewDelegate {
 }
 
 extension TextView: WKUIDelegate {
-    public func webView(_ webView: WKWebView, previewingViewControllerForElement elementInfo: WKPreviewElementInfo, defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
+    public func webView(_ webView: WKWebView,
+                        previewingViewControllerForElement elementInfo: WKPreviewElementInfo,
+                        defaultActions previewActions: [WKPreviewActionItem]) -> UIViewController? {
         guard let url = elementInfo.linkURL,
               let scheme = url.scheme else {
             return nil
         }
         if scheme == "http" || scheme == "https" {
-            let viewController = SFSafariViewController(url: url)
-            viewController.preferredControlTintColor = UINavigationBar.appearance().tintColor
-            return viewController
+            return delegate?.configureSafariViewController(for: url)
         }
         return nil
     }
 
-    public func webView(_ webView: WKWebView, commitPreviewingViewController previewingViewController: UIViewController) {
-        // TODO: This
-//        if previewingViewController.isKind(of: SFSafariViewController.self) {
-//            parentViewController?.present(previewingViewController, animated: true, completion: nil)
-//        } else {
-//            parentViewController?.navigationController?.pushViewController(previewingViewController, animated: true)
-//        }
+    public func webView(_ webView: WKWebView,
+                        commitPreviewingViewController previewingViewController: UIViewController) {
+        if let viewController = previewingViewController as? SFSafariViewController {
+            self.delegate?.present(viewController, animated: true)
+        }
     }
 
     @available(iOS 13, *)
-    public func webView(_ webView: WKWebView, contextMenuConfigurationForElement elementInfo: WKContextMenuElementInfo, completionHandler: @escaping (UIContextMenuConfiguration?) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        contextMenuConfigurationForElement elementInfo: WKContextMenuElementInfo,
+                        completionHandler: @escaping (UIContextMenuConfiguration?) -> Void) {
         let url = elementInfo.linkURL
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: {
             if let url = url,
                url.scheme == "http" || url.scheme == "https" {
-                let viewController = SFSafariViewController(url: url)
-                viewController.preferredControlTintColor = self.theme.tint_color
+                let viewController = self.delegate?.configureSafariViewController(for: url)
                 return viewController
             }
             return nil
@@ -263,23 +260,26 @@ extension TextView: WKUIDelegate {
     }
 
     @available(iOS 13, *)
-    public func webView(_ webView: WKWebView, contextMenuForElement elementInfo: WKContextMenuElementInfo, willCommitWithAnimator animator: UIContextMenuInteractionCommitAnimating) {
+    public func webView(_ webView: WKWebView,
+                        contextMenuForElement elementInfo: WKContextMenuElementInfo,
+                        willCommitWithAnimator animator: UIContextMenuInteractionCommitAnimating) {
         guard let url = elementInfo.linkURL else {
             return
         }
         animator.addAnimations {
-            // TODO: This
-//            if let viewController = animator.previewViewController as? SFSafariViewController {
-//                self.parentViewController?.present(viewController, animated: true, completion: nil)
-//            } else {
-//                _ = DepictionButton.processAction(url.absoluteString, parentViewController: self.parentViewController, openExternal: false)
-//            }
+            if let viewController = animator.previewViewController as? SFSafariViewController {
+                self.delegate?.present(viewController, animated: true)
+            } else {
+                self.delegate?.openURL(url, inAppIfPossible: false)
+            }
         }
     }
 }
 
 extension TextView: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             decisionHandler(.cancel)
             return
@@ -287,9 +287,7 @@ extension TextView: WKNavigationDelegate {
         switch navigationAction.navigationType {
         case .linkActivated, .formSubmitted:
             // User tapped a link inside the web view.
-            // TODO: Open the link
-            break
-//            _ = DepictionButton.processAction(url.absoluteString, parentViewController: self.parentViewController, openExternal: false)
+            delegate?.openURL(url, inAppIfPossible: true)
 
         case .other:
             // The navigation type will be .other and URL will be about:blank when loading an

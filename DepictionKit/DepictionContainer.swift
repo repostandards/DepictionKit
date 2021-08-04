@@ -170,7 +170,7 @@ final public class DepictionContainer: UIView {
 extension DepictionContainer: DepictionContainerDelegate {
 
     internal func openURL(_ url: URL, inAppIfPossible inApp: Bool) {
-        delegate?.openURL(url) { handled in
+        let handler = { (handled: Bool) in
             if handled {
                 // Do nothing, the delegate has handled this URL.
                 return
@@ -194,11 +194,24 @@ extension DepictionContainer: DepictionContainerDelegate {
                 }
             }
         }
+
+        if let delegate = delegate {
+            delegate.openURL(url, completionHandler: handler)
+        } else {
+            handler(false)
+        }
     }
 
     func configureSafariViewController(for url: URL) -> SFSafariViewController {
         assert(url.scheme == "http" || url.scheme == "https")
-        let viewController = SFSafariViewController(url: url)
+
+        // Needed because Safari team still haven’t figured out how to not make the bar glitch on
+        // scroll when displayed as a modal sheet.
+        let configuration = SFSafariViewController.Configuration()
+        configuration.barCollapsingEnabled = false
+
+        let viewController = SFSafariViewController(url: url, configuration: configuration)
+        viewController.modalPresentationStyle = .formSheet
         viewController.preferredControlTintColor = theme.tint_color
         return viewController
     }
