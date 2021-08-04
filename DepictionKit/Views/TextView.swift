@@ -57,17 +57,18 @@ final public class TextView: UIView {
         configuration.mediaTypesRequiringUserActionForPlayback = .all
         configuration.ignoresViewportScaleLimits = false
         configuration.dataDetectorTypes = []
-        configuration._overrideContentSecurityPolicy = """
+        configuration.setValue("""
         default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts
-        """
+        """,
+                               forKey: "_overrideContentSecurityPolicy")
         if #available(iOS 14, *) {
-            configuration._loadsSubresources = false
+            configuration.setValue(false, forKey: "_loadsSubresources")
             configuration.defaultWebpagePreferences.allowsContentJavaScript = false
         }
         if #available(iOS 15, *) {
-            configuration._allowedNetworkHosts = Set()
+            configuration.setValue(Set<String>(), forKey: "_allowedNetworkHosts")
         } else if #available(iOS 14, *) {
-            configuration._loadsFromNetwork = false
+            configuration.setValue(false, forKey: "_loadsFromNetwork")
         }
         return configuration
     }()
