@@ -37,6 +37,11 @@
 		E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0926B72E6A00F64440 /* ViewController.swift */; };
 		E13FFA0F26B72E6B00F64440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA0E26B72E6B00F64440 /* Assets.xcassets */; };
 		E13FFA1226B72E6B00F64440 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA1026B72E6B00F64440 /* LaunchScreen.storyboard */; };
+		E15A955726BACFF2000DB10E /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955626BACFF2000DB10E /* Screenshot.swift */; };
+		E15A955926BAD246000DB10E /* ScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955826BAD246000DB10E /* ScreenshotsView.swift */; };
+		E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955B26BAD797000DB10E /* NetworkImageView.swift */; };
+		E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */; };
+		E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */; };
 		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +102,11 @@
 		E13FFA5326B74FBE00F64440 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E13FFA5426B7510F00F64440 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		E15A953B26B896E9000DB10E /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		E15A955626BACFF2000DB10E /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
+		E15A955826BAD246000DB10E /* ScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsView.swift; sourceTree = "<group>"; };
+		E15A955B26BAD797000DB10E /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
+		E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +136,7 @@
 			children = (
 				E13FFA3126B72F7600F64440 /* Backend */,
 				E13FFA3A26B72F7600F64440 /* Depiction.swift */,
+				E13FFA3526B72F7600F64440 /* DepictionView.swift */,
 				E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */,
 				4E35616C26BA7CF100828D09 /* DepictionContainerDelegate.swift */,
 				4E35616E26BA7D6800828D09 /* DepictionViewDelegate.swift */,
@@ -188,10 +199,10 @@
 			children = (
 				E13FFA3326B72F7600F64440 /* FontWeight.swift */,
 				E13FFA3426B72F7600F64440 /* FontAlignment.swift */,
-				E13FFA3526B72F7600F64440 /* DepictionView.swift */,
 				E13FFA3626B72F7600F64440 /* Color.swift */,
 				E13FFA4726B732DB00F64440 /* Theme.swift */,
 				E13FFA4F26B74C1A00F64440 /* Direction.swift */,
+				E15A955626BACFF2000DB10E /* Screenshot.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -203,6 +214,7 @@
 				E13FFA3926B72F7600F64440 /* UIColor+Extensions.swift */,
 				E15A953B26B896E9000DB10E /* UIView+Extensions.swift */,
 				4E35617226BA8CDF00828D09 /* UIEdgeInsets+Extensions.swift */,
+				E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,15 +222,34 @@
 		E13FFA3B26B72F7600F64440 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E15A955A26BAD783000DB10E /* Utils */,
 				E13FFA3C26B72F7600F64440 /* HeadingView.swift */,
 				E13FFA4B26B7375500F64440 /* VideoView.swift */,
 				E13FFA4D26B74B5A00F64440 /* Separator.swift */,
 				E13FFA5126B74D7200F64440 /* Spacer.swift */,
+				E15A955F26BAE294000DB10E /* ScreenshotsView */,
 				E13FFA5426B7510F00F64440 /* TextView.swift */,
 				E13FFA4526B72FE800F64440 /* Test.xib */,
 				4E35617026BA7F2000828D09 /* Placeholder.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E15A955A26BAD783000DB10E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E15A955B26BAD797000DB10E /* NetworkImageView.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E15A955F26BAE294000DB10E /* ScreenshotsView */ = {
+			isa = PBXGroup;
+			children = (
+				E15A955826BAD246000DB10E /* ScreenshotsView.swift */,
+				E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */,
+			);
+			path = ScreenshotsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,13 +393,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E63060326BA563F00144776 /* Direction.swift in Sources */,
+				E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */,
 				4E63060C26BA565200144776 /* HeadingView.swift in Sources */,
 				4E63060026BA563F00144776 /* FontAlignment.swift in Sources */,
 				4E6305FF26BA563F00144776 /* Theme.swift in Sources */,
 				4E6305FB26BA55CA00144776 /* Depiction.swift in Sources */,
 				4E35617126BA7F2000828D09 /* Placeholder.swift in Sources */,
 				4E63060626BA563F00144776 /* DepictionView.swift in Sources */,
+				E15A955926BAD246000DB10E /* ScreenshotsView.swift in Sources */,
 				4E63060126BA563F00144776 /* Color.swift in Sources */,
+				E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */,
 				4E63060226BA563F00144776 /* String+Extensions.swift in Sources */,
 				4E35617326BA8CDF00828D09 /* UIEdgeInsets+Extensions.swift in Sources */,
 				4E35616B26BA7C9100828D09 /* DepictionDelegate.swift in Sources */,
@@ -380,7 +414,9 @@
 				4E63060726BA563F00144776 /* FontWeight.swift in Sources */,
 				4E35616F26BA7D6800828D09 /* DepictionViewDelegate.swift in Sources */,
 				4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */,
+				E15A955726BACFF2000DB10E /* Screenshot.swift in Sources */,
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
+				E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */,
 				4E63060A26BA565200144776 /* VideoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

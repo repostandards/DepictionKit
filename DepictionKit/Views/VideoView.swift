@@ -9,7 +9,6 @@ import UIKit
 import WebKit
 import AVKit
 
-#warning("Constraints need to be finished for this, I can't figure it out")
 final public class VideoView: UIView, DepictionViewDelegate {
     
     private var playerLooper: AVPlayerLooper?
@@ -53,11 +52,11 @@ final public class VideoView: UIView, DepictionViewDelegate {
         playerView = UIView()
         
         guard let _url = input["url"] as? String,
-              let url = URL(string: _url) else { throw VideoView.Error.invalid_url(string: input["url"] as? String) }
-        guard let alt_text = input["alt_text"] as? String else { throw VideoView.Error.invalid_alt_text }
+              let url = URL(string: _url) else { throw Error.invalid_url(string: input["url"] as? String) }
+        guard let alt_text = input["alt_text"] as? String else { throw Error.invalid_alt_text }
         guard let player_size = input["player_size"] as? [String: Int],
               let height = player_size["height"],
-              let width = player_size["width"] else { throw VideoView.Error.invalid_player_size }
+              let width = player_size["width"] else { throw Error.invalid_player_size }
         self.height = CGFloat(height)
         self.width = CGFloat(width)
         var alignment: NSTextAlignment = .left
@@ -81,7 +80,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
             switch _player {
             case "web": player = .web
             case "native": player = .native
-            default: throw VideoView.Error.invalid_player
+            default: throw Error.invalid_player
             }
         }
         
@@ -92,7 +91,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
                 case "disabled": autoplay = .disabled
                 case "once": autoplay = .once
                 case "loop": autoplay = .loop
-                default: throw VideoView.Error.invalid_autoplay
+                default: throw Error.invalid_autoplay
                 }
             }
         }
@@ -148,14 +147,14 @@ final public class VideoView: UIView, DepictionViewDelegate {
         case .right:
             constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
             constraints.append(playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
-            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5)
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
         case .center:
             constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
-            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: 5))
+            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
             constraints.append(playerView.centerXAnchor.constraint(equalTo: centerXAnchor))
-            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5)
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
             let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)

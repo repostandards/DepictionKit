@@ -28,7 +28,7 @@ final public class HeadingView: UIView, DepictionViewDelegate {
     }
     
     init(input: [String: Any], theme: Theme) throws {
-        guard let text = input["text"] as? String else { throw HeadingView.Error.invalid_text(view: input) }
+        guard let text = input["text"] as? String else { throw Error.invalid_text(view: input) }
         self.theme = theme
         super.init(frame: .zero)
         

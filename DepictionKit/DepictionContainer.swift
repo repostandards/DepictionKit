@@ -54,15 +54,9 @@ final public class DepictionContainer: UIView {
         
         meta()
         fetchDepiction(url: url, loginToken: loginToken, theme: theme)
-    }
-    
-    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
-        self.theme = theme
-        super.init(frame: .zero)
-        
-        self.presentationController = presentationController
         
         let loadingIndicator = UIActivityIndicatorView(style: .gray)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(loadingIndicator)
         NSLayoutConstraint.activate([
             loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -70,6 +64,13 @@ final public class DepictionContainer: UIView {
         ])
         loadingIndicator.startAnimating()
         self.loadingIndicator = loadingIndicator
+    }
+    
+    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
+        self.theme = theme
+        super.init(frame: .zero)
+        
+        self.presentationController = presentationController
         
         meta()
         layoutDepiction(json: json, theme: theme)

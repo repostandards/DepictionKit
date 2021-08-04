@@ -7,8 +7,7 @@
 
 import UIKit
 
-// TODO: Should these extensions be made `internal`?
-public extension UIColor {
+internal extension UIColor {
     
     static func color(from int: Int) -> UIColor? {
         let hex = String(format: "%06X", int)
@@ -44,7 +43,7 @@ public extension UIColor {
         return nil
     }
 
-    internal var cssString: String {
+    var cssString: String {
         var red = CGFloat(0)
         var green = CGFloat(0)
         var blue = CGFloat(0)

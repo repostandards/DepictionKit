@@ -57,6 +57,7 @@ final public class Separator: UIView, DepictionViewDelegate {
     
     private func themeDidChange() {
         separator.backgroundColor = theme.text_color
+        backgroundColor = theme.background_color
     }
 }
 

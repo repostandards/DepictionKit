@@ -46,6 +46,8 @@ public final class DepictionView {
             view = Spacer(input: properties)
         case "TextView":
             view = try TextView(input: properties, theme: theme)
+        case "ScreenshotsView":
+            view = try ScreenshotsView(input: properties, theme: theme)
         default:
             view = Placeholder()
         }
