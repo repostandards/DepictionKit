@@ -152,7 +152,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         <style>
         body {
             margin: \(marginEdgeInsets.cssString);
-            background: transparent;
+            background: var(--background-color);
             font: -apple-system-body;
             color: var(--label-color);
             -webkit-text-size-adjust: none;

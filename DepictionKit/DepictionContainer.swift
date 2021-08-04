@@ -27,6 +27,7 @@ final public class DepictionContainer: UIView {
     public var theme: Theme {
         didSet { themeDidChange() }
     }
+    internal var effectiveTheme: Theme!
     
     private var loadingIndicator: UIActivityIndicatorView?
     
@@ -136,17 +137,18 @@ final public class DepictionContainer: UIView {
             return
         }
         loadingIndicator?.removeFromSuperview()
-        let depiction: Depiction
         do {
             depiction = try Depiction(json: json, theme: theme, delegate: self)
         } catch {
             NSLog(error.localizedDescription)
             return
         }
+
+        // Do another config of the theme, so it catches any tint color from the depiction.
+        themeDidChange()
         
-        for child in depiction.children {
+        for child in depiction!.children {
             contentView.addArrangedSubview(child.view)
-            child.view.backgroundColor = .clear
             NSLayoutConstraint.activate([
                 child.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 child.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
@@ -155,12 +157,23 @@ final public class DepictionContainer: UIView {
     }
 
     private func themeDidChange() {
+        if depiction == nil {
+            // We’ll be called again when depiction has loaded.
+            return
+        }
+
+        effectiveTheme = theme
+        if let tintColor = depiction?.tint_color?.color(for: theme) {
+            effectiveTheme.tint_color = tintColor
+        }
+
+        tintColor = effectiveTheme.tint_color
         backgroundColor = theme.background_color
 
         // Pass the new theme down to all subviews
         for view in contentView.arrangedSubviews {
             if let view = view as? AnyDepictionView {
-                view.theme = theme
+                view.theme = effectiveTheme
             }
         }
     }

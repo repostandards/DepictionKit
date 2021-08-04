@@ -13,7 +13,7 @@ public final class Theme {
     
     public let text_color: UIColor
     public let background_color: UIColor
-    public let tint_color: UIColor
+    public var tint_color: UIColor
     public let separator_color: UIColor
     public let dark_mode: Bool
     

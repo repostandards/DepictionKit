@@ -43,6 +43,11 @@ final public class Depiction {
             }
         }
         self.tint_color = tint_color
+
+        let effectiveTheme = theme
+        if let tintColor = tint_color?.color(for: theme) {
+            effectiveTheme.tint_color = tintColor
+        }
         
         guard let children = json["children"] as? [[String: AnyHashable]] else {
             throw Depiction.Error.missing_children
@@ -55,7 +60,7 @@ final public class Depiction {
         var childrenViews = [DepictionView]()
         do {
             for child in children {
-                let view = try DepictionView(for: child, theme: theme, delegate: delegate)
+                let view = try DepictionView(for: child, theme: effectiveTheme, delegate: delegate)
                 childrenViews.append(view)
             }
         } catch {
