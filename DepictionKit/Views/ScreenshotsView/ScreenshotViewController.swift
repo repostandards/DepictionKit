@@ -18,7 +18,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
     
     private let preselectedIndex: Int
     
-    public var scrollView: UIScrollView = {
+    public lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
@@ -26,6 +26,8 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.decelerationRate = .fast
         scrollView.alwaysBounceHorizontal = true
+        scrollView.isPagingEnabled = true
+        scrollView.delegate = self
         return scrollView
     }()
     
@@ -71,7 +73,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
             contentView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         ])
         
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
         contentView.isLayoutMarginsRelativeArrangement = true
         
         for container in containers {
@@ -113,21 +115,34 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         guard layoutOnce else { return }
         _ = containers.map { $0.layoutIfNeeded() }
         // Jump to the right index
+        jumpToScreenshot(at: preselectedIndex, animated: false)
+        layoutOnce = false
+    }
+    
+    private func jumpToScreenshot(at destination: Int, animated: Bool) {
         let spacing = contentView.spacing
         var point = contentView.layoutMargins.left
-        for index in 0...preselectedIndex {
+        for index in 0...destination {
             let view = containers[index]
             let width = view.image.bounds.size.width
-            if index == preselectedIndex {
+            if index == destination {
                 point -= 7
             } else {
                 point += width + spacing
             }
         }
-        scrollView.setContentOffset(CGPoint(x: point, y: 0), animated: false)
-        layoutOnce = false
+        scrollView.setContentOffset(CGPoint(x: point, y: 0), animated: animated)
     }
-    
+}
+
+extension ScreenshotViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let scrollViewWidth = scrollView.bounds.width
+            - contentView.layoutMargins.left
+            - contentView.layoutMargins.right
+        let place = scrollView.contentOffset.x / scrollViewWidth
+        jumpToScreenshot(at: Int(round(place)), animated: true)
+    }
 }
 
 fileprivate class ScreenshotContainer: UIView {
