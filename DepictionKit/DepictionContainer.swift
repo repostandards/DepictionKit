@@ -116,11 +116,11 @@ final public class DepictionContainer: UIView {
     
     private func fetchDepiction(url: URL, loginToken: String? = nil, theme: Theme) {
         let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, _ in
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             guard let data = data,
                   let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
                   let json = rawJSON as? [String: Any] else {
-                // Error handling here
+                NSLog("[DepictionKit] failed with error \(error)")
                 return
             }
             self?.layoutDepiction(json: json, theme: theme)

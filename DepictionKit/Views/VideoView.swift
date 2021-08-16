@@ -11,7 +11,12 @@ import AVKit
 
 final public class VideoView: UIView, DepictionViewDelegate {
     
+    
+    // These references need to be held so the view isn't deallocated
     private var playerLooper: AVPlayerLooper?
+    private var player: AVQueuePlayer?
+    private var playerViewController: AVPlayerViewController?
+    
     private var playerView: UIView
     private var height: CGFloat
     private var width: CGFloat
@@ -99,13 +104,15 @@ final public class VideoView: UIView, DepictionViewDelegate {
         if player == .native {
             let playerItem = AVPlayerItem(url: url)
             let player = AVQueuePlayer(playerItem: playerItem)
+            self.player = player
             player.isMuted = true
             
             if autoplay == .loop {
                 playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
             }
-            
+
             let playerViewController = AVPlayerViewController()
+            self.playerViewController = playerViewController
             playerViewController.player = player
             playerViewController.showsPlaybackControls = show_controls
             playerView = playerViewController.view
@@ -131,7 +138,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         addSubview(playerView)
         
         var constraints: [NSLayoutConstraint] = [
-            playerView.aspectRatioConstraint(CGFloat(width) / CGFloat(height)),
+            playerView.aspectRatioConstraint(CGFloat(height) / CGFloat(width)),
             playerView.topAnchor.constraint(equalTo: topAnchor),
             playerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerView.widthAnchor.constraint(equalToConstant: CGFloat(width))
