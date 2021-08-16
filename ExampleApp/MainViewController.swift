@@ -20,7 +20,8 @@ class MainViewController: UIViewController {
         ExampleDepiction(name: "Example 2", url: URL(string: "https://hastebin.com/raw/xibujeyaga")!),
         ExampleDepiction(name: "Example 3", url: URL(string: "https://hastebin.com/raw/cewejeyifi")!),
         ExampleDepiction(name: "Example 4", url: URL(string: "https://pastebin.com/raw/pFyD0V0R")!),
-        ExampleDepiction(name: "Example 5", url: URL(string: "https://hastebin.com/raw/dobeweriwi")!)
+        ExampleDepiction(name: "Example 5", url: URL(string: "https://hastebin.com/raw/dobeweriwi")!),
+        ExampleDepiction(name: "Example 6", url: URL(string: "https://hastebin.com/raw/mojeluqeto")!)
     ]
     
     private var tableView = UITableView()

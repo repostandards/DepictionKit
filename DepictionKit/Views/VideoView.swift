@@ -65,9 +65,9 @@ final public class VideoView: UIView, DepictionViewDelegate {
         self.height = CGFloat(height)
         self.width = CGFloat(width)
         var alignment: NSTextAlignment = .left
-        if let text_color = input["alignment"] as? String {
+        if let _alignment = input["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: text_color)
+                alignment = try FontAlignment.alignment(for: _alignment)
             } catch {
                 throw error
             }
@@ -129,6 +129,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         }
         
         playerView.clipsToBounds = true
+        playerView.layer.masksToBounds = true
         playerView.layer.cornerRadius = CGFloat(cornerRadius)
         if #available(iOS 13, *) {
             playerView.layer.cornerCurve = .continuous
@@ -152,13 +153,13 @@ final public class VideoView: UIView, DepictionViewDelegate {
             lesserTrailing.priority = UILayoutPriority(750)
             constraints.append(lesserTrailing)
         case .right:
-            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
             constraints.append(playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
+            constraints.append(playerView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5))
             let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
         case .center:
-            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
+            constraints.append(playerView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5))
             constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
             constraints.append(playerView.centerXAnchor.constraint(equalTo: centerXAnchor))
             let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)

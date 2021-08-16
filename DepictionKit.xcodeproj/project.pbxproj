@@ -42,6 +42,7 @@
 		E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955B26BAD797000DB10E /* NetworkImageView.swift */; };
 		E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */; };
 		E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */; };
+		E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F63BBE26CAC278001EDE8F /* ImageView.swift */; };
 		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		E15A955B26BAD797000DB10E /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 		E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
+		E1F63BBE26CAC278001EDE8F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +233,7 @@
 				E13FFA5426B7510F00F64440 /* TextView.swift */,
 				E13FFA4526B72FE800F64440 /* Test.xib */,
 				4E35617026BA7F2000828D09 /* Placeholder.swift */,
+				E1F63BBE26CAC278001EDE8F /* ImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */,
 				E15A955726BACFF2000DB10E /* Screenshot.swift in Sources */,
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
+				E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */,
 				E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */,
 				4E63060A26BA565200144776 /* VideoView.swift in Sources */,
 			);

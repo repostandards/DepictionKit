@@ -48,6 +48,8 @@ public final class DepictionView {
             view = try TextView(input: properties, theme: theme)
         case "ScreenshotsView":
             view = try ScreenshotsView(input: properties, theme: theme)
+        case "ImageView":
+            view = try ImageView(input: properties)
         default:
             view = Placeholder()
         }
