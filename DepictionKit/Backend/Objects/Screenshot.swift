@@ -6,6 +6,7 @@
 //
 
 import CoreGraphics
+import Foundation
 
 final public class Screenshot {
     
