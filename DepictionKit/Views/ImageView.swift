@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageView: UIView, DepictionViewDelegate {
+final class ImageView: UIView, DepictionViewDelegate {
     
     private var imageView: NetworkImageView?
     private var attachment: Attachment?

@@ -31,7 +31,7 @@ public final class DepictionView {
     }
     
     init(for input: [String: AnyHashable], theme: Theme, delegate: DepictionContainerDelegate) throws {
-        guard let name = input["name"] as? String else { throw DepictionView.Error.invalid_name(input: input) }
+        guard let name = input["name"] as? String else { throw Error.invalid_name(input: input) }
         let properties = input["properties"] as? [String: AnyHashable] ?? [String: AnyHashable]()
         self.name = name
         self.properties = properties
@@ -50,6 +50,8 @@ public final class DepictionView {
             view = try ScreenshotsView(for: properties, theme: theme)
         case "ImageView":
             view = try ImageView(for: properties, theme: theme)
+        case "Rating":
+            view = try Rating(for: properties, theme: theme, height: 30)
         default:
             view = Placeholder()
         }
