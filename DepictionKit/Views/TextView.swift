@@ -78,7 +78,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         return configuration
     }()
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
 
         let format = Format(rawValue: input["format"] as? String ?? "markdown")

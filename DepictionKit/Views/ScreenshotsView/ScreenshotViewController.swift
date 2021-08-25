@@ -14,7 +14,9 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
     public var height: CGFloat
     public var width: CGFloat
     private var containers: [ScreenshotContainer]
-    internal var theme: Theme
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
     
     private let preselectedIndex: Int
     
@@ -49,7 +51,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         self.theme = theme
         self.preselectedIndex = selectedIndex
         
-        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius) }
+        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius, theme: theme) }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -106,6 +108,19 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         for container in containers {
             container.label.textColor = theme.text_color
         }
+        
+        guard !layoutOnce else {
+            // Not yet finished init
+            return
+        }
+        
+        for container in containers {
+            container.theme = theme
+            if container.screenshot.displayURL != container.image.url {
+                container.image.url = container.screenshot.displayURL
+                container.image.fetchImage()
+            }
+        }
     }
 
     public var layoutOnce = true
@@ -149,18 +164,24 @@ fileprivate class ScreenshotContainer: UIView {
     
     internal var label: UILabel
     internal var screenshot: Screenshot
+    internal var theme: Theme {
+        didSet {
+            screenshot.theme = theme
+        }
+    }
     
     internal var image: NetworkImageView
     internal var height: CGFloat
     internal var width: CGFloat
     internal var corner_radius: CGFloat
     	
-    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat) {
+    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat, theme: Theme) {
         self.screenshot = screenshot
         self.height = screenshot.height ?? height
         self.width = screenshot.width ?? width
         self.corner_radius = corner_radius
-                
+            
+        self.theme = theme
         self.image = NetworkImageView(url: screenshot.url)
         image.layer.masksToBounds = true
         image.layer.cornerRadius = corner_radius

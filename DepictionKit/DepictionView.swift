@@ -37,19 +37,19 @@ public final class DepictionView {
         self.properties = properties
         switch name {
         case "HeadingView":
-            view = try HeadingView(input: properties, theme: theme)
+            view = try HeadingView(for: properties, theme: theme)
         case "VideoView":
-            view = try VideoView(input: properties)
+            view = try VideoView(for: properties)
         case "Separator":
-            view = try Separator(input: properties, theme: theme)
+            view = try Separator(for: properties, theme: theme)
         case "Spacer":
-            view = Spacer(input: properties)
+            view = Spacer(for: properties)
         case "TextView":
-            view = try TextView(input: properties, theme: theme)
+            view = try TextView(for: properties, theme: theme)
         case "ScreenshotsView":
-            view = try ScreenshotsView(input: properties, theme: theme)
+            view = try ScreenshotsView(for: properties, theme: theme)
         case "ImageView":
-            view = try ImageView(input: properties)
+            view = try ImageView(for: properties, theme: theme)
         default:
             view = Placeholder()
         }

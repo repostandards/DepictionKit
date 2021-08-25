@@ -54,11 +54,11 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     }
     internal weak var delegate: DepictionContainerDelegate?
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         guard let screenshots = input["screenshots"] as? [[String: Any]] else { throw Error.missing_screenshots }
         guard !screenshots.isEmpty else { throw Error.empty_screenshots }
         do {
-            self.screenshots = try screenshots.map { try Screenshot(for: $0) }
+            self.screenshots = try screenshots.map { try Screenshot(for: $0, theme: theme) }
         } catch {
             throw error
         }
@@ -144,5 +144,19 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     
     private func themeDidChange() {
         backgroundColor = theme.background_color
+        
+        guard contentView.subviews.count == screenshots.count else {
+            // We have not finished init
+            return
+        }
+        for (index, screenshot) in screenshots.enumerated() {
+            guard let imageView = contentView.subviews[index] as? NetworkImageView else { continue }
+            let url = imageView.url
+            screenshot.theme = theme
+            if screenshot.displayURL != url {
+                imageView.url = screenshot.displayURL
+                imageView.fetchImage()
+            }
+        }
     }
 }

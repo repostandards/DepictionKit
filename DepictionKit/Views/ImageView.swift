@@ -10,6 +10,11 @@ import UIKit
 class ImageView: UIView, DepictionViewDelegate {
     
     private var imageView: NetworkImageView?
+    private var attachment: Attachment?
+    
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
     
     enum Error: LocalizedError {
         case invalid_url(string: String?)
@@ -27,9 +32,18 @@ class ImageView: UIView, DepictionViewDelegate {
         }
     }
 
-    init(input: [String: Any]) throws {
-        guard let _url = input["url"] as? String,
-              let url = URL(string: _url) else { throw Error.invalid_url(string: input["url"] as? String) }
+    init(for input: [String: Any], theme: Theme) throws {
+        let url: URL
+        if let _url = input["url"] as? String,
+           let static_url = URL(string: _url) {
+            url = static_url
+        } else if let _attachment = input["attachment"] as? [String: Any],
+                  let attachment = Attachment(_attachment) {
+            self.attachment = attachment
+            url = attachment.url(for: theme)
+        } else {
+            throw Error.invalid_url(string: input["url"] as? String)
+        }
         guard let alt_text = input["alt_text"] as? String else { throw Error.invalid_alt_text }
         guard let image_size = input["image_size"] as? [String: Int],
               let height = image_size["height"],
@@ -43,12 +57,20 @@ class ImageView: UIView, DepictionViewDelegate {
                 throw error
             }
         }
+        
+        self.theme = theme
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         let cornerRadius = input["corner_radius"] as? Int ?? 4
         
-        let imageView = NetworkImageView(url: url)
+        let correctUrl: URL = {
+            if let attachment = attachment {
+                return attachment.url(for: theme)
+            }
+            return url
+        }()
+        let imageView = NetworkImageView(url: correctUrl)
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = CGFloat(cornerRadius)
@@ -98,4 +120,16 @@ class ImageView: UIView, DepictionViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func themeDidChange() {
+        guard let imageView = imageView,
+              let attachment = attachment else {
+            // We haven't got past init yet
+            return
+        }
+        let url = attachment.url(for: theme)
+        if imageView.url != url {
+            imageView.url = url
+            imageView.fetchImage()
+        }
+    }
 }

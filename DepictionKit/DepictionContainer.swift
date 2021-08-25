@@ -178,7 +178,6 @@ final public class DepictionContainer: UIView {
             }
         }
     }
-    
 }
 
 extension DepictionContainer: DepictionContainerDelegate {

@@ -52,7 +52,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         }
     }
     
-    init(input: [String: Any]) throws {
+    init(for input: [String: Any]) throws {
         playerView = UIView()
         
         guard let _url = input["url"] as? String,

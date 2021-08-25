@@ -15,7 +15,7 @@ final public class Separator: UIView, DepictionViewDelegate {
 
     private let separator = UIView()
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         self.theme = theme
         super.init(frame: .zero)
         
@@ -60,13 +60,3 @@ final public class Separator: UIView, DepictionViewDelegate {
         backgroundColor = theme.background_color
     }
 }
-
-/*
- Separator: {
-         /**
-          * Create a separator that's either horizontal or vertical (useful for StackView).
-          * @default 'horizontal'
-          */
-         direction?: 'horizontal' | 'vertical'
-     }
- */

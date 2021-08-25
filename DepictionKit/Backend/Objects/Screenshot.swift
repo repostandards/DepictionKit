@@ -30,10 +30,28 @@ final public class Screenshot {
     public var alt_text: String
     public var height: CGFloat?
     public var width: CGFloat?
+    public var attachment: Attachment?
+    public var theme: Theme
     
-    init(for input: [String: Any]) throws {
-        guard let _url = input["url"] as? String else { throw Screenshot.Error.missing_url }
-        guard let url = URL(string: _url) else { throw Screenshot.Error.invalid_url(url: _url) }
+    public var displayURL: URL {
+        if let attachment = attachment {
+            return attachment.url(for: theme)
+        }
+        return url
+    }
+    
+    init(for input: [String: Any], theme: Theme) throws {
+        let url: URL
+        if let _url = input["url"] as? String,
+           let static_url = URL(string: _url) {
+            url = static_url
+        } else if let _attachment = input["attachment"] as? [String: Any],
+                  let attachment = Attachment(_attachment) {
+            self.attachment = attachment
+            url = attachment.url(for: theme)
+        } else {
+            throw Error.invalid_url(url: input["url"] as? String ?? "nil")
+        }
         guard let alt_text = input["alt_text"] as? String else { throw Screenshot.Error.missing_alt_text }
         self.alt_text = alt_text
         self.url = url
@@ -44,6 +62,7 @@ final public class Screenshot {
             self.height = CGFloat(height)
             self.width = CGFloat(width)
         }
+        self.theme = theme
     }
     
 }

@@ -9,7 +9,7 @@ import UIKit
 
 internal class NetworkImageView: UIImageView {
     
-    public let url: URL
+    public var url: URL
     static var shared = [URL: UIImage]()
     
     init(url: URL) {
@@ -22,7 +22,7 @@ internal class NetworkImageView: UIImageView {
         fetchImage()
     }
     
-    private func fetchImage() {
+    public func fetchImage() {
         if let cached = Self.shared[url] {
             self.image = cached
             return
