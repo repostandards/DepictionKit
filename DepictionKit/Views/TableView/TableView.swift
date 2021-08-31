@@ -5,7 +5,6 @@
 //  Created by Andromeda on 31/08/2021.
 //
 
-
 import UIKit
 
 protocol TableElements {}
@@ -176,7 +175,7 @@ class TableButtonCell: UITableViewCell {
     public lazy var iconViewLeading: NSLayoutConstraint = iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0)
     public lazy var textViewLeading: NSLayoutConstraint = textView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 15)
     
-    public lazy var iconView: UIImageView = {
+    public var iconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
