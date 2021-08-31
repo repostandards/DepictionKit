@@ -232,5 +232,9 @@ extension DepictionContainer: DepictionContainerDelegate {
     func present(_ viewController: UIViewController, animated: Bool) {
         presentationController?.present(viewController, animated: animated, completion: nil)
     }
+    
+    func handleAction(action: String, external: Bool) {
+        delegate?.handleAction(action: action, external: external)
+    }
 
 }

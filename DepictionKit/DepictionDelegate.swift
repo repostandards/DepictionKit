@@ -26,7 +26,8 @@ public protocol DepictionDelegate: AnyObject {
     /// - parameter completionHandler: A block you are expected to call once you have decided
     /// whether custom handling is required for this URL.
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void)
-
+    
+    func handleAction(action: String, external: Bool)
 }
 
 // Default implementations
@@ -37,5 +38,9 @@ extension DepictionDelegate {
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void) {
         completionHandler(false)
     }
-
+    
+    /// :nodoc:
+    func handleAction(action: String, external: Bool) {
+        
+    }
 }

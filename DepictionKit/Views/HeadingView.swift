@@ -19,10 +19,12 @@ final public class HeadingView: UIView, DepictionViewDelegate {
     
     enum Error: LocalizedError {
         case invalid_text(view: [String: Any])
+        case invalid_size(size: Int)
         
         public var errorDescription: String? {
             switch self {
             case let .invalid_text(view): return "\(view) is missing required argument: text"
+            case let .invalid_size(size: size): return "HeadingView has invalid sizing_level: \(size)"
             }
         }
     }
@@ -70,7 +72,14 @@ final public class HeadingView: UIView, DepictionViewDelegate {
                 throw error
             }
         }
-        label.font = UIFont.systemFont(ofSize: sizing_level == 1 ? 35 : 20, weight: weight)
+        let font: UIFont
+        switch sizing_level {
+        case 1: font = UIFont.systemFont(ofSize: 35, weight: weight)
+        case 2: font = UIFont.systemFont(ofSize: 20, weight: weight)
+        case 3: font = UIFont.systemFont(ofSize: 15, weight: weight)
+        default: throw Error.invalid_size(size: sizing_level)
+        }
+        label.font = font
         
         var alignment: NSTextAlignment = .left
         if let text_color = input["alignment"] as? String {

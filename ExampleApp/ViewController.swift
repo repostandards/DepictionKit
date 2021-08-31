@@ -18,6 +18,7 @@ class DepictionViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme())
+        depictionView.delegate = self
         view.addSubview(depictionView)
         NSLayoutConstraint.activate([
             depictionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -46,4 +47,17 @@ class DepictionViewController: UIViewController {
         depictionView.theme = configureTheme()
     }
 
+}
+
+extension DepictionViewController: DepictionDelegate {
+    
+    func openURL(_ url: URL, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(false)
+    }
+    
+    
+    func handleAction(action: String, external: Bool) {
+        NSLog("[DepictionKit] Action = \(action), external = \(external)")
+    }
+    
 }
