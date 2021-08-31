@@ -86,7 +86,6 @@ final public class TableView: UIView, DepictionViewDelegate {
             }
         }
         self.cells = cells
-        NSLog("[DepictionKit] slef.cells = \(self.cells)")
         self.tableView = AutomaticTableView()
         super.init(frame: .zero)
         
@@ -131,8 +130,7 @@ extension TableView: UITableViewDelegate {
 extension TableView: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        NSLog("[DepictionKit] Returning \(cells.count)")
-        return cells.count
+        cells.count
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
