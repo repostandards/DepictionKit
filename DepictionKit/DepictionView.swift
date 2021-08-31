@@ -54,6 +54,8 @@ public final class DepictionView {
             view = try Rating(for: properties, theme: theme, height: 30)
         case "Button":
             view = try Button(for: properties, theme: theme, delegate: delegate)
+        case "TableView":
+            view = try TableView(for: properties, theme: theme)
         default:
             view = Placeholder()
         }
