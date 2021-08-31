@@ -31,12 +31,6 @@ final public class DepictionContainer: UIView {
     
     private var loadingIndicator: UIActivityIndicatorView?
     
-    public var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
     public var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,14 +39,15 @@ final public class DepictionContainer: UIView {
         return view
     }()
     
-    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme) {
+    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme, in view: UIScrollView) {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
         self.theme = theme
+        meta(view)
+        addSubview(contentView)
         
-        meta()
         fetchDepiction(url: url, loginToken: loginToken, theme: theme)
         
         let loadingIndicator = UIActivityIndicatorView(style: .gray)
@@ -66,52 +61,44 @@ final public class DepictionContainer: UIView {
         self.loadingIndicator = loadingIndicator
     }
     
-    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
+    public init(json: [String: Any], presentationController: UIViewController, theme: Theme, in view: UIScrollView) {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
+        meta(view)
         
-        meta()
         layoutDepiction(json: json, theme: theme)
     }
     
-    public init(data: Data, presentationController: UIViewController, theme: Theme) throws {
+    public init(data: Data, presentationController: UIViewController, theme: Theme, in view: UIScrollView) throws {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
-        
-        meta()
+        meta(view)
+    
+        translatesAutoresizingMaskIntoConstraints = false
         guard let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
               let json = rawJSON as? [String: Any] else {
             throw DepictionContainer.Error.invalid_data
         }
         layoutDepiction(json: json, theme: theme)
     }
+    
+    private func meta(_ scrollView: UIScrollView) {
+        addSubview(contentView)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func meta() {
-        addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            
-            contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            
-            contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
-        ])
     }
     
     private func fetchDepiction(url: URL, loginToken: String? = nil, theme: Theme) {
