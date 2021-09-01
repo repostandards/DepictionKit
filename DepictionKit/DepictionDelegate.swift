@@ -28,6 +28,8 @@ public protocol DepictionDelegate: AnyObject {
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void)
     
     func handleAction(action: String, external: Bool)
+    
+    func depictionError(error: Error)
 }
 
 // Default implementations
@@ -38,9 +40,5 @@ extension DepictionDelegate {
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void) {
         completionHandler(false)
     }
-    
-    /// :nodoc:
-    func handleAction(action: String, external: Bool) {
-        
-    }
+
 }

@@ -65,6 +65,11 @@ class DepictionViewController: UIViewController {
 
 extension DepictionViewController: DepictionDelegate {
     
+    func depictionError(error: Error) {
+        let alert = UIAlertController(title: "Error Parsing Depiction", message: error.localizedDescription, preferredStyle: .alert)
+        self.present(alert, animated: true)
+    }
+    
     func openURL(_ url: URL, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(false)
     }
