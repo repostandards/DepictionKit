@@ -198,7 +198,7 @@ final public class DepictionContainer: UIView {
     }
     
     public var effectiveTintColor: UIColor {
-        effectiveTheme?.tint_color ?? theme.tint_color
+        depiction?.tint_color?.color(for: theme) ?? theme.tint_color
     }
 }
 
