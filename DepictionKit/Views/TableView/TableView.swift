@@ -95,6 +95,7 @@ final public class TableView: UIView, DepictionViewDelegate {
         tableView.isScrollEnabled = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         backgroundColor = .clear
         
         NSLayoutConstraint.activate([
