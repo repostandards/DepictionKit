@@ -21,7 +21,7 @@ class DepictionViewController: UIViewController {
     init(url: URL) {
         super.init(nibName: nil, bundle: nil)
         
-        depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme(), in: scrollView)
+        depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme())
         depictionView.delegate = self
         
         view.backgroundColor = .systemBackground

@@ -22,6 +22,7 @@ final public class DepictionContainer: UIView {
     
     private var depiction: Depiction?
     private weak var presentationController: UIViewController?
+    private var layoutInit = false
 
     public weak var delegate: DepictionDelegate?
     public var theme: Theme {
@@ -39,14 +40,13 @@ final public class DepictionContainer: UIView {
         return view
     }()
     
-    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme, in view: UIScrollView) {
+    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme) {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
         self.theme = theme
-        meta(view)
-        addSubview(contentView)
+        meta()
         
         fetchDepiction(url: url, loginToken: loginToken, theme: theme)
         
@@ -61,22 +61,34 @@ final public class DepictionContainer: UIView {
         self.loadingIndicator = loadingIndicator
     }
     
-    public init(json: [String: Any], presentationController: UIViewController, theme: Theme, in view: UIScrollView) {
+    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
-        meta(view)
+        meta()
         
         layoutDepiction(json: json, theme: theme)
     }
     
-    public init(data: Data, presentationController: UIViewController, theme: Theme, in view: UIScrollView) throws {
+    public init(presentationController: UIViewController, theme: Theme) {
         self.theme = theme
         super.init(frame: .zero)
         
         self.presentationController = presentationController
-        meta(view)
+        meta()
+        
+        tintColor = effectiveTheme.tint_color
+        backgroundColor = theme.background_color
+        layoutInit = true
+    }
+    
+    public init(data: Data, presentationController: UIViewController, theme: Theme) throws {
+        self.theme = theme
+        super.init(frame: .zero)
+        
+        self.presentationController = presentationController
+        meta()
     
         translatesAutoresizingMaskIntoConstraints = false
         guard let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
@@ -86,7 +98,26 @@ final public class DepictionContainer: UIView {
         layoutDepiction(json: json, theme: theme)
     }
     
-    private func meta(_ scrollView: UIScrollView) {
+    public func setDepiction(dict: [String: Any]) {
+        guard layoutInit else {
+            fatalError("Set Depiction Cannot Be Used After Init")
+        }
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.setDepiction(dict: dict)
+            }
+            return
+        }
+        
+        if let depiction = depiction {
+            for childView in depiction.children {
+                childView.view.removeFromSuperview()
+            }
+        }
+        layoutDepiction(json: dict, theme: theme)
+    }
+    
+    private func meta() {
         addSubview(contentView)
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
