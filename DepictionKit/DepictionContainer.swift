@@ -196,6 +196,10 @@ final public class DepictionContainer: UIView {
             }
         }
     }
+    
+    public var effectiveTintColor: UIColor {
+        effectiveTheme?.tint_color ?? theme.tint_color
+    }
 }
 
 extension DepictionContainer: DepictionContainerDelegate {
