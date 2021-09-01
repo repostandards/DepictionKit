@@ -78,7 +78,7 @@ final public class DepictionContainer: UIView {
         self.presentationController = presentationController
         meta()
         
-        tintColor = effectiveTheme.tint_color
+        tintColor = theme.tint_color
         backgroundColor = theme.background_color
         layoutInit = true
     }

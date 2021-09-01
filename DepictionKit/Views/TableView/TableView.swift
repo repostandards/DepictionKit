@@ -94,6 +94,7 @@ final public class TableView: UIView, DepictionViewDelegate {
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
