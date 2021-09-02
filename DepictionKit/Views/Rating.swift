@@ -74,21 +74,21 @@ final public class Rating: UIView, DepictionViewDelegate {
         
         switch alignment {
         case .left:
-            constraints.append(contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5))
-            let lesserTrailing = contentView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5)
+            constraints.append(contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15))
+            let lesserTrailing = contentView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(1)
             constraints.append(lesserTrailing)
         case .right:
-            constraints.append(contentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
-            let lesserLeading = contentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5)
+            constraints.append(contentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15))
+            let lesserLeading = contentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(1)
             constraints.append(lesserLeading)
         case .center:
             constraints.append(contentView.centerXAnchor.constraint(equalTo: centerXAnchor))
-            let lesserLeading = contentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5)
+            let lesserLeading = contentView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(1)
             constraints.append(lesserLeading)
-            let lesserTrailing = contentView.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -5)
+            let lesserTrailing = contentView.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(1)
             constraints.append(lesserTrailing)
         default: throw Error.unknown_alignment_error

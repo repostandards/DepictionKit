@@ -43,8 +43,8 @@ final public class HeadingView: UIView, DepictionViewDelegate {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
         
         let auto_wrap = input["auto_wrap"] as? Bool ?? true

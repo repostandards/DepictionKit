@@ -92,7 +92,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
             heightAnchor.constraint(equalToConstant: 250)
         ])
         
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         contentView.isLayoutMarginsRelativeArrangement = true
         
         var constraints = [NSLayoutConstraint]()

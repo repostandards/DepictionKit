@@ -101,8 +101,8 @@ final public class TableView: UIView, DepictionViewDelegate {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -5),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5)
         ])
     }
     

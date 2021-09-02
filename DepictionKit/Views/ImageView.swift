@@ -89,25 +89,25 @@ final class ImageView: UIView, DepictionViewDelegate {
         
         switch alignment {
         case .left:
-            constraints.append(imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5))
-            constraints.append(imageView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
-            let lesserTrailing = imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            constraints.append(imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15))
+            constraints.append(imageView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -15))
+            let lesserTrailing = imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(750)
             constraints.append(lesserTrailing)
         case .right:
-            constraints.append(imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
-            constraints.append(imageView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5))
-            let lesserLeading = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
+            constraints.append(imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15))
+            constraints.append(imageView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15))
+            let lesserLeading = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
         case .center:
-            constraints.append(imageView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 5))
-            constraints.append(imageView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
+            constraints.append(imageView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15))
+            constraints.append(imageView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -15))
             constraints.append(imageView.centerXAnchor.constraint(equalTo: centerXAnchor))
-            let lesserLeading = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
+            let lesserLeading = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
-            let lesserTrailing = imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            let lesserTrailing = imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(750)
             constraints.append(lesserTrailing)
         default: throw Error.unknown_alignment_error

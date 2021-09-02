@@ -35,15 +35,15 @@ final public class Separator: UIView, DepictionViewDelegate {
             NSLayoutConstraint.activate([
                 heightAnchor.constraint(equalToConstant: 3),
                 separator.heightAnchor.constraint(equalToConstant: 1.5),
-                separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2.5),
-                separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2.5),
+                separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+                separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
                 separator.centerXAnchor.constraint(equalTo: centerXAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
                 widthAnchor.constraint(equalToConstant: 3),
-                separator.topAnchor.constraint(equalTo: topAnchor, constant: 2.5),
-                separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2.5),
+                separator.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+                separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
                 separator.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
         }
