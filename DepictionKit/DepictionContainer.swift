@@ -256,7 +256,7 @@ extension DepictionContainer: DepictionContainerDelegate {
     }
     
     func handleAction(action: String, external: Bool) {
-        delegate?.handleAction(action: action, external: external)
+        delegate?.handleAction(action: DepictionAction(rawAction: action, external: external))
     }
 
 }

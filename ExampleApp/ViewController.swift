@@ -74,8 +74,8 @@ extension DepictionViewController: DepictionDelegate {
         completionHandler(false)
     }
 
-    func handleAction(action: String, external: Bool) {
-        NSLog("[DepictionKit] Action = \(action), external = \(external)")
+    func handleAction(action: DepictionAction) {
+        NSLog("[DepictionKit] Action = \(action)")
     }
     
 }

@@ -27,7 +27,7 @@ public protocol DepictionDelegate: AnyObject {
     /// whether custom handling is required for this URL.
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void)
     
-    func handleAction(action: String, external: Bool)
+    func handleAction(action: DepictionAction)
     
     func depictionError(error: Error)
 }
