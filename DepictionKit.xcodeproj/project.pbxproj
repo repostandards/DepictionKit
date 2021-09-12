@@ -18,7 +18,7 @@
 		4E6305FB26BA55CA00144776 /* Depiction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3A26B72F7600F64440 /* Depiction.swift */; };
 		4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */; };
 		4E6305FF26BA563F00144776 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4726B732DB00F64440 /* Theme.swift */; };
-		4E63060026BA563F00144776 /* FontAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3426B72F7600F64440 /* FontAlignment.swift */; };
+		4E63060026BA563F00144776 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3426B72F7600F64440 /* Alignment.swift */; };
 		4E63060126BA563F00144776 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3626B72F7600F64440 /* Color.swift */; };
 		4E63060226BA563F00144776 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA3826B72F7600F64440 /* String+Extensions.swift */; };
 		4E63060326BA563F00144776 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA4F26B74C1A00F64440 /* Direction.swift */; };
@@ -95,7 +95,7 @@
 		E13FFA1126B72E6B00F64440 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E13FFA1326B72E6B00F64440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E13FFA3326B72F7600F64440 /* FontWeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
-		E13FFA3426B72F7600F64440 /* FontAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAlignment.swift; sourceTree = "<group>"; };
+		E13FFA3426B72F7600F64440 /* Alignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		E13FFA3526B72F7600F64440 /* DepictionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepictionView.swift; sourceTree = "<group>"; };
 		E13FFA3626B72F7600F64440 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		E13FFA3826B72F7600F64440 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -120,6 +120,8 @@
 		E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		E1CECD3A26E15081009FCF27 /* DepictionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionAction.swift; sourceTree = "<group>"; };
 		E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		E1D2B41A26EE721E00E2A30F /* Writing Your First Depiction.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your First Depiction.md"; sourceTree = "<group>"; };
+		E1D2B41B26EE723600E2A30F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E1F63BBE26CAC278001EDE8F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,8 @@
 		E13FF9F926B72E6A00F64440 = {
 			isa = PBXGroup;
 			children = (
+				E1D2B41B26EE723600E2A30F /* README.md */,
+				E1D2B41926EE721E00E2A30F /* info */,
 				E13FFA0426B72E6A00F64440 /* ExampleApp */,
 				4E6305EF26BA558200144776 /* DepictionKit */,
 				E13FFA0326B72E6A00F64440 /* Products */,
@@ -213,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				E13FFA3326B72F7600F64440 /* FontWeight.swift */,
-				E13FFA3426B72F7600F64440 /* FontAlignment.swift */,
+				E13FFA3426B72F7600F64440 /* Alignment.swift */,
 				E13FFA3626B72F7600F64440 /* Color.swift */,
 				E13FFA4726B732DB00F64440 /* Theme.swift */,
 				E13FFA4F26B74C1A00F64440 /* Direction.swift */,
@@ -279,6 +283,14 @@
 				E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */,
 			);
 			path = ScreenshotsView;
+			sourceTree = "<group>";
+		};
+		E1D2B41926EE721E00E2A30F /* info */ = {
+			isa = PBXGroup;
+			children = (
+				E1D2B41A26EE721E00E2A30F /* Writing Your First Depiction.md */,
+			);
+			path = info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,7 +436,7 @@
 				E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */,
 				4E63060C26BA565200144776 /* HeadingView.swift in Sources */,
 				E1CECD3B26E15081009FCF27 /* DepictionAction.swift in Sources */,
-				4E63060026BA563F00144776 /* FontAlignment.swift in Sources */,
+				4E63060026BA563F00144776 /* Alignment.swift in Sources */,
 				4E6305FF26BA563F00144776 /* Theme.swift in Sources */,
 				4E6305FB26BA55CA00144776 /* Depiction.swift in Sources */,
 				4E35617126BA7F2000828D09 /* Placeholder.swift in Sources */,
@@ -671,10 +683,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ExampleApp/ExampleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -697,10 +710,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ExampleApp/ExampleApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ExampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

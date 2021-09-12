@@ -7,6 +7,21 @@
 
 import UIKit
 
+/**
+ A dynamic attachment for different themes and device sizes.
+ 
+ DepictionKit supports customising the media that will show in the Depiction based on if its an iPhone or iPad
+ and if the Depiction is in light or dark mode.
+      
+ - Important: If the `ipad` dict is not present it will fall back to `iphone`
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - iphone: `[String: String]`; Required keys are `light`and `dark`
+    - ipad: `[String: String]?`; Required keys are `light` and `dark`
+ */
 public final class Attachment {
     
     private var iphone_light: URL
@@ -41,7 +56,7 @@ public final class Attachment {
         self.iphone_dark = dark
     }
     
-    public func url(for theme: Theme) -> URL {
+    internal func url(for theme: Theme) -> URL {
         if UIDevice.current.userInterfaceIdiom == .pad {
             if theme.dark_mode {
                 if let ipad_dark = ipad_dark {

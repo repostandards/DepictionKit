@@ -7,9 +7,19 @@
 
 import UIKit
 
+/**
+ Create an array of media
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - screenshots: `[Screenshot]`; Screenshot contents.
+    - corner_radius: `Int? = 4`; Image corner radius.
+ */
 final public class ScreenshotsView: UIView, DepictionViewDelegate {
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case missing_screenshots
         case empty_screenshots
         case invalid_content_size
@@ -23,7 +33,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         }
     }
     
-    public var scrollView: UIScrollView = {
+    private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
@@ -33,7 +43,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         return scrollView
     }()
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal

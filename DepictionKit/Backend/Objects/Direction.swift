@@ -7,7 +7,14 @@
 
 import Foundation
 
-/// Class to generate alignment
+/**
+ Direction for elements to align in. This should be a string and supports the values `horizontal` and `vertical`
+       
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ */
 public enum Direction {
     
     case horizontal
@@ -21,7 +28,7 @@ public enum Direction {
         }
     }
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_alignment(input: String)
         
         public var errorDescription: String? {

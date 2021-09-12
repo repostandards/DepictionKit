@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ScreenshotViewController: UIViewController, DepictionViewDelegate {
+final internal class ScreenshotViewController: UIViewController, DepictionViewDelegate {
     
-    public var screenshots: [Screenshot]
-    public var corner_radius: CGFloat?
-    public var height: CGFloat
-    public var width: CGFloat
+    private var screenshots: [Screenshot]
+    private var corner_radius: CGFloat?
+    private var height: CGFloat
+    private var width: CGFloat
     private var containers: [ScreenshotContainer]
     internal var theme: Theme {
         didSet { themeDidChange() }
@@ -20,7 +20,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
     
     private let preselectedIndex: Int
     
-    public lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
@@ -33,7 +33,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         return scrollView
     }()
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal

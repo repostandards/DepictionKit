@@ -7,12 +7,23 @@
 
 import UIKit
 
+/**
+ Create a star rating
+      
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - rating: `Int`; Rating value between 0 - 5
+    - alignment: `Alignment? = "center"`; Set the alignment of the image.
+ */
 final public class Rating: UIView, DepictionViewDelegate {
     
-    public let rating: Double
-    public let star_size: CGFloat
+    private let rating: Double
+    private let star_size: CGFloat
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case missing_rating
         case unknown_alignment_error
         
@@ -24,7 +35,7 @@ final public class Rating: UIView, DepictionViewDelegate {
         }
     }
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
@@ -44,7 +55,7 @@ final public class Rating: UIView, DepictionViewDelegate {
         var alignment: NSTextAlignment = .center
         if let _alignment = properties["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: _alignment)
+                alignment = try Alignment.alignment(for: _alignment)
             } catch {
                 throw error
             }
@@ -207,8 +218,7 @@ extension CGPoint {
     }
 }
 
+/// :nodoc:
 extension Double {
-    
     public var isInt: Bool { rounded() == self }
-    
 }

@@ -7,18 +7,32 @@
 
 import UIKit
 
-final class Button: UIView, DepictionViewDelegate {
+/**
+Create a customizable button with subviews.
+      
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - children: `[DepictionView]`; Array of subviews to show inside the button
+    - action: `String`; The action to invoke when pressing the button. You can learn more about
+                            actions in `DepictionAction`
+    - external: `Bool? = false`;  Should the action open in an external app if possible
+    - tint_override: `Color?`; Override the tint color of the button and its children
+ */
+final public class Button: UIView, DepictionViewDelegate {
     
     internal var theme: Theme {
         didSet { themeDidChange() }
     }
     internal weak var delegate: DepictionContainerDelegate?
-    public var depictionChildren: [DepictionView]?
-    public var tintOverride: Color?
-    public var action: String
-    public var external: Bool
+    private var depictionChildren: [DepictionView]?
+    private var tintOverride: Color?
+    private var action: String
+    private var external: Bool
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_children
         case invalid_action
         
@@ -70,7 +84,7 @@ final class Button: UIView, DepictionViewDelegate {
             control.topAnchor.constraint(equalTo: topAnchor),
             control.leadingAnchor.constraint(equalTo: leadingAnchor),
             control.trailingAnchor.constraint(equalTo: trailingAnchor),
-            control.bottomAnchor.constraint(equalTo: bottomAnchor),
+            control.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

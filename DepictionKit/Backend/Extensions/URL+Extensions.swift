@@ -7,7 +7,8 @@
 
 import Foundation
 
-public extension URL {
+/// :nodoc:
+extension URL {
     
     var queryDict: [String: String]? {
         guard let queryString = self.query else { return nil }

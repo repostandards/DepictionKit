@@ -9,6 +9,26 @@ import UIKit
 import WebKit
 import AVKit
 
+/**
+ Embed a video in a view
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Important: When using `web` player `show_controls` and `autoplay` will have no effect.
+ 
+ - Parameters:
+    - url: `String`; URL to the video content.
+    - alt_text: `String`; Accessbility Text to improve the reliability of Screen readers.
+    - player_size: `[String: Int]`; Size of the video player in pts. Requires the keys `width` and `height`
+    - player: `String? = "native"`;  Video player type (Embedded player or Web View).
+                                    For sites like YouTube or Vimeo which don't give native video, using the web player is the only option.
+                                    Supports `native` and `web`
+    - autoplay: `String? = "disabled"`; Automatically play video content (audio disabled if set to 'once' or 'loop'). 'loop' will restart the video after it ends forever. Supports                                                                             `disabled`, `once` and `loop`
+    - corner_radius: `Int? = 4`; Video player corner radius.
+    - show_controls: `Bool? = false`; Show the video player controls.
+    - alignment: `Alignment? = "left"`; Set the alignment of the player.
+ */
 final public class VideoView: UIView, DepictionViewDelegate {
     
     // These references need to be held so the view isn't deallocated
@@ -21,18 +41,18 @@ final public class VideoView: UIView, DepictionViewDelegate {
     private var width: CGFloat
     private var alignment: NSTextAlignment
     
-    enum Player {
+    private enum Player {
         case web
         case native
     }
     
-    enum AutoPlay {
+    private enum AutoPlay {
         case disabled
         case once
         case loop
     }
 
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_url(string: String?)
         case invalid_alt_text
         case invalid_player_size
@@ -66,7 +86,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         var alignment: NSTextAlignment = .left
         if let _alignment = input["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: _alignment)
+                alignment = try Alignment.alignment(for: _alignment)
             } catch {
                 throw error
             }

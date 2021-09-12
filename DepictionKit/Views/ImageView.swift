@@ -7,7 +7,26 @@
 
 import UIKit
 
-final class ImageView: UIView, DepictionViewDelegate {
+/**
+ Embed an image in a view
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Important: Only one of `url` or `attachment` are required. Do not add both.
+ 
+ - Parameters:
+    - url: `String`; URL to the image content.
+    - attachment: `Attachment`; Attachment to the image content
+    - alt_text: `String`; Accessbility Text to improve the reliability of Screen readers.
+    - image_size: `[String: Int]`; Size of the image in pts. Requires the keys `width` and `height`
+    - player: `String? = "native"`;  Video player type (Embedded player or Web View).
+                                    For sites like YouTube or Vimeo which don't give native video, using the web player is the only option.
+                                    Supports `native` and `web`
+    - corner_radius: `Int? = 4`; Image corner radius.
+    - alignment: `Alignment? = "left"`; Set the alignment of the image.
+ */
+final public class ImageView: UIView, DepictionViewDelegate {
     
     private var imageView: NetworkImageView?
     private var attachment: Attachment?
@@ -16,7 +35,7 @@ final class ImageView: UIView, DepictionViewDelegate {
         didSet { themeDidChange() }
     }
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_url(string: String?)
         case invalid_alt_text
         case invalid_image_size
@@ -52,7 +71,7 @@ final class ImageView: UIView, DepictionViewDelegate {
         var alignment: NSTextAlignment = .left
         if let _alignment = input["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: _alignment)
+                alignment = try Alignment.alignment(for: _alignment)
             } catch {
                 throw error
             }

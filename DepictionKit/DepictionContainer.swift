@@ -8,9 +8,19 @@
 import UIKit
 import SafariServices
 
+/**
+ Depiction Container is the main view for you to be implementing to show Depictions in your app
+ 
+ It supports multiple methods of providing a depiction to display, support for light and dark mode, custom tint colours
+ and multiple delegate methods for interacting with the depiction.
+ 
+ - Author: Amy
+
+ - Version: 1.0
+ */
 final public class DepictionContainer: UIView {
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_data
         
         public var errorDescription: String? {
@@ -23,8 +33,16 @@ final public class DepictionContainer: UIView {
     private var depiction: Depiction?
     private weak var presentationController: UIViewController?
     private var layoutInit = false
-
-    public weak var delegate: DepictionDelegate?
+    
+    private weak var delegate: DepictionDelegate?
+    
+    /**
+     The current theme being used by the Depiction. Setting a new theme will automatically reload the depiction, you do not need to create a new container. You can learn more about this in `Theme`
+     
+     - Author: Amy
+    
+     - Version: 1.0
+    */
     public var theme: Theme {
         didSet { themeDidChange() }
     }
@@ -32,7 +50,7 @@ final public class DepictionContainer: UIView {
     
     private var loadingIndicator: UIActivityIndicatorView?
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
@@ -40,15 +58,29 @@ final public class DepictionContainer: UIView {
         return view
     }()
     
-    public init(url: URL, loginToken: String? = nil, presentationController: UIViewController, theme: Theme) {
+    /**
+     Create a new DepictionContainer
+
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - url: A URL to the depiction JSON. This will be loaded asynchronously
+        - presentationController: JSON Data of the depiction to be displayed
+        - theme: The initial theme to be used. You can learn more about this in `Theme`
+        - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
+    */
+    public init(url: URL, presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate) {
         self.theme = theme
+        self.delegate = delegate
         super.init(frame: .zero)
         
         self.presentationController = presentationController
         self.theme = theme
         meta()
         
-        fetchDepiction(url: url, loginToken: loginToken, theme: theme)
+        fetchDepiction(url: url)
         
         let loadingIndicator = UIActivityIndicatorView(style: .gray)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -61,8 +93,22 @@ final public class DepictionContainer: UIView {
         self.loadingIndicator = loadingIndicator
     }
     
-    public init(json: [String: Any], presentationController: UIViewController, theme: Theme) {
+    /**
+     Create a new DepictionContainer
+
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - json: JSON dictionary of the depiction to be displayed
+        - presentationController: JSON Data of the depiction to be displayed
+        - theme: The initial theme to be used. You can learn more about this in `Theme`
+        - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
+    */
+    public init(json: [String: Any], presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate) {
         self.theme = theme
+        self.delegate = delegate
         super.init(frame: .zero)
         
         self.presentationController = presentationController
@@ -71,8 +117,23 @@ final public class DepictionContainer: UIView {
         layoutDepiction(json: json, theme: theme)
     }
     
-    public init(presentationController: UIViewController, theme: Theme) {
+    /**
+     Create a new DepictionContainer
+     
+     - Important: This method should be used in conjuction with `setDepiction(dict: [String: Any]`
+
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - presentationController: JSON Data of the depiction to be displayed
+        - theme: The initial theme to be used. You can learn more about this in `Theme`
+        - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
+    */
+    public init(presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate) {
         self.theme = theme
+        self.delegate = delegate
         super.init(frame: .zero)
         
         self.presentationController = presentationController
@@ -83,8 +144,22 @@ final public class DepictionContainer: UIView {
         layoutInit = true
     }
     
-    public init(data: Data, presentationController: UIViewController, theme: Theme) throws {
+    /**
+     Create a new DepictionContainer
+
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - data: JSON Data of the depiction to be displayed
+        - presentationController: JSON Data of the depiction to be displayed
+        - theme: The initial theme to be used. You can learn more about this in `Theme`
+        - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
+    */
+    public init(data: Data, presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate) throws {
         self.theme = theme
+        self.delegate = delegate
         super.init(frame: .zero)
         
         self.presentationController = presentationController
@@ -98,6 +173,18 @@ final public class DepictionContainer: UIView {
         layoutDepiction(json: json, theme: theme)
     }
     
+    /**
+     Set the currently displayed depiction
+    
+     - Important: This can only be used in conjuction with `init(presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate)`
+    
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - dict: The JSON dictionary to display
+    */
     public func setDepiction(dict: [String: Any]) {
         guard layoutInit else {
             fatalError("Set Depiction Cannot Be Used After Init")
@@ -132,16 +219,17 @@ final public class DepictionContainer: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func fetchDepiction(url: URL, loginToken: String? = nil, theme: Theme) {
+    private func fetchDepiction(url: URL) {
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             guard let data = data,
                   let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
-                  let json = rawJSON as? [String: Any] else {
+                  let json = rawJSON as? [String: Any],
+                  let `self` = self else {
                 NSLog("[DepictionKit] failed with error \(error)")
                 return
             }
-            self?.layoutDepiction(json: json, theme: theme)
+            self.layoutDepiction(json: json, theme: self.theme)
         }
         task.resume()
 
@@ -197,6 +285,15 @@ final public class DepictionContainer: UIView {
         }
     }
     
+    /**
+     For getting the current theme of the depiction
+    
+     DepictionKit supports Depictions setting a custom tint color for light and dark mode appearances. You can learn more about this in `Color`
+    
+     - Author: Amy
+    
+     - Version: 1.0
+    */
     public var effectiveTintColor: UIColor {
         depiction?.tint_color?.color(for: theme) ?? theme.tint_color
     }

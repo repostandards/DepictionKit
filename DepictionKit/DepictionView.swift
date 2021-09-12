@@ -10,7 +10,7 @@ import UIKit
 typealias AnyDepictionView = UIView & DepictionViewDelegate
 
 /// Trampoline class for handling children views
-public final class DepictionView {
+internal class DepictionView {
     
     private let name: String
     private let properties: [String: Any]
@@ -74,7 +74,7 @@ public final class DepictionView {
             contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: containerView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
         
         var childrenViews = [DepictionView]()

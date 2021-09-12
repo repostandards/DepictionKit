@@ -7,6 +7,17 @@
 
 import UIKit
 
+/**
+ Create separation lines between Depiction elements
+      
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - direction: `String? = "horizontal"`; Create a separator that's either horizontal or vertical (useful for StackView).
+                                            Supports `horizontal` and `vertical`
+ */
 final public class Separator: UIView, DepictionViewDelegate {
 
     internal var theme: Theme {

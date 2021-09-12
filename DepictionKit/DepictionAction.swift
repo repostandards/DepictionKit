@@ -47,7 +47,7 @@ public enum DepictionAction {
      - Version: 1.0
      
      - Parameters:
-        - url: The package bundle ID to open
+        - bundle: The package bundle ID to open
     */
     case openPackage(bundle: String)
     
@@ -65,7 +65,7 @@ public enum DepictionAction {
     
     /**
      This is to be used for any custom action you would like to invoke in your depictions if you would like to add your own custom views. An example action
-     is `sileo://open-installed-contents`
+     is `zebra://open-installed-contents`
      
      - Author: Amy
      
@@ -89,7 +89,7 @@ public enum DepictionAction {
         - error: A string describing the error
         - action: The action that resulted in the error
      
-     These errors will be called if there is an error when parsing an action, such as an invalid depiction URL for `open-depiction`. It is suggested to show these errors in an alert.
+     This error will be returned if there is an error when parsing an action, such as an invalid depiction URL for `open-depiction`. It is suggested to show these errors in an alert.
     */
     case actionError(error: String, action: String)
     

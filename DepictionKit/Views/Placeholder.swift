@@ -7,4 +7,4 @@
 
 import UIKit
 
-final class Placeholder: UIView, DepictionViewDelegate {}
+final internal class Placeholder: UIView, DepictionViewDelegate {}

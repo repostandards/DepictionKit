@@ -8,6 +8,20 @@
 import CoreGraphics
 import Foundation
 
+/**
+ Screenshots are shown in `ScreenshotView`
+       
+ - Important: Only one of `url` or `attachment` are required. Do not add both.
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - url: `String`; URL location of the specified image, gif, or raw video.
+    - attachment: `Attachment`; Attachment for screenshot content
+    - alt_text: `String`; Accessbility Text to improve the reliability of Screen readers.
+    - content_size: `[String: Int]`;  Size of the screnshot in pts. Requires the keys `width` and `height`
+ */
 final public class Screenshot {
     
     enum Error: LocalizedError {
@@ -26,14 +40,14 @@ final public class Screenshot {
         }
     }
     
-    public var url: URL
-    public var alt_text: String
-    public var height: CGFloat?
-    public var width: CGFloat?
-    public var attachment: Attachment?
-    public var theme: Theme
+    internal var url: URL
+    internal var alt_text: String
+    internal var height: CGFloat?
+    internal var width: CGFloat?
+    internal var attachment: Attachment?
+    internal var theme: Theme
     
-    public var displayURL: URL {
+    internal var displayURL: URL {
         if let attachment = attachment {
             return attachment.url(for: theme)
         }
@@ -56,12 +70,12 @@ final public class Screenshot {
         self.alt_text = alt_text
         self.url = url
         
-        if let content_size = input["content_size"] as? [String: Int] {
-            guard let width = content_size["width"],
-                  let height = content_size["height"] else { throw Error.invalid_content_size }
-            self.height = CGFloat(height)
-            self.width = CGFloat(width)
-        }
+        guard let content_size = input["content_size"] as? [String: Int],
+              let width = content_size["width"],
+              let height = content_size["height"] else { throw Error.invalid_content_size }
+        self.height = CGFloat(height)
+        self.width = CGFloat(width)
+    
         self.theme = theme
     }
     

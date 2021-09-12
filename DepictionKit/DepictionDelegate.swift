@@ -27,8 +27,34 @@ public protocol DepictionDelegate: AnyObject {
     /// whether custom handling is required for this URL.
     func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void)
     
+    /**
+    The depiction is requesting the handling of an action
+     
+    DepictionKit supports multiple types of actions and has support for an app providing its own actions inside a depicton.
+    This should be handled in a switch statement.
+     
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - action: The action to be handled by the application. You can learn more about this in `DepictionAction`
+     */
     func handleAction(action: DepictionAction)
     
+    /**
+    An error has occurred when trying to load the depiction.
+     
+    This is a fault in the JSON provided to the container. It is recommended that you show this error to the user
+    so that the repo maintainer can be made aware of the error
+     
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - error: The error from the depiction. Each error has a localizedDescription for understanding it
+     */
     func depictionError(error: Error)
 }
 

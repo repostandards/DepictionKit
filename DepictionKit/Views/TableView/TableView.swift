@@ -7,28 +7,62 @@
 
 import UIKit
 
-protocol TableElements {}
+internal protocol TableElements {}
 
+/**
+ TableItem is for showing primary text and a subtitle. It uses [Style 1](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/value1) of UITableViewCell.
+       
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - title: `String`; The primary text to show in the cell
+    - text: `String?`; The subtitle text to show
+ */
+public struct TableItem: TableElements {
+    internal var title: String
+    internal var text: String?
+}
+
+/**
+ TableButton is similar to `TableItem` however they have added support for actions and images.
+       
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - text: `String`; The primary text to show in the cell
+    - icon: `String?`; A URL to the icon to show
+    - action: `String`; The action to invoke when pressing the cell
+    - external: `Bool? = false`; Should the action open in an external app if possible
+    - tint_override: `Color?`;  Override the tint color of the text
+ */
+public struct TableButton: TableElements {
+    internal var text: String
+    internal var icon: String?
+    internal var action: String
+    internal var external: Bool
+    internal var tint_override: Color?
+}
+
+/**
+ Create a table in the Depiction
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - elements: `[TableElements]`; Table elements. Supported elements are `TableItem` and `TableButton`
+    - tint_override: `Color?`; Tint color override for links and key words. Defaults to none (conforms to global tint if available)
+ */
 final public class TableView: UIView, DepictionViewDelegate {
     
-    var cells: [TableElements]
-    var tableView: AutomaticTableView
+    private var cells: [TableElements]
+    private var tableView: AutomaticTableView
     
-    struct TableItem: TableElements {
-        public var title: String
-        public var text: String?
-    }
-    
-    struct TableButton: TableElements {
-        public var text: String
-        public var icon: String?
-        public var file_link: URL?
-        public var action: String
-        public var external: Bool
-        public var tint_override: Color?
-    }
-    
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_elements
         case invalid_element(element: [String: Any])
     
@@ -45,7 +79,7 @@ final public class TableView: UIView, DepictionViewDelegate {
     }
     internal weak var delegate: DepictionContainerDelegate?
     
-    public var tintOverride: Color?
+    private var tintOverride: Color?
     
     init(for properties: [String: Any], theme: Theme) throws {
         guard let elements = properties["elements"] as? [[String: Any]] else { throw Error.invalid_elements }
@@ -78,7 +112,6 @@ final public class TableView: UIView, DepictionViewDelegate {
                 }
                 cells.append(TableButton(text: text,
                                          icon: properties["icon"] as? String,
-                                         file_link: URL(string: properties["file_link"] as? String ?? ""),
                                          action: action,
                                          external: properties["external"] as? Bool ?? false,
                                          tint_override: tintOverride))
@@ -96,6 +129,7 @@ final public class TableView: UIView, DepictionViewDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.separatorColor = theme.separator_color
         backgroundColor = .clear
         
         NSLayoutConstraint.activate([
@@ -114,6 +148,7 @@ final public class TableView: UIView, DepictionViewDelegate {
         if let tintOverride = tintOverride {
             theme.tint_color = theme.dark_mode ? tintOverride.dark_mode : tintOverride.light_mode
         }
+        tableView.separatorColor = theme.separator_color
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
     
@@ -159,7 +194,7 @@ extension TableView: UITableViewDataSource {
                 }
                 return theme.tint_color
             }()
-            cell.iconURL = tableButton.file_link ?? URL(string: tableButton.icon ?? "")
+            cell.iconURL = URL(string: tableButton.icon ?? "")
             return cell
         }
         return UITableViewCell() // Should be impossible?

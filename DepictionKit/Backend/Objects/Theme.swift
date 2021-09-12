@@ -7,16 +7,37 @@
 
 import UIKit
 
+/**
+DepictionKit requires the app to provide a Theme object so that the Depiction will fit in with the rest of your design.
+ 
+ - Author: Amy
+
+ - Version: 1.0
+ */
 public final class Theme {
     
     static let change = Notification.Name("DepictionKit.ThemeChange")
     
-    public let text_color: UIColor
-    public let background_color: UIColor
-    public var tint_color: UIColor
-    public let separator_color: UIColor
-    public let dark_mode: Bool
+    internal let text_color: UIColor
+    internal let background_color: UIColor
+    internal var tint_color: UIColor
+    internal let separator_color: UIColor
+    internal let dark_mode: Bool
     
+    /**
+    Create a Theme object to be used in the Depiction
+          
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - text_color: The color to be used for text
+        - background_color: The background colour of the Depiction
+        - tint_color: The fallback tint color of the depiction. This may be overriden by the depiction
+        - separator_color: The colour to be used by `Separator`
+        - dark_mode: If the apps theme is currently set to a dark theme
+     */
     public init(text_color: UIColor,
                 background_color: UIColor,
                 tint_color: UIColor,
