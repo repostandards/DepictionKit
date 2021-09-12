@@ -94,6 +94,9 @@
                 <a class="nav-group-task-link" href="Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)ImageView">ImageView</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)PackageView">PackageView</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)Rating">Rating</a>
               </li>
               <li class="nav-group-task">
@@ -127,6 +130,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Depiction%20Objects.html#/s:12DepictionKit5ColorC">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Depiction%20Objects.html#/s:12DepictionKit0A7PackageC">DepictionPackage</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Enums/Direction.html">Direction</a>
@@ -330,6 +336,133 @@ and if the Depiction is in light or dark mode.</p>
                               <td>
                                 <div>
                                   <p><code>String</code>; Dark mode color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A7PackageC"></a>
+                    <a name="//apple_ref/swift/Class/DepictionPackage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A7PackageC">DepictionPackage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DepictionPackages are shown in <code><a href="Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)PackageView">PackageView</a></code> and <code>PackageBannerView</code></p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">DepictionPackage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; URL for the Package Icon</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>banner</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; URL for the Package Banner</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; The Package Bundle Identifier</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; The name of the package</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>author</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; Author(s) of the package</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>repo_name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; Name of the repo the package is hosted on</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>repo_link</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>;  The URI of the repo the package is hosted on</p>
                                 </div>
                               </td>
                             </tr>
@@ -698,7 +831,7 @@ and if the Depiction is in light or dark mode.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://github.com/RepositoryStandards" target="_blank" rel="noopener" rel="external">Repository Standards Consortium</a>. All rights reserved. (Last updated: 2021-09-13)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/RepositoryStandards" target="_blank" rel="noopener" rel="external">Repository Standards Consortium</a>. All rights reserved. (Last updated: 2021-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>

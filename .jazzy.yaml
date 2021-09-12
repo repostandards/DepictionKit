@@ -22,6 +22,7 @@ custom_categories:
       - Button
       - HeadingView
       - ImageView
+      - PackageView
       - Rating
       - ScreenshotsView
       - Separator 
@@ -35,6 +36,7 @@ custom_categories:
       - Alignment
       - Attachment
       - Color
+      - DepictionPackage
       - Direction
       - FontWeight
       - Screenshot

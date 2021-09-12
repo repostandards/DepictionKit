@@ -48,6 +48,8 @@
 		E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */; };
 		E1CECD3B26E15081009FCF27 /* DepictionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3A26E15081009FCF27 /* DepictionAction.swift */; };
 		E1CECD3D26E155B8009FCF27 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */; };
+		E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */; };
+		E1D2B41F26EFC22A00E2A30F /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41E26EFC22A00E2A30F /* PackageView.swift */; };
 		E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F63BBE26CAC278001EDE8F /* ImageView.swift */; };
 		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,8 @@
 		E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E1D2B41A26EE721E00E2A30F /* Writing Your First Depiction.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your First Depiction.md"; sourceTree = "<group>"; };
 		E1D2B41B26EE723600E2A30F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionPackage.swift; sourceTree = "<group>"; };
+		E1D2B41E26EFC22A00E2A30F /* PackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageView.swift; sourceTree = "<group>"; };
 		E1F63BBE26CAC278001EDE8F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 				E13FFA4F26B74C1A00F64440 /* Direction.swift */,
 				E15A955626BACFF2000DB10E /* Screenshot.swift */,
 				E1007E2026D6585B0034029D /* Attachment.swift */,
+				E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				4E35617026BA7F2000828D09 /* Placeholder.swift */,
 				E1F63BBE26CAC278001EDE8F /* ImageView.swift */,
 				E1007E2226D672F80034029D /* Rating.swift */,
+				E1D2B41E26EFC22A00E2A30F /* PackageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				4E63060326BA563F00144776 /* Direction.swift in Sources */,
 				E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */,
 				4E63060C26BA565200144776 /* HeadingView.swift in Sources */,
+				E1D2B41F26EFC22A00E2A30F /* PackageView.swift in Sources */,
 				E1CECD3B26E15081009FCF27 /* DepictionAction.swift in Sources */,
 				4E63060026BA563F00144776 /* Alignment.swift in Sources */,
 				4E6305FF26BA563F00144776 /* Theme.swift in Sources */,
@@ -463,6 +470,7 @@
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
 				E14E4D5526DE7D28002AE3B4 /* TableView.swift in Sources */,
 				E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */,
+				E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */,
 				E14E4D5726DE7DE8002AE3B4 /* AutomaticTableView.swift in Sources */,
 				E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */,
 				4E63060A26BA565200144776 /* VideoView.swift in Sources */,

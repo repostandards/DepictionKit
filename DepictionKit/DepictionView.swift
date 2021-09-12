@@ -56,6 +56,8 @@ internal class DepictionView {
             view = try Button(for: properties, theme: theme, delegate: delegate)
         case "TableView":
             view = try TableView(for: properties, theme: theme)
+        case "PackageView":
+            view = try PackageView(for: properties, theme: theme, delegate: delegate)
         default:
             view = Placeholder()
         }

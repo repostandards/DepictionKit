@@ -232,7 +232,6 @@ final public class DepictionContainer: UIView {
             self.layoutDepiction(json: json, theme: self.theme)
         }
         task.resume()
-
     }
     
     private func layoutDepiction(json: [String: Any], theme: Theme) {
@@ -354,6 +353,10 @@ extension DepictionContainer: DepictionContainerDelegate {
     
     func handleAction(action: String, external: Bool) {
         delegate?.handleAction(action: DepictionAction(rawAction: action, external: external))
+    }
+    
+    func packageView(for package: DepictionPackage) -> UIView? {
+        delegate?.packageView(for: package)
     }
 
 }

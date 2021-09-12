@@ -77,4 +77,7 @@ extension DepictionViewController: DepictionDelegate {
         NSLog("[DepictionKit] Action = \(action)")
     }
     
+    func packageView(for package: DepictionPackage) -> UIView {
+        UIView()
+    }
 }
