@@ -19,7 +19,7 @@ import AVKit
  
  - Parameters:
     - url: `String`; URL to the video content.
-    - alt_text: `String`; Accessbility Text to improve the reliability of Screen readers.
+    - alt_text: `String`; Accessibility Text to improve the reliability of Screen readers.
     - player_size: `[String: Int]`; Size of the video player in pts. Requires the keys `width` and `height`
     - player: `String? = "native"`;  Video player type (Embedded player or Web View).
                                     For sites like YouTube or Vimeo which don't give native video, using the web player is the only option.

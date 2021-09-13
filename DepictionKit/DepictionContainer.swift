@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 
 /**
- Depiction Container is the main view for you to be implementing to show Depictions in your app
+ Depiction Container is the main view you need to implement to show depictions in your app
  
  It supports multiple methods of providing a depiction to display, support for light and dark mode, custom tint colours
  and multiple delegate methods for interacting with the depiction.
@@ -67,7 +67,7 @@ final public class DepictionContainer: UIView {
      
      - Parameters:
         - url: A URL to the depiction JSON. This will be loaded asynchronously
-        - presentationController: JSON Data of the depiction to be displayed
+        - presentationController: View Controller used for alerts
         - theme: The initial theme to be used. You can learn more about this in `Theme`
         - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
     */
@@ -102,7 +102,7 @@ final public class DepictionContainer: UIView {
      
      - Parameters:
         - json: JSON dictionary of the depiction to be displayed
-        - presentationController: JSON Data of the depiction to be displayed
+        - presentationController: View Controller used for alerts
         - theme: The initial theme to be used. You can learn more about this in `Theme`
         - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
     */
@@ -127,7 +127,7 @@ final public class DepictionContainer: UIView {
      - Version: 1.0
      
      - Parameters:
-        - presentationController: JSON Data of the depiction to be displayed
+        - presentationController: View Controller used for alerts
         - theme: The initial theme to be used. You can learn more about this in `Theme`
         - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
     */
@@ -153,7 +153,7 @@ final public class DepictionContainer: UIView {
      
      - Parameters:
         - data: JSON Data of the depiction to be displayed
-        - presentationController: JSON Data of the depiction to be displayed
+        - presentationController: View Controller used for alerts
         - theme: The initial theme to be used. You can learn more about this in `Theme`
         - delegate: The delegate to use for the depiction. You can learn more about this in `DepictionDelegate`
     */

@@ -19,8 +19,8 @@ import Foundation
  - Parameters:
     - url: `String`; URL location of the specified image, gif, or raw video.
     - attachment: `Attachment`; Attachment for screenshot content
-    - alt_text: `String`; Accessbility Text to improve the reliability of Screen readers.
-    - content_size: `[String: Int]`;  Size of the screnshot in pts. Requires the keys `width` and `height`
+    - alt_text: `String`; Accessibility Text to improve the reliability of Screen readers.
+    - content_size: `[String: Int]`;  Size of the screenshot in pts. Requires the keys `width` and `height`
  */
 final public class Screenshot {
     

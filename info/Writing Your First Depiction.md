@@ -16,7 +16,7 @@ Depictions must contain the three base objects, `$schema`, `tint_color` and `chi
 * `children` is an array of `DepictionView` and are the base views that will show in your Depiction. It is important to note that `children` cannot be empty. 
 
 ### Adding Views
-Depiction Views are made up of two parts. The name and properties. Both are required properties. Here is an example view:
+Depiction Views are made up of two parts. The name and properties. Both are required. Here is an example view:
 ```json
 {
 	"name": "HeadingView",
@@ -30,4 +30,4 @@ Depiction Views are made up of two parts. The name and properties. Both are requ
 * `properties` is a dictionary of the parameters for the view. 
 
 ### Adding Depictions to Packages
-When setting a depiction for a package you must use the key `Native-Depiction` in your release file. When setting the header use the key `Header`.
+When setting a depiction for a package you must use the key `Native-Depiction` in your release file. When setting the header image use the key `Header`.
