@@ -15,13 +15,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/DepictionDelegate.swift",
-      "line": 10,
-      "symbol": "DepictionDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
       "line": 158,
       "symbol": "TableView.tableView(_:didSelectRowAt:)",

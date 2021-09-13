@@ -7,6 +7,13 @@
 
 import UIKit
 
+/**
+ Use DepictionDelegate for interacting with the Depictions being displayed
+ 
+ - Author: Amy
+
+ - Version: 1.0
+ */
 public protocol DepictionDelegate: AnyObject {
 
     /// The depiction is requesting to open the specified URL.
