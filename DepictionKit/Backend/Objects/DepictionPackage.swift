@@ -43,13 +43,20 @@ final public class DepictionPackage {
         }
     }
     
-    internal var icon: URL?
-    internal var banner: URL?
-    internal var identifier: String
-    internal var name: String
-    internal var author: String
-    internal var repo_name: String
-    internal var repo_link: URL
+    /// :nodoc:
+    public var icon: URL?
+    /// :nodoc:
+    public var banner: URL?
+    /// :nodoc:
+    public var identifier: String
+    /// :nodoc:
+    public var name: String
+    /// :nodoc:
+    public var author: String
+    /// :nodoc:
+    public var repo_name: String
+    /// :nodoc:
+    public var repo_link: URL
     
     init(for input: [String: Any]) throws {
         guard let identifier = input["identifier"] as? String else { throw Error.missing_identifier }

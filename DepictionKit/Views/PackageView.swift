@@ -50,7 +50,7 @@ final public class PackageView: UIView, DepictionViewDelegate {
         }
         self.theme = theme
         self.delegate = delegate
-        super.init()
+        super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -72,7 +72,7 @@ final public class PackageView: UIView, DepictionViewDelegate {
             view.topAnchor.constraint(equalTo: topAnchor),
             view.bottomAnchor.constraint(equalTo: bottomAnchor),
             view.leadingAnchor.constraint(equalTo: leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: trailingAnchor),
+            view.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     

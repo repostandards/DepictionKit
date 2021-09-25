@@ -129,7 +129,11 @@ final public class TableView: UIView, DepictionViewDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        tableView.separatorColor = theme.separator_color
+        if cells.count == 1 {
+            tableView.separatorStyle = .none
+        } else {
+            tableView.separatorColor = theme.separator_color
+        }
         backgroundColor = .clear
         
         NSLayoutConstraint.activate([
@@ -195,6 +199,7 @@ extension TableView: UITableViewDataSource {
                 return theme.tint_color
             }()
             cell.iconURL = URL(string: tableButton.icon ?? "")
+            cell.accessoryType = .disclosureIndicator		
             return cell
         }
         return UITableViewCell() // Should be impossible?

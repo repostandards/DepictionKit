@@ -24,7 +24,8 @@ class MainViewController: UIViewController {
         ExampleDepiction(name: "Example 6", url: URL(string: "https://hastebin.com/raw/mojeluqeto")!),
         ExampleDepiction(name: "Example 7", url: URL(string: "https://pastebin.com/raw/Kb5pAehn")!),
         ExampleDepiction(name: "Balls Button", url: URL(string: "https://pastebin.com/raw/HG5vErvd")!),
-        ExampleDepiction(name: "Table View", url: URL(string: "https://pastebin.com/raw/YhYxBbAm")!)
+        ExampleDepiction(name: "Table View", url: URL(string: "https://pastebin.com/raw/YhYxBbAm")!),
+        ExampleDepiction(name: "Aemulo Depiction", url: URL(string: "https://elihwyma.github.io/Aemulo/NativeDepiction.json")!)
     ]
     
     private var tableView = UITableView()

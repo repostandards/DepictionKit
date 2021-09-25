@@ -70,12 +70,16 @@ final public class Screenshot {
         self.alt_text = alt_text
         self.url = url
         
+        NSLog("[DepictionKit] \(input["content_size"])")
         guard let content_size = input["content_size"] as? [String: Int],
               let width = content_size["width"],
-              let height = content_size["height"] else { throw Error.invalid_content_size }
+              let height = content_size["height"] else {
+            NSLog("[Aemulo] Throwing on \(input)")
+            throw Error.invalid_content_size
+        }
+        
         self.height = CGFloat(height)
         self.width = CGFloat(width)
-    
         self.theme = theme
     }
     

@@ -136,8 +136,8 @@ final public class TextView: UIView, DepictionViewDelegate {
         }
 
         NSLayoutConstraint.activate([
-            webView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15),
-            webView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -15),
+            webView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+            webView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             webView.topAnchor.constraint(equalTo: self.topAnchor),
             webView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             webViewHeightConstraint

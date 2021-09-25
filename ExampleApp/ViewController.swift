@@ -78,6 +78,6 @@ extension DepictionViewController: DepictionDelegate {
     }
     
     func packageView(for package: DepictionPackage) -> UIView {
-        UIView()
+        DepictionPackageView(package: package)
     }
 }

@@ -46,6 +46,8 @@
 		E15A955C26BAD797000DB10E /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955B26BAD797000DB10E /* NetworkImageView.swift */; };
 		E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */; };
 		E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */; };
+		E18CF47326FFC0F000289103 /* PackageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E18CF47226FFC0F000289103 /* PackageView.xib */; };
+		E18CF47526FFC0FE00289103 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18CF47426FFC0FE00289103 /* PackageView.swift */; };
 		E1CECD3B26E15081009FCF27 /* DepictionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3A26E15081009FCF27 /* DepictionAction.swift */; };
 		E1CECD3D26E155B8009FCF27 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */; };
 		E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */; };
@@ -120,6 +122,8 @@
 		E15A955B26BAD797000DB10E /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 		E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
+		E18CF47226FFC0F000289103 /* PackageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackageView.xib; sourceTree = "<group>"; };
+		E18CF47426FFC0FE00289103 /* PackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageView.swift; sourceTree = "<group>"; };
 		E1CECD3A26E15081009FCF27 /* DepictionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionAction.swift; sourceTree = "<group>"; };
 		E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		E1D2B41A26EE721E00E2A30F /* Writing Your First Depiction.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Writing Your First Depiction.md"; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				E13FFA5326B74FBE00F64440 /* BridgingHeader.h */,
 				E13FFA1326B72E6B00F64440 /* Info.plist */,
 				4E63060E26BA567300144776 /* ExampleApp.entitlements */,
+				E18CF47226FFC0F000289103 /* PackageView.xib */,
+				E18CF47426FFC0FE00289103 /* PackageView.swift */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 			files = (
 				E13FFA1226B72E6B00F64440 /* LaunchScreen.storyboard in Resources */,
 				E13FFA0F26B72E6B00F64440 /* Assets.xcassets in Resources */,
+				E18CF47326FFC0F000289103 /* PackageView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +491,7 @@
 				E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */,
 				E13FFA0626B72E6A00F64440 /* AppDelegate.swift in Sources */,
 				E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */,
+				E18CF47526FFC0FE00289103 /* PackageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,7 @@ final public class Separator: UIView, DepictionViewDelegate {
         
         addSubview(separator)
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .clear
         separator.translatesAutoresizingMaskIntoConstraints = false
         var direction: Direction = .horizontal
         if let _direction = input["direction"] as? String {
@@ -44,7 +45,7 @@ final public class Separator: UIView, DepictionViewDelegate {
         
         if direction == .horizontal {
             NSLayoutConstraint.activate([
-                heightAnchor.constraint(equalToConstant: 3),
+                heightAnchor.constraint(equalToConstant: 1.5),
                 separator.heightAnchor.constraint(equalToConstant: 1.5),
                 separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
                 separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
@@ -52,7 +53,7 @@ final public class Separator: UIView, DepictionViewDelegate {
             ])
         } else {
             NSLayoutConstraint.activate([
-                widthAnchor.constraint(equalToConstant: 3),
+                widthAnchor.constraint(equalToConstant: 1.5),
                 separator.topAnchor.constraint(equalTo: topAnchor, constant: 15),
                 separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
                 separator.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -67,7 +68,6 @@ final public class Separator: UIView, DepictionViewDelegate {
     }
     
     private func themeDidChange() {
-        separator.backgroundColor = theme.text_color
-        backgroundColor = theme.background_color
+        separator.backgroundColor = theme.separator_color
     }
 }
