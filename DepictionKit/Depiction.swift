@@ -28,7 +28,7 @@ final internal class Depiction {
     internal let children: [DepictionView]
  
     init(json: [String: Any], theme: Theme, delegate: DepictionContainerDelegate) throws {
-        guard let schema = json["$schema"] as? String else {
+        guard let schema = json["$schema"] as? String ?? json["schema"] as? String else {
             throw Depiction.Error.missing_schema
         }
         self.schema = schema

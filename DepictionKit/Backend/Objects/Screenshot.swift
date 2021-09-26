@@ -54,7 +54,7 @@ final public class Screenshot {
         return url
     }
     
-    init(for input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme, content_size: [String: Int]?) throws {
         let url: URL
         if let _url = input["url"] as? String,
            let static_url = URL(string: _url) {
@@ -70,11 +70,9 @@ final public class Screenshot {
         self.alt_text = alt_text
         self.url = url
         
-        NSLog("[DepictionKit] \(input["content_size"])")
-        guard let content_size = input["content_size"] as? [String: Int],
+        guard let content_size = input["content_size"] as? [String: Int] ?? content_size,
               let width = content_size["width"],
               let height = content_size["height"] else {
-            NSLog("[Aemulo] Throwing on \(input)")
             throw Error.invalid_content_size
         }
         

@@ -66,9 +66,10 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     
     init(for input: [String: Any], theme: Theme) throws {
         guard let screenshots = input["screenshots"] as? [[String: Any]] else { throw Error.missing_screenshots }
+        let content_size = input["content_size"] as? [String: Int]
         guard !screenshots.isEmpty else { throw Error.empty_screenshots }
         do {
-            self.screenshots = try screenshots.map { try Screenshot(for: $0, theme: theme) }
+            self.screenshots = try screenshots.map { try Screenshot(for: $0, theme: theme, content_size: content_size) }
         } catch {
             throw error
         }
