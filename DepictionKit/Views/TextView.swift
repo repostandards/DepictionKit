@@ -281,7 +281,7 @@ extension TextView: WKUIDelegate {
             if let viewController = animator.previewViewController as? SFSafariViewController {
                 self.delegate?.present(viewController, animated: true)
             } else {
-                self.delegate?.openURL(url, inAppIfPossible: false)
+                self.delegate?.handleAction(action: url.absoluteString, external: true)
             }
         }
     }
@@ -299,7 +299,7 @@ extension TextView: WKNavigationDelegate {
         switch navigationAction.navigationType {
         case .linkActivated, .formSubmitted:
             // User tapped a link inside the web view.
-            delegate?.openURL(url, inAppIfPossible: true)
+            delegate?.handleAction(action: url.absoluteString, external: false)
 
         case .other:
             // The navigation type will be .other and URL will be about:blank when loading an

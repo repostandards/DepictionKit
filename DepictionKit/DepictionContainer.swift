@@ -326,39 +326,6 @@ extension DepictionContainer: DepictionContainerDelegate {
         webViewSignal()
     }
 
-    internal func openURL(_ url: URL, inAppIfPossible inApp: Bool) {
-        let handler = { (handled: Bool) in
-            if handled {
-                // Do nothing, the delegate has handled this URL.
-                return
-            }
-
-            // Try opening as universal link first
-            UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { success in
-                if success {
-                    // Cool! We’re done.
-                    return
-                }
-
-                if inApp && (url.scheme == "http" || url.scheme == "https") {
-                    // Push Safari View Controller.
-                    let viewController = self.configureSafariViewController(for: url)
-                    self.presentationController?.present(viewController, animated: true, completion: nil)
-                } else {
-                    // Attempt a traditional URL open.
-                    // TODO: Report failure to the user somehow?
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }
-        }
-
-        if let delegate = delegate {
-            delegate.openURL(url, completionHandler: handler)
-        } else {
-            handler(false)
-        }
-    }
-
     func configureSafariViewController(for url: URL) -> SFSafariViewController {
         assert(url.scheme == "http" || url.scheme == "https")
 
