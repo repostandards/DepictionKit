@@ -71,7 +71,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
             contentView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         ])
         
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         contentView.isLayoutMarginsRelativeArrangement = true
         
         for container in containers {
@@ -119,7 +119,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
             let view = containers[index]
             let width = view.image.bounds.size.width
             if index == preselectedIndex {
-                point -= 7
+                point -= 40
             } else {
                 point += width + spacing
             }
