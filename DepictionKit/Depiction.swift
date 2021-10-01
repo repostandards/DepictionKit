@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class Depiction {
+final internal class Depiction {
     
     enum Error: LocalizedError {
         case missing_schema
@@ -23,12 +23,12 @@ final public class Depiction {
         }
     }
     
-    public let schema: String
-    public let tint_color: Color?
-    public let children: [DepictionView]
+    internal let schema: String
+    internal let tint_color: Color?
+    internal let children: [DepictionView]
  
     init(json: [String: Any], theme: Theme, delegate: DepictionContainerDelegate) throws {
-        guard let schema = json["$schema"] as? String else {
+        guard let schema = json["$schema"] as? String ?? json["schema"] as? String else {
             throw Depiction.Error.missing_schema
         }
         self.schema = schema
@@ -36,7 +36,7 @@ final public class Depiction {
         var tint_color: Color?
         if let _tint_color = json["tint_color"] {
             do {
-                tint_color = try Color.init(for: _tint_color, inferDarkColorIfNeeded: true)
+                tint_color = try Color(for: _tint_color, inferDarkColorIfNeeded: true)
             } catch {
                 throw error
             }

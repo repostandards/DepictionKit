@@ -12,18 +12,32 @@ class DepictionViewController: UIViewController {
 
     private var depictionView: DepictionContainer!
     
+    public var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     init(url: URL) {
         super.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = .systemBackground
+        depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme(), delegate: self)
         
-        depictionView = DepictionContainer(url: url, presentationController: self, theme: configureTheme())
-        view.addSubview(depictionView)
+        view.backgroundColor = .systemBackground
+        view.addSubview(scrollView)
+        scrollView.addSubview(depictionView)
         NSLayoutConstraint.activate([
-            depictionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            depictionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            depictionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            depictionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            depictionView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            depictionView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            depictionView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            depictionView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            
+            depictionView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
         ])
     }
     
@@ -46,4 +60,24 @@ class DepictionViewController: UIViewController {
         depictionView.theme = configureTheme()
     }
 
+}
+
+extension DepictionViewController: DepictionDelegate {
+    
+    func depictionError(error: Error) {
+        let alert = UIAlertController(title: "Error Parsing Depiction", message: error.localizedDescription, preferredStyle: .alert)
+        self.present(alert, animated: true)
+    }
+    
+    func openURL(_ url: URL, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(false)
+    }
+
+    func handleAction(action: DepictionAction) {
+        NSLog("[DepictionKit] Action = \(action)")
+    }
+    
+    func packageView(for package: DepictionPackage) -> UIView {
+        DepictionPackageView(package: package)
+    }
 }

@@ -24,7 +24,7 @@ internal extension DepictionViewDelegate {
     }
 
     var theme: Theme {
-        get { fatalError() }
+        get { fatalError("The Theme Getter has not been implemented") }
         set {}
     }
 

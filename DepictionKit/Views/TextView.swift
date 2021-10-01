@@ -11,8 +11,19 @@ import SafariServices
 import Down
 
 // To re-export the Down error type from DepictionKit.
-public typealias DownError = DownErrors
+private typealias DownError = DownErrors
 
+/**
+ Display a paragraph of text formatted with Markdown (+HTML)
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - content: `String`; The text to display
+    - format: `String? = "markdown"`; Text formatting style to use (Markdown Flavour). Supports `markdown` and `html`
+    - tint_override: `Color?`; Tint color override for links and key words. Defaults to none (conforms to global tint if available)
+ */
 final public class TextView: UIView, DepictionViewDelegate {
     
     private let webView: WKWebView
@@ -28,12 +39,12 @@ final public class TextView: UIView, DepictionViewDelegate {
     private let content: String
     private var tint_override: Color?
     
-    enum Format: String {
+    private enum Format: String {
         case markdown
         case html
     }
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_content
         case invalid_format
         case markdown_error(downError: DownError)
@@ -63,7 +74,6 @@ final public class TextView: UIView, DepictionViewDelegate {
         configuration.mediaTypesRequiringUserActionForPlayback = .all
         configuration.ignoresViewportScaleLimits = false
         configuration.dataDetectorTypes = []
-        // swiftlint:disable:next line_length
         configuration.setValue("default-src data:; style-src data: 'unsafe-inline'; script-src 'none'; child-src 'none'; sandbox allow-scripts allow-popups",
                                forKey: "overrideContentSecurityPolicy")
         if #available(iOS 14, *) {
@@ -78,7 +88,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         return configuration
     }()
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
 
         let format = Format(rawValue: input["format"] as? String ?? "markdown")
@@ -101,7 +111,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         var tint_override: Color?
         if let _tint_override = input["tint_override"] {
             do {
-                tint_override = try Color.init(for: _tint_override)
+                tint_override = try Color(for: _tint_override)
             } catch {
                 throw error
             }
@@ -126,8 +136,8 @@ final public class TextView: UIView, DepictionViewDelegate {
         }
 
         NSLayoutConstraint.activate([
-            webView.leftAnchor.constraint(equalTo: self.leftAnchor),
-            webView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            webView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+            webView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             webView.topAnchor.constraint(equalTo: self.topAnchor),
             webView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             webViewHeightConstraint
@@ -220,6 +230,7 @@ final public class TextView: UIView, DepictionViewDelegate {
     
 }
 
+/// :nodoc:
 extension TextView: WKUIDelegate {
     public func webView(_ webView: WKWebView,
                         previewingViewControllerForElement elementInfo: WKPreviewElementInfo,
@@ -276,6 +287,7 @@ extension TextView: WKUIDelegate {
     }
 }
 
+/// :nodoc:
 extension TextView: WKNavigationDelegate {
     public func webView(_ webView: WKWebView,
                         decidePolicyFor navigationAction: WKNavigationAction,

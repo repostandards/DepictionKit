@@ -1,0 +1,46 @@
+clean: true
+author: Repository Standards Consortium 
+author_url: https://github.com/RepositoryStandards
+github_url: https://github.com/RepositoryStandards/DepictionKit
+root_url: https://repositorystandards.github.io/DepictionKit/
+documentation: info/*.md
+hide_documentation_coverage: true
+theme: fullwidth
+
+custom_categories:
+  - name: "Implementing DepictionKit"
+    children:
+      - DepictionContainer
+      - DepictionDelegate
+      - DepictionAction
+      - Theme
+  - name: "Making Depictions"
+    children:
+      - "Writing Your First Depiction"
+  - name: "Depiction Views"
+    children:
+      - Button
+      - HeadingView
+      - ImageView
+      - PackageView
+      - Rating
+      - ScreenshotsView
+      - Separator 
+      - Spacer
+      - TableView
+      - TextView
+      - VideoView
+      
+  - name: "Depiction Objects"
+    children:
+      - Alignment
+      - Attachment
+      - Color
+      - DepictionPackage
+      - Direction
+      - FontWeight
+      - Screenshot
+      - TableItem
+      - TableButton
+  
+

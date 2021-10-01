@@ -7,9 +7,19 @@
 
 import UIKit
 
+/**
+ Create artificial spacing between Depiction elements
+      
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - spacing: `Int? = 10`; Customize the spacing value
+ */
 final public class Spacer: UIView, DepictionViewDelegate {
 
-    init(input: [String: Any]) {
+    init(for input: [String: Any]) {
         var spacing = 10
         if let _spacing = input["spacing"] as? Int {
             spacing = _spacing

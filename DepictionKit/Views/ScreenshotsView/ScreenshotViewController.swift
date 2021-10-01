@@ -7,18 +7,20 @@
 
 import UIKit
 
-class ScreenshotViewController: UIViewController, DepictionViewDelegate {
+final internal class ScreenshotViewController: UIViewController, DepictionViewDelegate {
     
-    public var screenshots: [Screenshot]
-    public var corner_radius: CGFloat?
-    public var height: CGFloat
-    public var width: CGFloat
+    private var screenshots: [Screenshot]
+    private var corner_radius: CGFloat?
+    private var height: CGFloat
+    private var width: CGFloat
     private var containers: [ScreenshotContainer]
-    internal var theme: Theme
+    internal var theme: Theme {
+        didSet { themeDidChange() }
+    }
     
     private let preselectedIndex: Int
     
-    public var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
@@ -26,10 +28,12 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.decelerationRate = .fast
         scrollView.alwaysBounceHorizontal = true
+        scrollView.isPagingEnabled = true
+        scrollView.delegate = self
         return scrollView
     }()
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
@@ -47,7 +51,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         self.theme = theme
         self.preselectedIndex = selectedIndex
         
-        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius) }
+        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius, theme: theme) }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,7 +75,7 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
             contentView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         ])
         
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
         contentView.isLayoutMarginsRelativeArrangement = true
         
         for container in containers {
@@ -104,6 +108,19 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         for container in containers {
             container.label.textColor = theme.text_color
         }
+        
+        guard !layoutOnce else {
+            // Not yet finished init
+            return
+        }
+        
+        for container in containers {
+            container.theme = theme
+            if container.screenshot.displayURL != container.image.url {
+                container.image.url = container.screenshot.displayURL
+                container.image.fetchImage()
+            }
+        }
     }
 
     public var layoutOnce = true
@@ -113,39 +130,58 @@ class ScreenshotViewController: UIViewController, DepictionViewDelegate {
         guard layoutOnce else { return }
         _ = containers.map { $0.layoutIfNeeded() }
         // Jump to the right index
+        jumpToScreenshot(at: preselectedIndex, animated: false)
+        layoutOnce = false
+    }
+    
+    private func jumpToScreenshot(at destination: Int, animated: Bool) {
         let spacing = contentView.spacing
         var point = contentView.layoutMargins.left
-        for index in 0...preselectedIndex {
+        for index in 0...destination {
             let view = containers[index]
             let width = view.image.bounds.size.width
-            if index == preselectedIndex {
-                point -= 40
+            if index == destination {
+                point -= 7
             } else {
                 point += width + spacing
             }
         }
-        scrollView.setContentOffset(CGPoint(x: point, y: 0), animated: false)
-        layoutOnce = false
+        scrollView.setContentOffset(CGPoint(x: point, y: 0), animated: animated)
     }
-    
+}
+
+extension ScreenshotViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let scrollViewWidth = scrollView.bounds.width
+            - contentView.layoutMargins.left
+            - contentView.layoutMargins.right
+        let place = scrollView.contentOffset.x / scrollViewWidth
+        jumpToScreenshot(at: Int(round(place)), animated: true)
+    }
 }
 
 fileprivate class ScreenshotContainer: UIView {
     
     internal var label: UILabel
     internal var screenshot: Screenshot
+    internal var theme: Theme {
+        didSet {
+            screenshot.theme = theme
+        }
+    }
     
     internal var image: NetworkImageView
     internal var height: CGFloat
     internal var width: CGFloat
     internal var corner_radius: CGFloat
     	
-    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat) {
+    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat, theme: Theme) {
         self.screenshot = screenshot
         self.height = screenshot.height ?? height
         self.width = screenshot.width ?? width
         self.corner_radius = corner_radius
-                
+            
+        self.theme = theme
         self.image = NetworkImageView(url: screenshot.url)
         image.layer.masksToBounds = true
         image.layer.cornerRadius = corner_radius

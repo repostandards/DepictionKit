@@ -7,7 +7,21 @@
 
 import UIKit
 
-/// Display a string of text as a heading
+/**
+ Display a string of text as a heading
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - text: `String`; The text to display
+    - level: `Int? = 1`; Sizing level. Similar to HTML's `<h1>`and `<h2>` or Markdown's `#` or `##`.
+                        Supports 1: `UIFont.systemFont(ofSize: 35)`, 2: `UIFont.systemFont(ofSize: 20)`, 3: `UIFont.systemFont(ofSize: 15)`
+    - auto_wrap: `Bool? = true`;  Auto Wrap. If enabled headings will automatically wrap to multiple lines. If false the text will shrink to fit
+    - text_color: `Color?`; Text color for the heading view. Defaults to System colors
+    - font_weight: `FontWeight? = "semibold"`; Font weight for the heading view
+    - alignment: `Alignment? = "left"`; Text alignment for the heading view
+ */
 final public class HeadingView: UIView, DepictionViewDelegate {
     
     private let label = UILabel()
@@ -17,17 +31,19 @@ final public class HeadingView: UIView, DepictionViewDelegate {
         didSet { themeDidChange() }
     }
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_text(view: [String: Any])
+        case invalid_size(size: Int)
         
         public var errorDescription: String? {
             switch self {
             case let .invalid_text(view): return "\(view) is missing required argument: text"
+            case let .invalid_size(size: size): return "HeadingView has invalid sizing_level: \(size)"
             }
         }
     }
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         guard let text = input["text"] as? String else { throw Error.invalid_text(view: input) }
         self.theme = theme
         super.init(frame: .zero)
@@ -41,8 +57,8 @@ final public class HeadingView: UIView, DepictionViewDelegate {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
         
         let auto_wrap = input["auto_wrap"] as? Bool ?? true
@@ -55,7 +71,7 @@ final public class HeadingView: UIView, DepictionViewDelegate {
         
         if let text_color = input["text_color"] {
             do {
-                self.text_color = try Color.init(for: text_color)
+                self.text_color = try Color(for: text_color)
             } catch {
                 throw error
             }
@@ -70,12 +86,19 @@ final public class HeadingView: UIView, DepictionViewDelegate {
                 throw error
             }
         }
-        label.font = UIFont.systemFont(ofSize: sizing_level == 1 ? 35 : 20, weight: weight)
+        let font: UIFont
+        switch sizing_level {
+        case 1: font = UIFont.systemFont(ofSize: 35, weight: weight)
+        case 2: font = UIFont.systemFont(ofSize: 20, weight: weight)
+        case 3: font = UIFont.systemFont(ofSize: 15, weight: weight)
+        default: throw Error.invalid_size(size: sizing_level)
+        }
+        label.font = font
         
         var alignment: NSTextAlignment = .left
         if let text_color = input["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: text_color)
+                alignment = try Alignment.alignment(for: text_color)
             } catch {
                 throw error
             }
@@ -99,44 +122,3 @@ final public class HeadingView: UIView, DepictionViewDelegate {
     }
 
 }
-
-/*
- HeaderView: {
-         /**
-          * The text to display
-          * Required
-          */
-         text: string
-
-         /**
-          * Sizing level. Similar to HTML's '<h1>' and '<h2>' or Markdown's # or ##.
-          * Default: 1 (h1)
-          */
-         level?: 1 | 2
-         
-         /**
-          * Auto Wrap. If enabled headings will automatically wrap to multiple lines. If false the text will shrink to fit
-          * Default: false
-          */
-         auto_wrap?: boolean
-
-         /**
-          * Text color for the heading view
-          * Default: System theme colors
-          */
-         text_color?: Color
-
-         /**
-          * Font weight for the heading view
-          * Default: semibold
-          */
-         font_weight?: FontWeight
-
-         /**
-          * Text alignment for the heading view
-          * Default: start
-          */
-         alignment?: Alignment
-     }
-
- */

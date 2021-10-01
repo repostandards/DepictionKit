@@ -7,7 +7,25 @@
 
 import UIKit
 
-/// Class to generate font weight
+/**
+ The weight for fonts to use in text based views. This matches the system font.
+ 
+ Supports values are:
+ * ultralight
+ * thin
+ * light
+ * regular
+ * medium
+ * semibold
+ * bold
+ * heavy
+ * black
+       
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ */
 final public class FontWeight {
     
     enum Error: LocalizedError {
@@ -23,7 +41,7 @@ final public class FontWeight {
     /// - Throws: Error of type `Color.Error`
     /// - Parameters:
     ///     - input: `input` should be a string that matches an iOS system font
-    public class func weight(for input: String) throws -> UIFont.Weight {
+    internal class func weight(for input: String) throws -> UIFont.Weight {
         switch input {
         case "ultralight": return .ultraLight
         case "thin": return .thin

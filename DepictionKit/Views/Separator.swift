@@ -7,6 +7,17 @@
 
 import UIKit
 
+/**
+ Create separation lines between Depiction elements
+      
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - direction: `String? = "horizontal"`; Create a separator that's either horizontal or vertical (useful for StackView).
+                                            Supports `horizontal` and `vertical`
+ */
 final public class Separator: UIView, DepictionViewDelegate {
 
     internal var theme: Theme {
@@ -15,12 +26,13 @@ final public class Separator: UIView, DepictionViewDelegate {
 
     private let separator = UIView()
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         self.theme = theme
         super.init(frame: .zero)
         
         addSubview(separator)
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .clear
         separator.translatesAutoresizingMaskIntoConstraints = false
         var direction: Direction = .horizontal
         if let _direction = input["direction"] as? String {
@@ -33,17 +45,17 @@ final public class Separator: UIView, DepictionViewDelegate {
         
         if direction == .horizontal {
             NSLayoutConstraint.activate([
-                heightAnchor.constraint(equalToConstant: 3),
+                heightAnchor.constraint(equalToConstant: 1.5),
                 separator.heightAnchor.constraint(equalToConstant: 1.5),
-                separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2.5),
-                separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2.5),
+                separator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+                separator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
                 separator.centerXAnchor.constraint(equalTo: centerXAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                widthAnchor.constraint(equalToConstant: 3),
-                separator.topAnchor.constraint(equalTo: topAnchor, constant: 2.5),
-                separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2.5),
+                widthAnchor.constraint(equalToConstant: 1.5),
+                separator.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+                separator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
                 separator.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
         }
@@ -56,17 +68,6 @@ final public class Separator: UIView, DepictionViewDelegate {
     }
     
     private func themeDidChange() {
-        separator.backgroundColor = theme.text_color
-        backgroundColor = theme.background_color
+        separator.backgroundColor = theme.separator_color
     }
 }
-
-/*
- Separator: {
-         /**
-          * Create a separator that's either horizontal or vertical (useful for StackView).
-          * @default 'horizontal'
-          */
-         direction?: 'horizontal' | 'vertical'
-     }
- */

@@ -9,26 +9,50 @@ import UIKit
 import WebKit
 import AVKit
 
+/**
+ Embed a video in a view
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Important: When using `web` player `show_controls` and `autoplay` will have no effect.
+ 
+ - Parameters:
+    - url: `String`; URL to the video content.
+    - alt_text: `String`; Accessibility Text to improve the reliability of Screen readers.
+    - player_size: `[String: Int]`; Size of the video player in pts. Requires the keys `width` and `height`
+    - player: `String? = "native"`;  Video player type (Embedded player or Web View).
+                                    For sites like YouTube or Vimeo which don't give native video, using the web player is the only option.
+                                    Supports `native` and `web`
+    - autoplay: `String? = "disabled"`; Automatically play video content (audio disabled if set to 'once' or 'loop'). 'loop' will restart the video after it ends forever. Supports                                                                             `disabled`, `once` and `loop`
+    - corner_radius: `Int? = 4`; Video player corner radius.
+    - show_controls: `Bool? = false`; Show the video player controls.
+    - alignment: `Alignment? = "left"`; Set the alignment of the player.
+ */
 final public class VideoView: UIView, DepictionViewDelegate {
     
+    // These references need to be held so the view isn't deallocated
     private var playerLooper: AVPlayerLooper?
+    private var player: AVQueuePlayer?
+    private var playerViewController: AVPlayerViewController?
+    
     private var playerView: UIView
     private var height: CGFloat
     private var width: CGFloat
     private var alignment: NSTextAlignment
     
-    enum Player {
+    private enum Player {
         case web
         case native
     }
     
-    enum AutoPlay {
+    private enum AutoPlay {
         case disabled
         case once
         case loop
     }
 
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case invalid_url(string: String?)
         case invalid_alt_text
         case invalid_player_size
@@ -48,7 +72,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         }
     }
     
-    init(input: [String: Any]) throws {
+    init(for input: [String: Any]) throws {
         playerView = UIView()
         
         guard let _url = input["url"] as? String,
@@ -60,9 +84,9 @@ final public class VideoView: UIView, DepictionViewDelegate {
         self.height = CGFloat(height)
         self.width = CGFloat(width)
         var alignment: NSTextAlignment = .left
-        if let text_color = input["alignment"] as? String {
+        if let _alignment = input["alignment"] as? String {
             do {
-                alignment = try FontAlignment.alignment(for: text_color)
+                alignment = try Alignment.alignment(for: _alignment)
             } catch {
                 throw error
             }
@@ -99,13 +123,15 @@ final public class VideoView: UIView, DepictionViewDelegate {
         if player == .native {
             let playerItem = AVPlayerItem(url: url)
             let player = AVQueuePlayer(playerItem: playerItem)
+            self.player = player
             player.isMuted = true
             
             if autoplay == .loop {
                 playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
             }
-            
+
             let playerViewController = AVPlayerViewController()
+            self.playerViewController = playerViewController
             playerViewController.player = player
             playerViewController.showsPlaybackControls = show_controls
             playerView = playerViewController.view
@@ -122,6 +148,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         }
         
         playerView.clipsToBounds = true
+        playerView.layer.masksToBounds = true
         playerView.layer.cornerRadius = CGFloat(cornerRadius)
         if #available(iOS 13, *) {
             playerView.layer.cornerCurve = .continuous
@@ -131,7 +158,7 @@ final public class VideoView: UIView, DepictionViewDelegate {
         addSubview(playerView)
         
         var constraints: [NSLayoutConstraint] = [
-            playerView.aspectRatioConstraint(CGFloat(width) / CGFloat(height)),
+            playerView.aspectRatioConstraint(CGFloat(height) / CGFloat(width)),
             playerView.topAnchor.constraint(equalTo: topAnchor),
             playerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerView.widthAnchor.constraint(equalToConstant: CGFloat(width))
@@ -139,25 +166,25 @@ final public class VideoView: UIView, DepictionViewDelegate {
         
         switch alignment {
         case .left:
-            constraints.append(playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5))
-            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
-            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            constraints.append(playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15))
+            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -15))
+            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(750)
             constraints.append(lesserTrailing)
         case .right:
-            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
-            constraints.append(playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5))
-            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
+            constraints.append(playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15))
+            constraints.append(playerView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15))
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
         case .center:
-            constraints.append(playerView.leadingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: 5))
-            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5))
+            constraints.append(playerView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 15))
+            constraints.append(playerView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -15))
             constraints.append(playerView.centerXAnchor.constraint(equalTo: centerXAnchor))
-            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5)
+            let lesserLeading = playerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15)
             lesserLeading.priority = UILayoutPriority(750)
             constraints.append(lesserLeading)
-            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
+            let lesserTrailing = playerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
             lesserTrailing.priority = UILayoutPriority(750)
             constraints.append(lesserTrailing)
         default: throw VideoView.Error.unknown_alignment_error
@@ -171,106 +198,3 @@ final public class VideoView: UIView, DepictionViewDelegate {
     }
 
 }
-
-/*
-    VideoView: {
-        /**
-         * URL to the video content.
-         * Required
-         */
-        url: string
-
-        /**
-         * Accessbility Text to improve the reliability of Screen readers.
-         * Required
-         */
-        alt_text: string
-
-        /**
-         * Video player type (Embedded player or Web View).
-         * For sites like YouTube or Vimeo which don't give native video, using the web player is the only option.
-         * Default: web
-         */
-        player: 'web' | 'native'
-
-        /**
-         * Size of the video player in pts
-         * Required
-         */
-        player_size: {
-            /**
-             * Player size width
-             * Required
-             */
-            width: number
-
-            /**
-             * Player size height
-             * Required
-             */
-            height: number
-        }
-
-        /**
-         * Automatically play video content (audio disabled if set to 'once' or 'loop').
-         * 'loop' will restart the video after it ends forever.
-         * Default: disabled
-         */
-        autoplay?: 'disabled' | 'once' | 'loop'
-
-        /**
-         * Video player corner radius.
-         * Default: 4
-         */
-        corner_radius?: number
-
-        /**
-         * Show the video player controls.
-         * Default: false
-         */
-        show_controls?: boolean
-
-        /**
-         * Set the alignment of the player.
-         * Default: start
-         */
-        alignment?: Alignment
-    }
-*/
-
-/*
- let cornerRadius = (dictionary["cornerRadius"] as? CGFloat) ?? 0
-
-         let playerItem = AVPlayerItem(url: videoURL)
-         let player = AVQueuePlayer(playerItem: playerItem)
-         player.isMuted = true
-         self.player = player
-
-         if loopEnabled {
-             playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
-         }
-
-         playerViewController = AVPlayerViewController()
-         playerViewController?.player = player
-         playerViewController?.showsPlaybackControls = showPlaybackControls
-
-         videoView = playerViewController?.view
-         if cornerRadius > 0 {
-             videoView?.layer.cornerRadius = cornerRadius
-             videoView?.clipsToBounds = true
-         }
-         self.addSubview(videoView!)
-
-         if autoPlayEnabled {
-             player.play()
-         }
- 
- webView = WKWebView(frame: .zero)
-
-         super.init(dictionary: dictionary, viewController: viewController, tintColor: tintColor, isActionable: isActionable)
-
-         webView?.load(URLRequest(url: url))
-         webView?.scrollView.isScrollEnabled = false
-         webView?.navigationDelegate = self
-         webView?.uiDelegate = self
- */

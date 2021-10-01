@@ -10,15 +10,15 @@ import UIKit
 typealias AnyDepictionView = UIView & DepictionViewDelegate
 
 /// Trampoline class for handling children views
-public final class DepictionView {
+internal class DepictionView {
     
     private let name: String
-    private let properties: [String: AnyHashable]
+    private let properties: [String: Any]
     internal let view: AnyDepictionView
     
     enum Error: LocalizedError {
-        case invalid_name(input: [String: AnyHashable])
-        case invalid_properties(input: [String: AnyHashable])
+        case invalid_name(input: [String: Any])
+        case invalid_properties(input: [String: Any])
         case invalid_view(view: String)
         
         public var errorDescription: String? {
@@ -30,27 +30,69 @@ public final class DepictionView {
         }
     }
     
-    init(for input: [String: AnyHashable], theme: Theme, delegate: DepictionContainerDelegate) throws {
-        guard let name = input["name"] as? String else { throw DepictionView.Error.invalid_name(input: input) }
+    init(for input: [String: Any], theme: Theme, delegate: DepictionContainerDelegate?) throws {
+        guard let name = input["name"] as? String else { throw Error.invalid_name(input: input) }
         let properties = input["properties"] as? [String: AnyHashable] ?? [String: AnyHashable]()
         self.name = name
         self.properties = properties
         switch name {
         case "HeadingView":
-            view = try HeadingView(input: properties, theme: theme)
+            view = try HeadingView(for: properties, theme: theme)
         case "VideoView":
-            view = try VideoView(input: properties)
+            view = try VideoView(for: properties)
         case "Separator":
-            view = try Separator(input: properties, theme: theme)
+            view = try Separator(for: properties, theme: theme)
         case "Spacer":
-            view = Spacer(input: properties)
+            view = Spacer(for: properties)
         case "TextView":
-            view = try TextView(input: properties, theme: theme)
+            view = try TextView(for: properties, theme: theme)
         case "ScreenshotsView":
-            view = try ScreenshotsView(input: properties, theme: theme)
+            view = try ScreenshotsView(for: properties, theme: theme)
+        case "ImageView":
+            view = try ImageView(for: properties, theme: theme)
+        case "Rating":
+            view = try Rating(for: properties, theme: theme, height: 30)
+        case "Button":
+            view = try Button(for: properties, theme: theme, delegate: delegate)
+        case "TableView":
+            view = try TableView(for: properties, theme: theme)
+        case "PackageView":
+            view = try PackageView(for: properties, theme: theme, delegate: delegate)
         default:
             view = Placeholder()
         }
         view.delegate = delegate
+    }
+    
+    class func depictionView(for views: [[String: Any]], in containerView: UIView, theme: Theme, delegate: DepictionContainerDelegate?) throws -> [DepictionView] {
+   
+        let contentView = UIStackView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.axis = .vertical
+        contentView.distribution = .equalSpacing
+        
+        containerView.addSubview(contentView)
+        NSLayoutConstraint.activate([
+            contentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
+        
+        var childrenViews = [DepictionView]()
+        do {
+            for view in views {
+                let view = try DepictionView(for: view, theme: theme, delegate: delegate)
+                childrenViews.append(view)
+                contentView.addArrangedSubview(view.view)
+                NSLayoutConstraint.activate([
+                    view.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                    view.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+                ])
+            }
+        } catch {
+            throw error
+        }
+        return childrenViews
     }
 }

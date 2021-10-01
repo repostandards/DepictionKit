@@ -1,0 +1,54 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Backend/Objects/Direction.swift",
+      "line": 20,
+      "symbol": "Direction.horizontal",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Backend/Objects/Direction.swift",
+      "line": 21,
+      "symbol": "Direction.vertical",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
+      "line": 158,
+      "symbol": "TableView.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
+      "line": 169,
+      "symbol": "TableView.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
+      "line": 173,
+      "symbol": "TableView.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
+      "line": 177,
+      "symbol": "TableView.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
+      "line": 203,
+      "symbol": "TableView.tableView(_:heightForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/amy/Documents/GitHub/DepictionKit"
+}

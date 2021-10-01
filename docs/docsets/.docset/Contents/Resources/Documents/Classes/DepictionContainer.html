@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DepictionContainer Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/DepictionContainer" class="dashAnchor"></a>
+
+    <a title="DepictionContainer Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/RepositoryStandards/DepictionKit">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Frepositorystandards.github.io%2FDepictionKit%2Fdocsets%2F.xml">
+            <img class="header-icon" src="../img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html"> Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      DepictionContainer Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Implementing%20DepictionKit.html">Implementing DepictionKit</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DepictionContainer.html">DepictionContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/DepictionDelegate.html">DepictionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/DepictionAction.html">DepictionAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Theme.html">Theme</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Making%20Depictions.html">Making Depictions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../writing-your-first-depiction.html">Writing Your First Depiction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Depiction%20Views.html">Depiction Views</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)Button">Button</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)HeadingView">HeadingView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)ImageView">ImageView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)PackageView">PackageView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)Rating">Rating</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)ScreenshotsView">ScreenshotsView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)Separator">Separator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)Spacer">Spacer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TableView.html">TableView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)TextView">TextView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Views.html#/c:@M@DepictionKit@objc(cs)VideoView">VideoView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Depiction%20Objects.html">Depiction Objects</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit9AlignmentC">Alignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit10AttachmentC">Attachment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit5ColorC">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit0A7PackageC">DepictionPackage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Direction.html">Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit10FontWeightC">FontWeight</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit10ScreenshotC">Screenshot</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit9TableItemV">TableItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Depiction%20Objects.html#/s:12DepictionKit11TableButtonV">TableButton</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>DepictionContainer</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">DepictionContainer</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+
+                </div>
+              </div>
+            <p>Depiction Container is the main view you need to implement to show depictions in your app</p>
+
+<p>It supports multiple methods of providing a depiction to display, support for light and dark mode, custom tint colours
+and multiple delegate methods for interacting with the depiction.</p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC5themeAA5ThemeCvp"></a>
+                    <a name="//apple_ref/swift/Property/theme" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC5themeAA5ThemeCvp">theme</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current theme being used by the Depiction. Setting a new theme will automatically reload the depiction, you do not need to create a new container. You can learn more about this in <code><a href="../Classes/Theme.html">Theme</a></code></p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Classes/Theme.html">Theme</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC3url22presentationController5theme8delegateAC10Foundation3URLV_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(url:presentationController:theme:delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC3url22presentationController5theme8delegateAC10Foundation3URLV_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptcfc">init(url:<wbr>presentationController:<wbr>theme:<wbr>delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new DepictionContainer</p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">presentationController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Classes/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A URL to the depiction JSON. This will be loaded asynchronously</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentationController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>View Controller used for alerts</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The initial theme to be used. You can learn more about this in <code><a href="../Classes/Theme.html">Theme</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to use for the depiction. You can learn more about this in <code><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC4json22presentationController5theme8delegateACSDySSypG_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(json:presentationController:theme:delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC4json22presentationController5theme8delegateACSDySSypG_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptcfc">init(json:<wbr>presentationController:<wbr>theme:<wbr>delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new DepictionContainer</p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="nv">presentationController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Classes/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>json</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>JSON dictionary of the depiction to be displayed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentationController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>View Controller used for alerts</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The initial theme to be used. You can learn more about this in <code><a href="../Classes/Theme.html">Theme</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to use for the depiction. You can learn more about this in <code><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC22presentationController5theme8delegateACSo06UIViewE0C_AA5ThemeCAA0A8Delegate_ptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(presentationController:theme:delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC22presentationController5theme8delegateACSo06UIViewE0C_AA5ThemeCAA0A8Delegate_ptcfc">init(presentationController:<wbr>theme:<wbr>delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new DepictionContainer</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>This method should be used in conjuction with <code>setDepiction(dict: [String: Any]</code></p>
+
+</div><div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">presentationController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Classes/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentationController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>View Controller used for alerts</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The initial theme to be used. You can learn more about this in <code><a href="../Classes/Theme.html">Theme</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to use for the depiction. You can learn more about this in <code><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC4data22presentationController5theme8delegateAC10Foundation4DataV_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(data:presentationController:theme:delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC4data22presentationController5theme8delegateAC10Foundation4DataV_So06UIViewF0CAA5ThemeCAA0A8Delegate_ptKcfc">init(data:<wbr>presentationController:<wbr>theme:<wbr>delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new DepictionContainer</p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">presentationController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">theme</span><span class="p">:</span> <span class="kt"><a href="../Classes/Theme.html">Theme</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>JSON Data of the depiction to be displayed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentationController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>View Controller used for alerts</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>theme</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The initial theme to be used. You can learn more about this in <code><a href="../Classes/Theme.html">Theme</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The delegate to use for the depiction. You can learn more about this in <code><a href="../Protocols/DepictionDelegate.html">DepictionDelegate</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC03setA04dictySDySSypG_tF"></a>
+                    <a name="//apple_ref/swift/Method/setDepiction(dict:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC03setA04dictySDySSypG_tF">setDepiction(dict:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set the currently displayed depiction</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>This can only be used in conjuction with <code>init(presentationController: UIViewController, theme: Theme, delegate: DepictionDelegate)</code></p>
+
+</div><div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setDepiction</span><span class="p">(</span><span class="nv">dict</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dict</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The JSON dictionary to display</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit0A9ContainerC18effectiveTintColorSo7UIColorCvp"></a>
+                    <a name="//apple_ref/swift/Property/effectiveTintColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit0A9ContainerC18effectiveTintColorSo7UIColorCvp">effectiveTintColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>For getting the current theme of the depiction</p>
+
+<p>DepictionKit supports Depictions setting a custom tint color for light and dark mode appearances. You can learn more about this in <code><a href="../Depiction%20Objects.html#/s:12DepictionKit5ColorC">Color</a></code></p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">effectiveTintColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://github.com/RepositoryStandards" target="_blank" rel="noopener" rel="external">Repository Standards Consortium</a>. All rights reserved. (Last updated: 2021-09-13)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

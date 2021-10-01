@@ -7,9 +7,19 @@
 
 import UIKit
 
+/**
+ Create an array of media
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - screenshots: `[Screenshot]`; Screenshot contents.
+    - corner_radius: `Int? = 4`; Image corner radius.
+ */
 final public class ScreenshotsView: UIView, DepictionViewDelegate {
     
-    enum Error: LocalizedError {
+    private enum Error: LocalizedError {
         case missing_screenshots
         case empty_screenshots
         case invalid_content_size
@@ -23,7 +33,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         }
     }
     
-    public var scrollView: UIScrollView = {
+    private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
@@ -33,7 +43,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         return scrollView
     }()
     
-    public var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
@@ -54,11 +64,12 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     }
     internal weak var delegate: DepictionContainerDelegate?
     
-    init(input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme) throws {
         guard let screenshots = input["screenshots"] as? [[String: Any]] else { throw Error.missing_screenshots }
+        let content_size = input["content_size"] as? [String: Int]
         guard !screenshots.isEmpty else { throw Error.empty_screenshots }
         do {
-            self.screenshots = try screenshots.map { try Screenshot(for: $0) }
+            self.screenshots = try screenshots.map { try Screenshot(for: $0, theme: theme, content_size: content_size) }
         } catch {
             throw error
         }
@@ -92,7 +103,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
             heightAnchor.constraint(equalToConstant: 250)
         ])
         
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         contentView.isLayoutMarginsRelativeArrangement = true
         
         var constraints = [NSLayoutConstraint]()
@@ -144,5 +155,19 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     
     private func themeDidChange() {
         backgroundColor = theme.background_color
+        
+        guard contentView.subviews.count == screenshots.count else {
+            // We have not finished init
+            return
+        }
+        for (index, screenshot) in screenshots.enumerated() {
+            guard let imageView = contentView.subviews[index] as? NetworkImageView else { continue }
+            let url = imageView.url
+            screenshot.theme = theme
+            if screenshot.displayURL != url {
+                imageView.url = screenshot.displayURL
+                imageView.fetchImage()
+            }
+        }
     }
 }
