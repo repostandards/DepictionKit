@@ -47,9 +47,9 @@ internal class DepictionView {
         case "TextView":
             view = try TextView(for: properties, theme: theme, delegate: delegate)
         case "ScreenshotsView":
-            view = try ScreenshotsView(for: properties, theme: theme)
+            view = try ScreenshotsView(for: properties, theme: theme, delegate: delegate)
         case "ImageView":
-            view = try ImageView(for: properties, theme: theme)
+            view = try ImageView(for: properties, theme: theme, delegate: delegate)
         case "Rating":
             view = try Rating(for: properties, theme: theme, height: 30)
         case "Button":

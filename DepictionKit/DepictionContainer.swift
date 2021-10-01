@@ -32,10 +32,9 @@ final public class DepictionContainer: UIView {
     
     private var depiction: Depiction?
     private weak var presentationController: UIViewController?
+    private weak var delegate: DepictionDelegate?
     private var layoutInit = false
     private var webViewCounter = 0
-    
-    private weak var delegate: DepictionDelegate?
     
     /**
      The current theme being used by the Depiction. Setting a new theme will automatically reload the depiction, you do not need to create a new container. You can learn more about this in `Theme`
@@ -272,7 +271,6 @@ final public class DepictionContainer: UIView {
             }
             return
         }
-        NSLog("[DepictionKit] webViewCounter = \(webViewCounter)")
         if webViewCounter == 0 {
             loadingIndicator?.removeFromSuperview()
             contentView.isHidden = false
@@ -316,6 +314,38 @@ final public class DepictionContainer: UIView {
 }
 
 extension DepictionContainer: DepictionContainerDelegate {
+    
+    func image(for url: URL, completion: @escaping ((UIImage) -> ())) {
+        func handler() {
+            if let image = NetworkImageView.shared.object(forKey: url as NSURL) {
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+                return
+            }
+            DispatchQueue.global(qos: .utility).async {
+                guard let data = try? Data(contentsOf: url),
+                      let image = UIImage(data: data) else { return }
+                NetworkImageView.shared.setObject(image, forKey: url as NSURL)
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            }
+        }
+        var ignore = false
+        if let delegate = delegate,
+           delegate.image(for: url, completion: { image in
+               guard !ignore,
+                     let image = image else { return }
+               DispatchQueue.main.async {
+                   completion(image)
+               }
+           }) {
+            return
+        }
+        ignore = true
+        handler()
+    }
     
     func waitForWebView() {
         webViewCounter += 1

@@ -64,7 +64,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
     }
     internal weak var delegate: DepictionContainerDelegate?
     
-    init(for input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme, delegate: DepictionContainerDelegate?) throws {
         guard let screenshots = input["screenshots"] as? [[String: Any]] else { throw Error.missing_screenshots }
         let content_size = input["content_size"] as? [String: Int]
         guard !screenshots.isEmpty else { throw Error.empty_screenshots }
@@ -109,6 +109,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         var constraints = [NSLayoutConstraint]()
         for (index, screenshot) in self.screenshots.enumerated() {
             let imageView = NetworkImageView(url: screenshot.url)
+            imageView.delegate = delegate
             imageView.backgroundColor = .clear
             
             let height = screenshot.height ?? self.height
@@ -143,7 +144,8 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
                                                        height: height,
                                                        width: width,
                                                        selectedIndex: view.tag,
-                                                       theme: theme)
+                                                       theme: theme,
+                                                       delegate: delegate)
         screenshotsView.view.tintColor = theme.tint_color
         let navController = UINavigationController(rootViewController: screenshotsView)
         delegate?.present(navController, animated: true)

@@ -43,7 +43,7 @@ final internal class ScreenshotViewController: UIViewController, DepictionViewDe
         return view
     }()
     
-    init(screenshots: [Screenshot], corner_radius: CGFloat, height: CGFloat, width: CGFloat, selectedIndex: Int, theme: Theme) {
+    init(screenshots: [Screenshot], corner_radius: CGFloat, height: CGFloat, width: CGFloat, selectedIndex: Int, theme: Theme, delegate: DepictionContainerDelegate?) {
         self.screenshots = screenshots
         self.corner_radius = corner_radius
         self.height = height
@@ -51,7 +51,7 @@ final internal class ScreenshotViewController: UIViewController, DepictionViewDe
         self.theme = theme
         self.preselectedIndex = selectedIndex
         
-        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius, theme: theme) }
+        self.containers = screenshots.map { ScreenshotContainer(screenshot: $0, height: height, width: width, corner_radius: corner_radius, theme: theme, delegate: delegate) }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -175,7 +175,7 @@ fileprivate class ScreenshotContainer: UIView {
     internal var width: CGFloat
     internal var corner_radius: CGFloat
     	
-    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat, theme: Theme) {
+    init(screenshot: Screenshot, height: CGFloat, width: CGFloat, corner_radius: CGFloat, theme: Theme, delegate: DepictionContainerDelegate?) {
         self.screenshot = screenshot
         self.height = screenshot.height ?? height
         self.width = screenshot.width ?? width
@@ -183,6 +183,7 @@ fileprivate class ScreenshotContainer: UIView {
             
         self.theme = theme
         self.image = NetworkImageView(url: screenshot.url)
+        image.delegate = delegate
         image.layer.masksToBounds = true
         image.layer.cornerRadius = corner_radius
         image.backgroundColor = .clear

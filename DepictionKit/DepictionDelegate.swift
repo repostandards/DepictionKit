@@ -64,6 +64,23 @@ public protocol DepictionDelegate: AnyObject {
         - package: The package that is to be displayed in the view. You can learn more about this in `DepictionPackage`
      */
     func packageView(for package: DepictionPackage) -> UIView
+    
+    /**
+    The depiction is requesting an image for a URL
+     
+     This delegate method is for providing an image for a link. This is designed for using your own caching system. The image should be
+     prepared for display before returning it. If you send a nil image, it will assume the network is down and not try again.
+     
+     Returning false to this method will fallback to DepictionKits network handler.
+     - Author: Amy
+    
+     - Version: 1.0
+     
+     - Parameters:
+        - url: The URL of the image to be displayed
+        - completion: Completion handler for the request, this does not have to be on the main thread
+     */
+    func image(for url: URL, completion: @escaping ((UIImage?) -> ())) -> Bool
 }
 
 // Default implementations

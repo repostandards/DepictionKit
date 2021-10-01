@@ -51,7 +51,7 @@ final public class ImageView: UIView, DepictionViewDelegate {
         }
     }
 
-    init(for input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme, delegate: DepictionContainerDelegate?) throws {
         let url: URL
         if let _url = input["url"] as? String,
            let static_url = URL(string: _url) {
@@ -90,6 +90,7 @@ final public class ImageView: UIView, DepictionViewDelegate {
             return url
         }()
         let imageView = NetworkImageView(url: correctUrl)
+        imageView.delegate = delegate
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = CGFloat(cornerRadius)

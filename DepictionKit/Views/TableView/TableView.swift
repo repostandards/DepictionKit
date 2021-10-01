@@ -191,6 +191,7 @@ extension TableView: UITableViewDataSource {
             return cell
         } else if let tableButton = cell as? TableButton {
             let cell = TableButtonCell()
+            cell.delegate = delegate
             cell.textView.text = tableButton.text
             cell.textView.textColor = {
                 if let override = tableButton.tint_override {
@@ -217,6 +218,7 @@ class TableButtonCell: UITableViewCell {
     public lazy var iconViewWidth: NSLayoutConstraint = iconView.widthAnchor.constraint(equalToConstant: 0)
     public lazy var iconViewLeading: NSLayoutConstraint = iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0)
     public lazy var textViewLeading: NSLayoutConstraint = textView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 15)
+    public weak var delegate: DepictionContainerDelegate?
     
     public var iconView: UIImageView = {
         let view = UIImageView()
@@ -244,7 +246,13 @@ class TableButtonCell: UITableViewCell {
         didSet {
             icon = nil
             guard let iconURL = iconURL else { return }
-            if let image = NetworkImageView.shared[iconURL] {
+            if let delegate = delegate {
+                delegate.image(for: iconURL) { [weak self] image in
+                    self?.icon = image
+                }
+                return
+            }
+            if let image = NetworkImageView.shared.object(forKey: iconURL as NSURL) {
                 icon = image
                 return
             }
@@ -253,7 +261,7 @@ class TableButtonCell: UITableViewCell {
                     guard let image = UIImage(data: data) else { return }
                     DispatchQueue.main.async {
                         self?.icon = image
-                        NetworkImageView.shared[iconURL] = image
+                        NetworkImageView.shared.object(forKey: iconURL as NSURL)
                     }
                 }
             }

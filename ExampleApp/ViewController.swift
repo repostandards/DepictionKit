@@ -59,10 +59,15 @@ class DepictionViewController: UIViewController {
         // Reconfigure the depiction theme
         depictionView.theme = configureTheme()
     }
-
+    
 }
 
 extension DepictionViewController: DepictionDelegate {
+    
+    func image(for url: URL, completion: @escaping ((UIImage?) -> ())) -> Bool {
+        false
+    }
+    
     
     func depictionError(error: Error) {
         let alert = UIAlertController(title: "Error Parsing Depiction", message: error.localizedDescription, preferredStyle: .alert)
@@ -80,4 +85,5 @@ extension DepictionViewController: DepictionDelegate {
     func packageView(for package: DepictionPackage) -> UIView {
         DepictionPackageView(package: package)
     }
+
 }

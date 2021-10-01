@@ -10,7 +10,8 @@ import UIKit
 internal class NetworkImageView: UIImageView {
     
     public var url: URL
-    static var shared = [URL: UIImage]()
+    static var shared = NSCache<NSURL, UIImage>()
+    public weak var delegate: DepictionContainerDelegate?
     
     init(url: URL) {
         self.url = url
@@ -23,7 +24,15 @@ internal class NetworkImageView: UIImageView {
     }
     
     public func fetchImage() {
-        if let cached = Self.shared[url] {
+        if let delegate = delegate {
+            let url = url
+            delegate.image(for: url) { [weak self] image in
+                guard url == self?.url else { return }
+                self?.image = image
+            }
+            return
+        }
+        if let cached = Self.shared.object(forKey: url as NSURL) {
             self.image = cached
             return
         }
@@ -34,7 +43,7 @@ internal class NetworkImageView: UIImageView {
                   let strong = self,
                   url == strong.url else { return }
             image = image.prepareForDisplay()
-            NetworkImageView.shared[url] = image
+            NetworkImageView.shared.setObject(image, forKey: url as NSURL)
             DispatchQueue.main.async {
                 strong.image = image
             }
