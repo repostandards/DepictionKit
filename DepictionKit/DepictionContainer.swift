@@ -33,6 +33,7 @@ final public class DepictionContainer: UIView {
     private var depiction: Depiction?
     private weak var presentationController: UIViewController?
     private var layoutInit = false
+    private var webViewCounter = 0
     
     private weak var delegate: DepictionDelegate?
     
@@ -242,7 +243,8 @@ final public class DepictionContainer: UIView {
             }
             return
         }
-        loadingIndicator?.removeFromSuperview()
+        contentView.isHidden = true
+        webViewCounter = 0
         do {
             depiction = try Depiction(json: json, theme: theme, delegate: self)
         } catch {
@@ -259,6 +261,21 @@ final public class DepictionContainer: UIView {
                 child.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 child.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
+        }
+        webViewSignal()
+    }
+    
+    private func webViewSignal() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.webViewSignal()
+            }
+            return
+        }
+        NSLog("[DepictionKit] webViewCounter = \(webViewCounter)")
+        if webViewCounter == 0 {
+            loadingIndicator?.removeFromSuperview()
+            contentView.isHidden = false
         }
     }
 
@@ -299,6 +316,15 @@ final public class DepictionContainer: UIView {
 }
 
 extension DepictionContainer: DepictionContainerDelegate {
+    
+    func waitForWebView() {
+        webViewCounter += 1
+    }
+    
+    func signalForWebView() {
+        webViewCounter -= 1
+        webViewSignal()
+    }
 
     internal func openURL(_ url: URL, inAppIfPossible inApp: Bool) {
         let handler = { (handled: Bool) in

@@ -88,9 +88,9 @@ final public class TextView: UIView, DepictionViewDelegate {
         return configuration
     }()
     
-    init(for input: [String: Any], theme: Theme) throws {
+    init(for input: [String: Any], theme: Theme, delegate: DepictionContainerDelegate?) throws {
         guard let content = input["content"] as? String else { throw TextView.Error.invalid_content }
-
+        self.delegate = delegate
         let format = Format(rawValue: input["format"] as? String ?? "markdown")
         switch format {
         case .markdown:
@@ -107,7 +107,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         default:
             throw TextView.Error.invalid_format
         }
-
+        
         var tint_override: Color?
         if let _tint_override = input["tint_override"] {
             do {
@@ -142,7 +142,7 @@ final public class TextView: UIView, DepictionViewDelegate {
             webView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             webViewHeightConstraint
         ])
-
+        delegate?.waitForWebView()
         loadWebView()
     }
     
@@ -312,5 +312,9 @@ extension TextView: WKNavigationDelegate {
         default: break
         }
         decisionHandler(.cancel)
+    }
+    
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        delegate?.signalForWebView()
     }
 }

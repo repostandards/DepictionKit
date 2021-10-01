@@ -45,7 +45,7 @@ internal class DepictionView {
         case "Spacer":
             view = Spacer(for: properties)
         case "TextView":
-            view = try TextView(for: properties, theme: theme)
+            view = try TextView(for: properties, theme: theme, delegate: delegate)
         case "ScreenshotsView":
             view = try ScreenshotsView(for: properties, theme: theme)
         case "ImageView":
