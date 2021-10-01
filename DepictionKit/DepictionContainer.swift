@@ -226,7 +226,7 @@ final public class DepictionContainer: UIView {
                   let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
                   let json = rawJSON as? [String: Any],
                   let `self` = self else {
-                NSLog("[DepictionKit] failed with error \(error)")
+                delegate?.depictionError(error: "Failed to Load/Parse JSON")
                 return
             }
             self.layoutDepiction(json: json, theme: self.theme)
@@ -247,7 +247,7 @@ final public class DepictionContainer: UIView {
         do {
             depiction = try Depiction(json: json, theme: theme, delegate: self)
         } catch {
-            NSLog(error.localizedDescription)
+            delegate?.depictionError(error: error?.localizedDescription ?? "Unknown Error")
             return
         }
 

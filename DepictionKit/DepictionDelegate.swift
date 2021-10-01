@@ -42,9 +42,9 @@ public protocol DepictionDelegate: AnyObject {
      - Version: 1.0
      
      - Parameters:
-        - error: The error from the depiction. Each error has a localizedDescription for understanding it
+        - error: The error from the depiction.
      */
-    func depictionError(error: Error)
+    func depictionError(error: String)
     
     /**
     The depiction is trying to display a `PackageView`
