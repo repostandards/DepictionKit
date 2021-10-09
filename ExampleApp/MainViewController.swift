@@ -16,7 +16,8 @@ struct ExampleDepiction {
 class MainViewController: UIViewController {
     
     private let dataSource: [ExampleDepiction] = [
-        ExampleDepiction(name: "Aemulo Depiction", url: URL(string: "https://elihwyma.github.io/Aemulo/NativeDepiction.json")!)
+        ExampleDepiction(name: "Aemulo Depiction", url: URL(string: "https://elihwyma.github.io/Aemulo/NativeDepiction.json")!),
+        ExampleDepiction(name: "Local Depiction", url: URL(string: "http://192.168.0.22:5000/static/AemuloDepiction.json")!)
     ]
     
     private var tableView = UITableView()

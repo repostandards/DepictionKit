@@ -64,14 +64,13 @@ class DepictionViewController: UIViewController {
 
 extension DepictionViewController: DepictionDelegate {
     
-    func image(for url: URL, completion: @escaping ((UIImage?) -> ())) -> Bool {
-        false
+    func depictionError(error: String) {
+        let alert = UIAlertController(title: "Error Parsing Depiction", message: error, preferredStyle: .alert)
+        self.present(alert, animated: true)
     }
     
-    
-    func depictionError(error: Error) {
-        let alert = UIAlertController(title: "Error Parsing Depiction", message: error.localizedDescription, preferredStyle: .alert)
-        self.present(alert, animated: true)
+    func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
+        false
     }
     
     func openURL(_ url: URL, completionHandler: @escaping (Bool) -> Void) {

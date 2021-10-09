@@ -80,7 +80,7 @@ public protocol DepictionDelegate: AnyObject {
         - url: The URL of the image to be displayed
         - completion: Completion handler for the request, this does not have to be on the main thread
      */
-    func image(for url: URL, completion: @escaping ((UIImage?) -> ())) -> Bool
+    func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool
 }
 
 // Default implementations

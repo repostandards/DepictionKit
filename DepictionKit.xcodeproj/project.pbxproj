@@ -34,6 +34,10 @@
 		4E63061226BA5D4100144776 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 4E63061126BA5D4100144776 /* Down */; };
 		E1007E2126D6585B0034029D /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1007E2026D6585B0034029D /* Attachment.swift */; };
 		E1007E2326D672F80034029D /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1007E2226D672F80034029D /* Rating.swift */; };
+		E10C546D2708BDCC008BD0AA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C546B2708BDCC008BD0AA /* TableViewCell.swift */; };
+		E10C546E2708BDCC008BD0AA /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10C546C2708BDCC008BD0AA /* TableViewCell.xib */; };
+		E10C54702708BFFB008BD0AA /* TableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C546F2708BFFB008BD0AA /* TableButtonCell.swift */; };
+		E10C54722708C041008BD0AA /* ChangelogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C54712708C041008BD0AA /* ChangelogItemCell.swift */; };
 		E13FFA0626B72E6A00F64440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0526B72E6A00F64440 /* AppDelegate.swift */; };
 		E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0926B72E6A00F64440 /* ViewController.swift */; };
 		E13FFA0F26B72E6B00F64440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA0E26B72E6B00F64440 /* Assets.xcassets */; };
@@ -91,6 +95,10 @@
 		4E63060E26BA567300144776 /* ExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExampleApp.entitlements; sourceTree = "<group>"; };
 		E1007E2026D6585B0034029D /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		E1007E2226D672F80034029D /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		E10C546B2708BDCC008BD0AA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E10C546C2708BDCC008BD0AA /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		E10C546F2708BFFB008BD0AA /* TableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableButtonCell.swift; sourceTree = "<group>"; };
+		E10C54712708C041008BD0AA /* ChangelogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogItemCell.swift; sourceTree = "<group>"; };
 		E13FFA0226B72E6A00F64440 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13FFA0526B72E6A00F64440 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E13FFA0926B72E6A00F64440 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +281,10 @@
 			children = (
 				E14E4D5426DE7D28002AE3B4 /* TableView.swift */,
 				E14E4D5626DE7DE8002AE3B4 /* AutomaticTableView.swift */,
+				E10C546B2708BDCC008BD0AA /* TableViewCell.swift */,
+				E10C546C2708BDCC008BD0AA /* TableViewCell.xib */,
+				E10C546F2708BFFB008BD0AA /* TableButtonCell.swift */,
+				E10C54712708C041008BD0AA /* ChangelogItemCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -401,6 +413,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10C546E2708BDCC008BD0AA /* TableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,9 +482,12 @@
 				4E35616F26BA7D6800828D09 /* DepictionViewDelegate.swift in Sources */,
 				4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */,
 				E15A955726BACFF2000DB10E /* Screenshot.swift in Sources */,
+				E10C54702708BFFB008BD0AA /* TableButtonCell.swift in Sources */,
 				E14E4D5226DE726A002AE3B4 /* Button.swift in Sources */,
+				E10C546D2708BDCC008BD0AA /* TableViewCell.swift in Sources */,
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
 				E14E4D5526DE7D28002AE3B4 /* TableView.swift in Sources */,
+				E10C54722708C041008BD0AA /* ChangelogItemCell.swift in Sources */,
 				E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */,
 				E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */,
 				E14E4D5726DE7DE8002AE3B4 /* AutomaticTableView.swift in Sources */,

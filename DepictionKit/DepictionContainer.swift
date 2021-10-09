@@ -226,7 +226,7 @@ final public class DepictionContainer: UIView {
                   let rawJSON = try? JSONSerialization.jsonObject(with: data, options: []),
                   let json = rawJSON as? [String: Any],
                   let `self` = self else {
-                delegate?.depictionError(error: "Failed to Load/Parse JSON")
+                self?.delegate?.depictionError(error: "Failed to Load/Parse JSON")
                 return
             }
             self.layoutDepiction(json: json, theme: self.theme)
@@ -247,7 +247,7 @@ final public class DepictionContainer: UIView {
         do {
             depiction = try Depiction(json: json, theme: theme, delegate: self)
         } catch {
-            delegate?.depictionError(error: error?.localizedDescription ?? "Unknown Error")
+            delegate?.depictionError(error: error.localizedDescription)
             return
         }
 
@@ -315,7 +315,7 @@ final public class DepictionContainer: UIView {
 
 extension DepictionContainer: DepictionContainerDelegate {
     
-    func image(for url: URL, completion: @escaping ((UIImage) -> ())) {
+    func image(for url: URL, completion: @escaping ((UIImage) -> Void)) {
         func handler() {
             if let image = NetworkImageView.shared.object(forKey: url as NSURL) {
                 DispatchQueue.main.async {
