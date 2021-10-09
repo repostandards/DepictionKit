@@ -16,35 +16,35 @@
     },
     {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
-      "line": 158,
+      "line": 187,
       "symbol": "TableView.tableView(_:didSelectRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
-      "line": 169,
+      "line": 198,
       "symbol": "TableView.tableView(_:numberOfRowsInSection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
-      "line": 173,
+      "line": 202,
       "symbol": "TableView.numberOfSections(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
-      "line": 177,
+      "line": 206,
       "symbol": "TableView.tableView(_:cellForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/amy/Documents/GitHub/DepictionKit/DepictionKit/Views/TableView/TableView.swift",
-      "line": 203,
+      "line": 236,
       "symbol": "TableView.tableView(_:heightForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

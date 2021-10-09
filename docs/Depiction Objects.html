@@ -129,6 +129,9 @@
                 <a class="nav-group-task-link" href="Depiction%20Objects.html#/s:12DepictionKit10AttachmentC">Attachment</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Depiction%20Objects.html#/s:12DepictionKit13ChangelogItemV">ChangelogItem</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Depiction%20Objects.html#/s:12DepictionKit5ColorC">Color</a>
               </li>
               <li class="nav-group-task">
@@ -267,6 +270,85 @@ and if the Depiction is in light or dark mode.</p>
                               <td>
                                 <div>
                                   <p><code>[String: String]?</code>; Required keys are <code>light</code> and <code>dark</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12DepictionKit13ChangelogItemV"></a>
+                    <a name="//apple_ref/swift/Struct/ChangelogItem" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12DepictionKit13ChangelogItemV">ChangelogItem</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ChangelogItem is for creating simple change logs in your depiction.</p>
+<div class="aside aside-author">
+    <p class="aside-title">Author</p>
+    <p>Amy</p>
+
+</div><div class="aside aside-version">
+    <p class="aside-title">Version</p>
+    <p>1.0</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ChangelogItem</span> <span class="p">:</span> <span class="kt">TableElements</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>changes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>[String]</code>; An array of changes. Do not add a prefix.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timestamp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; When the change was made. The format is ISO8601 GMT0 en_US_POSIX</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>String</code>; The version of the update</p>
                                 </div>
                               </td>
                             </tr>
@@ -831,7 +913,7 @@ and if the Depiction is in light or dark mode.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://github.com/RepositoryStandards" target="_blank" rel="noopener" rel="external">Repository Standards Consortium</a>. All rights reserved. (Last updated: 2021-09-13)</p>
+      <p>&copy; 2021 <a class="link" href="https://github.com/RepositoryStandards" target="_blank" rel="noopener" rel="external">Repository Standards Consortium</a>. All rights reserved. (Last updated: 2021-10-09)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>
