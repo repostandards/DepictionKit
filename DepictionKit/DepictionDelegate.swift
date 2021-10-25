@@ -88,8 +88,8 @@ public protocol DepictionDelegate: AnyObject {
 extension DepictionDelegate {
 
     /// :nodoc:
-    func openURL(_ url: URL, completionHandler: @escaping (_ handled: Bool) -> Void) {
-        completionHandler(false)
+    func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
+        false
     }
 
 }

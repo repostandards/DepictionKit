@@ -89,11 +89,11 @@ final public class ImageView: UIView, DepictionViewDelegate {
             }
             return url
         }()
-        let imageView = NetworkImageView(url: correctUrl)
-        imageView.delegate = delegate
+        let imageView = NetworkImageView(url: correctUrl, delegate: delegate)
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = CGFloat(cornerRadius)
+        imageView.delegate = delegate
         if #available(iOS 13, *) {
             imageView.layer.cornerCurve = .continuous
         }

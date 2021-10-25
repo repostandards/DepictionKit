@@ -13,8 +13,9 @@ internal class NetworkImageView: UIImageView {
     static var shared = NSCache<NSURL, UIImage>()
     public weak var delegate: DepictionContainerDelegate?
     
-    init(url: URL) {
+    init(url: URL, delegate: DepictionContainerDelegate? ) {
         self.url = url
+        self.delegate = delegate
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false

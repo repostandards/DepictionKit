@@ -51,6 +51,7 @@
 		E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */; };
 		E15A956126BAE3D5000DB10E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A956026BAE3D5000DB10E /* ScreenshotViewController.swift */; };
 		E18CF47526FFC0FE00289103 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18CF47426FFC0FE00289103 /* PackageView.swift */; };
+		E1CDFFAE2726296D00950705 /* Evander in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDFFAD2726296D00950705 /* Evander */; };
 		E1CECD3B26E15081009FCF27 /* DepictionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3A26E15081009FCF27 /* DepictionAction.swift */; };
 		E1CECD3D26E155B8009FCF27 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */; };
 		E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */; };
@@ -154,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1CDFFAE2726296D00950705 /* Evander in Frameworks */,
 				4E6305F526BA558200144776 /* DepictionKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +367,9 @@
 				4E6305F426BA558200144776 /* PBXTargetDependency */,
 			);
 			name = ExampleApp;
+			packageProductDependencies = (
+				E1CDFFAD2726296D00950705 /* Evander */,
+			);
 			productName = ExampleApp;
 			productReference = E13FFA0226B72E6A00F64440 /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -397,6 +402,7 @@
 			mainGroup = E13FF9F926B72E6A00F64440;
 			packageReferences = (
 				4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */,
+				E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */,
 			);
 			productRefGroup = E13FFA0326B72E6A00F64440 /* Products */;
 			projectDirPath = "";
@@ -798,6 +804,14 @@
 				minimumVersion = 0.11.0;
 			};
 		};
+		E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elihwyma/Evander";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -805,6 +819,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
+		};
+		E1CDFFAD2726296D00950705 /* Evander */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */;
+			productName = Evander;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

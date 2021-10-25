@@ -108,8 +108,7 @@ final public class ScreenshotsView: UIView, DepictionViewDelegate {
         
         var constraints = [NSLayoutConstraint]()
         for (index, screenshot) in self.screenshots.enumerated() {
-            let imageView = NetworkImageView(url: screenshot.url)
-            imageView.delegate = delegate
+            let imageView = NetworkImageView(url: screenshot.url, delegate: delegate)
             imageView.backgroundColor = .clear
             
             let height = screenshot.height ?? self.height

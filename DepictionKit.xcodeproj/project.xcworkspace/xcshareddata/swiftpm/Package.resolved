@@ -9,6 +9,15 @@
           "revision": "f34b166be1f1db4aa8f573067e901d72f2a6be57",
           "version": "0.11.0"
         }
+      },
+      {
+        "package": "Evander",
+        "repositoryURL": "https://github.com/elihwyma/Evander",
+        "state": {
+          "branch": "main",
+          "revision": "d8b73b5683560bd3bb00df2f59d5f7e740e39a3b",
+          "version": null
+        }
       }
     ]
   },

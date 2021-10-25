@@ -7,6 +7,7 @@
 
 import UIKit
 import DepictionKit
+import Evander
 
 class DepictionViewController: UIViewController {
 
@@ -50,7 +51,7 @@ class DepictionViewController: UIViewController {
               background_color: .systemBackground,
               tint_color: .systemBlue,
               separator_color: .separator,
-              dark_mode: true)
+              dark_mode: traitCollection.userInterfaceStyle == .dark)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -70,13 +71,16 @@ extension DepictionViewController: DepictionDelegate {
     }
     
     func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
-        false
+        if let image = EvanderNetworking.shared.image(url, cache: true, { refresh, image in
+            guard refresh,
+                  let image = image else { return }
+            completion(image)
+        }) {
+            completion(image)
+        }
+        return true
     }
-    
-    func openURL(_ url: URL, completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(false)
-    }
-
+ 
     func handleAction(action: DepictionAction) {
         NSLog("[DepictionKit] Action = \(action)")
     }

@@ -182,8 +182,7 @@ fileprivate class ScreenshotContainer: UIView {
         self.corner_radius = corner_radius
             
         self.theme = theme
-        self.image = NetworkImageView(url: screenshot.url)
-        image.delegate = delegate
+        self.image = NetworkImageView(url: screenshot.url, delegate: delegate)
         image.layer.masksToBounds = true
         image.layer.cornerRadius = corner_radius
         image.backgroundColor = .clear
