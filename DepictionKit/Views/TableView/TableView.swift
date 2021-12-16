@@ -49,6 +49,8 @@ public struct TableButton: TableElements {
 
 /**
  ChangelogItem is for creating simple change logs in your depiction.
+ 
+ ![ChangelogItem example Image](./img/ChangelogItemDemo.png)
        
  - Author: Amy
 
