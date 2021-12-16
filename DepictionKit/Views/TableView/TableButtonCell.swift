@@ -15,6 +15,12 @@ class TableButtonCell: UITableViewCell {
     public lazy var textViewLeading: NSLayoutConstraint = textView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 15)
     public weak var delegate: DepictionContainerDelegate?
     
+    let minHeight: CGFloat = 44
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let size = super.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
+        return CGSize(width: size.width, height: max(size.height, minHeight))
+    }
+    
     public var iconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

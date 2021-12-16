@@ -50,4 +50,11 @@ public final class Theme {
         self.dark_mode = dark_mode
     }
     
+    internal init(from: Theme, with tint_color: Color) {
+        self.tint_color =  from.dark_mode ? tint_color.dark_mode : tint_color.light_mode
+        self.text_color = from.text_color
+        self.background_color = from.background_color
+        self.separator_color = from.separator_color
+        self.dark_mode = from.dark_mode
+    }
 }

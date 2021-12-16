@@ -101,15 +101,15 @@ final public class TableView: UIView, DepictionViewDelegate {
     
     init(for properties: [String: Any], theme: Theme) throws {
         guard let elements = properties["elements"] as? [[String: Any]] else { throw Error.invalid_elements }
-        if let _color = properties["tint_override"] as? Color {
+        self.theme = theme
+        if let _color = properties["tint_override"] as? [String: String] {
             do {
                 tintOverride = try Color(for: _color)
-                theme.tint_color = theme.dark_mode ? tintOverride!.dark_mode : tintOverride!.light_mode
+                self.theme = Theme(from: theme, with: tintOverride!)
             } catch {
                 throw error
             }
         }
-        self.theme = theme
         var cells = [TableElements]()
         for element in elements {
             guard let name = element["name"] as? String,
@@ -121,7 +121,7 @@ final public class TableView: UIView, DepictionViewDelegate {
                 guard let text = properties["text"] as? String,
                       let action = properties["action"] as? String else { throw Error.invalid_element(element: element) }
                 var tintOverride: Color?
-                if let _tint_override = properties["tint_override"] as? [String: Any] {
+                if let _tint_override = properties["tint_override"] as? [String: String] {
                     do {
                         tintOverride = try Color(for: _tint_override)
                     } catch {
@@ -175,7 +175,7 @@ final public class TableView: UIView, DepictionViewDelegate {
     
     private func themeDidChange() {
         if let tintOverride = tintOverride {
-            theme.tint_color = theme.dark_mode ? tintOverride.dark_mode : tintOverride.light_mode
+            theme = Theme(from: theme, with: tintOverride)
         }
         tableView.separatorColor = theme.separator_color
         tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
@@ -206,7 +206,7 @@ extension TableView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cells[indexPath.row]
         if let tableItem = cell as? TableItem {
-            let cell = UITableViewCell(style: .value1, reuseIdentifier: "TableView.TableItem")
+            let cell = TableViewCell(style: .value1, reuseIdentifier: "TableView.TableItem")
             cell.textLabel?.text = tableItem.title
             cell.detailTextLabel?.text = tableItem.text
             cell.backgroundColor = .clear
@@ -231,10 +231,6 @@ extension TableView: UITableViewDataSource {
             return ChangelogItemCell(item: changelogItem, color: theme.text_color)
         }
         return UITableViewCell() // Should be impossible?
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        44
     }
     
 }

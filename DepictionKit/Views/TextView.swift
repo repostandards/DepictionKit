@@ -109,7 +109,7 @@ final public class TextView: UIView, DepictionViewDelegate {
         }
         
         var tint_override: Color?
-        if let _tint_override = input["tint_override"] {
+        if let _tint_override = input["tint_override"] as? [String: String] {
             do {
                 tint_override = try Color(for: _tint_override)
             } catch {
@@ -123,6 +123,8 @@ final public class TextView: UIView, DepictionViewDelegate {
 
         super.init(frame: .zero)
 
+        backgroundColor = .clear
+        webView.backgroundColor = .clear
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.scrollView.isScrollEnabled = false
         webView.uiDelegate = self

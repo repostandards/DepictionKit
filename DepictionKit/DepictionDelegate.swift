@@ -81,6 +81,14 @@ public protocol DepictionDelegate: AnyObject {
         - completion: Completion handler for the request, this does not have to be on the main thread
      */
     func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool
+    
+    /**
+    The depiction has finished laying out the depiction
+     - Author: Amy
+    
+     - Version: 1.0
+     */
+    func finishedDepictionLayout()
 }
 
 // Default implementations
@@ -90,6 +98,11 @@ extension DepictionDelegate {
     /// :nodoc:
     func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
         false
+    }
+    
+    /// :nodoc:
+    func finishedDepictionLayout() {
+        
     }
 
 }

@@ -262,6 +262,7 @@ final public class DepictionContainer: UIView {
             ])
         }
         webViewSignal()
+        delegate?.finishedDepictionLayout()
     }
     
     private func webViewSignal() {
@@ -287,7 +288,6 @@ final public class DepictionContainer: UIView {
         if let tintColor = depiction?.tint_color?.color(for: theme) {
             effectiveTheme.tint_color = tintColor
         }
-
         tintColor = effectiveTheme.tint_color
         backgroundColor = theme.background_color
 

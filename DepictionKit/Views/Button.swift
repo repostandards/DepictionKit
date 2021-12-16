@@ -53,10 +53,11 @@ final public class Button: UIView, DepictionViewDelegate {
             external = _external
         }
         
-        if let _color = properties["tint_override"] as? Color {
+        self.theme = theme
+        if let _color = properties["tint_override"] as? [String: String] {
             do {
                 tintOverride = try Color(for: _color)
-                theme.tint_color = theme.dark_mode ? tintOverride!.dark_mode : tintOverride!.light_mode
+                self.theme = Theme(from: theme, with: tintOverride!)
             } catch {
                 throw error
             }
@@ -64,12 +65,11 @@ final public class Button: UIView, DepictionViewDelegate {
         
         self.action = action
         self.external = external
-        self.theme = theme
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
         do {
-            self.depictionChildren = try DepictionView.depictionView(for: children, in: self, theme: theme, delegate: delegate)
+            self.depictionChildren = try DepictionView.depictionView(for: children, in: self, theme: self.theme, delegate: delegate)
         } catch {
             throw error
         }
@@ -98,7 +98,7 @@ final public class Button: UIView, DepictionViewDelegate {
     
     private func themeDidChange() {
         if let tintOverride = tintOverride {
-            theme.tint_color = theme.dark_mode ? tintOverride.dark_mode : tintOverride.light_mode
+            theme = Theme(from: theme, with: tintOverride)
         }
         depictionChildren?.forEach { $0.view.theme = theme }
     }

@@ -59,6 +59,7 @@ class DepictionViewController: UIViewController {
 
         // Reconfigure the depiction theme
         depictionView.theme = configureTheme()
+        navigationController?.navigationBar.tintColor = depictionView.tintColor
     }
     
 }
@@ -71,7 +72,7 @@ extension DepictionViewController: DepictionDelegate {
     }
     
     func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
-        if let image = EvanderNetworking.shared.image(url, cache: true, { refresh, image in
+        if let image = EvanderNetworking.image(url, cache: true, { refresh, image in
             guard refresh,
                   let image = image else { return }
             completion(image)
@@ -87,6 +88,10 @@ extension DepictionViewController: DepictionDelegate {
     
     func packageView(for package: DepictionPackage) -> UIView {
         DepictionPackageView(package: package)
+    }
+    
+    func finishedDepictionLayout() {
+        navigationController?.navigationBar.tintColor = depictionView.tintColor
     }
 
 }
