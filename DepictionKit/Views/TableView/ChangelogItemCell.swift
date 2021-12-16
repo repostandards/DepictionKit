@@ -17,13 +17,6 @@ class ChangelogItemCell: UITableViewCell {
         return formatter
     }()
     
-    static let displayFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateFormat = "HH:mm d MMM y"
-        return formatter
-    }()
-    
     public var versionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +79,7 @@ class ChangelogItemCell: UITableViewCell {
         ])
                                     
         if let date = Self.iso8601DateFormatter.date(from: item.timestamp) {
-            dateLabel.text = Self.displayFormatter.string(from: date)
+            dateLabel.text = Date.relative(from: date)
         }
         
         var changelogString = ""

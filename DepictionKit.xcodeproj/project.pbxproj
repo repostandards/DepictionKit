@@ -57,6 +57,7 @@
 		E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */; };
 		E1D2B41F26EFC22A00E2A30F /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D2B41E26EFC22A00E2A30F /* PackageView.swift */; };
 		E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F63BBE26CAC278001EDE8F /* ImageView.swift */; };
+		E1F82235276BF7B20010C68F /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F82234276BF7B20010C68F /* Date+Extensions.swift */; };
 		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +139,7 @@
 		E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionPackage.swift; sourceTree = "<group>"; };
 		E1D2B41E26EFC22A00E2A30F /* PackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageView.swift; sourceTree = "<group>"; };
 		E1F63BBE26CAC278001EDE8F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E1F82234276BF7B20010C68F /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E1F8E9A226B86720005DA5DB /* DepictionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionContainer.swift; sourceTree = "<group>"; };
 		E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +256,7 @@
 				4E35617226BA8CDF00828D09 /* UIEdgeInsets+Extensions.swift */,
 				E15A955D26BADDB4000DB10E /* UIImage+Extensions.swift */,
 				E1CECD3C26E155B8009FCF27 /* URL+Extensions.swift */,
+				E1F82234276BF7B20010C68F /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				E10C546D2708BDCC008BD0AA /* TableViewCell.swift in Sources */,
 				4E63060826BA565200144776 /* Separator.swift in Sources */,
 				E14E4D5526DE7D28002AE3B4 /* TableView.swift in Sources */,
+				E1F82235276BF7B20010C68F /* Date+Extensions.swift in Sources */,
 				E10C54722708C041008BD0AA /* ChangelogItemCell.swift in Sources */,
 				E1F63BBF26CAC278001EDE8F /* ImageView.swift in Sources */,
 				E1D2B41D26EFC22A00E2A30F /* DepictionPackage.swift in Sources */,
