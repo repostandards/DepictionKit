@@ -93,7 +93,7 @@ public protocol DepictionDelegate: AnyObject {
 
 // Default implementations
 /// :nodoc:
-extension DepictionDelegate {
+public extension DepictionDelegate {
 
     /// :nodoc:
     func image(for url: URL, completion: @escaping ((UIImage?) -> Void)) -> Bool {
