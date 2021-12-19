@@ -40,7 +40,6 @@ class ChangelogItemCell: UITableViewCell {
             marginalHeight,
             height
         ])
-        // view.adjustsFontForContentSizeCategory = true
         return view
     }()
     
