@@ -58,6 +58,8 @@ internal class DepictionView {
             view = try TableView(for: properties, theme: theme)
         case "PackageView":
             view = try PackageView(for: properties, theme: theme, delegate: delegate)
+        case "PackageBannerList":
+            view = try PackageBannerList(for: properties, theme: theme, delegate: delegate)
         default:
             view = Placeholder()
         }

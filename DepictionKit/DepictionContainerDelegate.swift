@@ -15,6 +15,7 @@ internal protocol DepictionContainerDelegate: AnyObject {
     func handleAction(action: String, external: Bool)
     func packageView(for package: DepictionPackage) -> UIView?
     func image(for url: URL, completion: @escaping ((UIImage) -> Void))
+    func handlePressed(package: DepictionPackage)
     
     func waitForWebView()
     func signalForWebView()

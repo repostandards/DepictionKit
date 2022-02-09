@@ -381,5 +381,9 @@ extension DepictionContainer: DepictionContainerDelegate {
     func packageView(for package: DepictionPackage) -> UIView? {
         delegate?.packageView(for: package)
     }
+    
+    func handlePressed(package: DepictionPackage) {
+        delegate?.handleAction(action: .openPackage(package: package))
+    }
 
 }
