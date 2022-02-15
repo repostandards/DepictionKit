@@ -383,7 +383,7 @@ extension DepictionContainer: DepictionContainerDelegate {
     }
     
     func handlePressed(package: DepictionPackage) {
-        delegate?.handleAction(action: .openPackage(package: package))
+        delegate?.handleAction(action: .openDepictionPackage(package: package))
     }
 
 }
