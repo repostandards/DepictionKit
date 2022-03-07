@@ -22,6 +22,7 @@ custom_categories:
       - Button
       - HeadingView
       - ImageView
+      - PackageBannerList
       - PackageView
       - Rating
       - ScreenshotsView

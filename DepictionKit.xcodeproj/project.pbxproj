@@ -37,6 +37,8 @@
 		E10C546D2708BDCC008BD0AA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C546B2708BDCC008BD0AA /* TableViewCell.swift */; };
 		E10C54702708BFFB008BD0AA /* TableButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C546F2708BFFB008BD0AA /* TableButtonCell.swift */; };
 		E10C54722708C041008BD0AA /* ChangelogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10C54712708C041008BD0AA /* ChangelogItemCell.swift */; };
+		E13DDC9327D6601700DA1117 /* DepictionTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DDC9227D6601700DA1117 /* DepictionTab.swift */; };
+		E13DDC9527D6682200DA1117 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13DDC9427D6682200DA1117 /* TabView.swift */; };
 		E13FFA0626B72E6A00F64440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0526B72E6A00F64440 /* AppDelegate.swift */; };
 		E13FFA0A26B72E6A00F64440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13FFA0926B72E6A00F64440 /* ViewController.swift */; };
 		E13FFA0F26B72E6B00F64440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13FFA0E26B72E6B00F64440 /* Assets.xcassets */; };
@@ -100,6 +102,9 @@
 		E10C546B2708BDCC008BD0AA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E10C546F2708BFFB008BD0AA /* TableButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableButtonCell.swift; sourceTree = "<group>"; };
 		E10C54712708C041008BD0AA /* ChangelogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogItemCell.swift; sourceTree = "<group>"; };
+		E13DDC9127D6385200DA1117 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+		E13DDC9227D6601700DA1117 /* DepictionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionTab.swift; sourceTree = "<group>"; };
+		E13DDC9427D6682200DA1117 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		E13FFA0226B72E6A00F64440 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13FFA0526B72E6A00F64440 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E13FFA0926B72E6A00F64440 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				E1D2B41B26EE723600E2A30F /* README.md */,
+				E13DDC9127D6385200DA1117 /* .jazzy.yaml */,
 				E1D2B41926EE721E00E2A30F /* info */,
 				E13FFA0426B72E6A00F64440 /* ExampleApp */,
 				4E6305EF26BA558200144776 /* DepictionKit */,
@@ -243,6 +249,7 @@
 				E15A955626BACFF2000DB10E /* Screenshot.swift */,
 				E1007E2026D6585B0034029D /* Attachment.swift */,
 				E1D2B41C26EFC22A00E2A30F /* DepictionPackage.swift */,
+				E13DDC9227D6601700DA1117 /* DepictionTab.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -278,6 +285,7 @@
 				E1007E2226D672F80034029D /* Rating.swift */,
 				E1D2B41E26EFC22A00E2A30F /* PackageView.swift */,
 				E1E47F0A27B3E8D400208039 /* PackageBannerList.swift */,
+				E13DDC9427D6682200DA1117 /* TabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +483,7 @@
 				E1007E2126D6585B0034029D /* Attachment.swift in Sources */,
 				E1E47F0B27B3E8D600208039 /* PackageBannerList.swift in Sources */,
 				E15A955926BAD246000DB10E /* ScreenshotsView.swift in Sources */,
+				E13DDC9527D6682200DA1117 /* TabView.swift in Sources */,
 				4E63060126BA563F00144776 /* Color.swift in Sources */,
 				E15A955E26BADDB4000DB10E /* UIImage+Extensions.swift in Sources */,
 				4E63060226BA563F00144776 /* String+Extensions.swift in Sources */,
@@ -489,6 +498,7 @@
 				E1007E2326D672F80034029D /* Rating.swift in Sources */,
 				4E63060726BA563F00144776 /* FontWeight.swift in Sources */,
 				4E35616F26BA7D6800828D09 /* DepictionViewDelegate.swift in Sources */,
+				E13DDC9327D6601700DA1117 /* DepictionTab.swift in Sources */,
 				4E6305FC26BA55CA00144776 /* DepictionContainer.swift in Sources */,
 				E15A955726BACFF2000DB10E /* Screenshot.swift in Sources */,
 				E10C54702708BFFB008BD0AA /* TableButtonCell.swift in Sources */,

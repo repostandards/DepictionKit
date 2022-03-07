@@ -7,7 +7,17 @@
 
 import UIKit
 
-class PackageBannerList: UIView, DepictionViewDelegate {
+/**
+ Display a carousel of package banners in a horizontal list
+  
+ - Author: Amy
+
+ - Version: 1.0
+ 
+ - Parameters:
+    - packages: `[DepictionPackage]`; The packages to display
+ */
+final public class PackageBannerList: UIView, DepictionViewDelegate {
     
     private enum Error: LocalizedError {
         case missing_packages

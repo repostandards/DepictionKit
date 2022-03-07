@@ -151,7 +151,7 @@ public enum DepictionAction {
         }
     }
     
-    init(package: DepictionPackage) {
+    internal init(package: DepictionPackage) {
         self = .openDepictionPackage(package: package)
     }
 }

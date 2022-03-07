@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- DepictionPackages are shown in `PackageView` and `PackageBannerView`
+ DepictionPackages are shown in `PackageView` and `PackageBannerList`
        
  - Author: Amy
 

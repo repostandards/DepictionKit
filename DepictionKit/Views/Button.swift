@@ -68,11 +68,7 @@ final public class Button: UIView, DepictionViewDelegate {
         super.init(frame: .zero)
         
         translatesAutoresizingMaskIntoConstraints = false
-        do {
-            self.depictionChildren = try DepictionView.depictionView(for: children, in: self, theme: self.theme, delegate: delegate)
-        } catch {
-            throw error
-        }
+        self.depictionChildren = try DepictionView.depictionView(for: children, in: self, theme: self.theme, delegate: delegate)
         
         backgroundColor = .clear
         let control = UIControl()
