@@ -19,7 +19,9 @@ internal class ImageView: DepictionView {
         imageView.accessibilityLabel = properties.alt_text
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerCurve = .continuous
+        if #available(iOS 13.0, *) {
+            imageView.layer.cornerCurve = .continuous
+        }
         imageView.layer.cornerRadius = properties.corner_radius
         imageView.contentMode = .scaleAspectFit
         

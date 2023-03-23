@@ -44,13 +44,10 @@
 		E173F2522932CC0E00F4A5C4 /* MediaSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2512932CC0E00F4A5C4 /* MediaSize.swift */; };
 		E173F2542932CC3D00F4A5C4 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2532932CC3D00F4A5C4 /* Orientation.swift */; };
 		E173F2572932D97E00F4A5C4 /* NativeDepictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2562932D97E00F4A5C4 /* NativeDepictionView.swift */; };
-		E173F25A2932DAED00F4A5C4 /* UIView+LivePreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2592932DAED00F4A5C4 /* UIView+LivePreviews.swift */; };
-		E173F25C2932DB0600F4A5C4 /* UIViewController+LivePreviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F25B2932DB0600F4A5C4 /* UIViewController+LivePreviews.swift */; };
 		E173F25E2932DD2300F4A5C4 /* DepictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F25D2932DD2300F4A5C4 /* DepictionView.swift */; };
 		E173F2602932DD7500F4A5C4 /* DepictionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F25F2932DD7500F4A5C4 /* DepictionViewDelegate.swift */; };
 		E173F2632932E3D100F4A5C4 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2622932E3D100F4A5C4 /* HeadingView.swift */; };
 		E173F2A329338AE700F4A5C4 /* NativeDepictionTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2A229338AE700F4A5C4 /* NativeDepictionTheme.swift */; };
-		E173F2A529338BBD00F4A5C4 /* LivePreviewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2A429338BBD00F4A5C4 /* LivePreviewConstants.swift */; };
 		E173F2A829338CB600F4A5C4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2A729338CB600F4A5C4 /* UIColor+Extensions.swift */; };
 		E173F2AA2933A09D00F4A5C4 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2A92933A09D00F4A5C4 /* TextView.swift */; };
 		E173F2AC2933BE1B00F4A5C4 /* TintOverrideProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2AB2933BE1B00F4A5C4 /* TintOverrideProperty.swift */; };
@@ -58,7 +55,6 @@
 		E173F2AF2933CE8100F4A5C4 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173F2AE2933CE8100F4A5C4 /* ImageView.swift */; };
 		E173F2B02933D10700F4A5C4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15A953B26B896E9000DB10E /* UIView+Extensions.swift */; };
 		E18CF47526FFC0FE00289103 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18CF47426FFC0FE00289103 /* PackageView.swift */; };
-		E1CDFFAE2726296D00950705 /* Evander in Frameworks */ = {isa = PBXBuildFile; productRef = E1CDFFAD2726296D00950705 /* Evander */; };
 		E1F8E9A726B87FD5005DA5DB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F8E9A626B87FD5005DA5DB /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -163,13 +159,10 @@
 		E173F2512932CC0E00F4A5C4 /* MediaSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSize.swift; sourceTree = "<group>"; };
 		E173F2532932CC3D00F4A5C4 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		E173F2562932D97E00F4A5C4 /* NativeDepictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDepictionView.swift; sourceTree = "<group>"; };
-		E173F2592932DAED00F4A5C4 /* UIView+LivePreviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreviews.swift"; sourceTree = "<group>"; };
-		E173F25B2932DB0600F4A5C4 /* UIViewController+LivePreviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+LivePreviews.swift"; sourceTree = "<group>"; };
 		E173F25D2932DD2300F4A5C4 /* DepictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionView.swift; sourceTree = "<group>"; };
 		E173F25F2932DD7500F4A5C4 /* DepictionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepictionViewDelegate.swift; sourceTree = "<group>"; };
 		E173F2622932E3D100F4A5C4 /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		E173F2A229338AE700F4A5C4 /* NativeDepictionTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDepictionTheme.swift; sourceTree = "<group>"; };
-		E173F2A429338BBD00F4A5C4 /* LivePreviewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePreviewConstants.swift; sourceTree = "<group>"; };
 		E173F2A729338CB600F4A5C4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E173F2A92933A09D00F4A5C4 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		E173F2AB2933BE1B00F4A5C4 /* TintOverrideProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintOverrideProperty.swift; sourceTree = "<group>"; };
@@ -201,7 +194,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1CDFFAE2726296D00950705 /* Evander in Frameworks */,
 				4E6305F526BA558200144776 /* DepictionKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,23 +423,12 @@
 			isa = PBXGroup;
 			children = (
 				E173F2612932E36800F4A5C4 /* Views */,
-				E173F2582932DADC00F4A5C4 /* Live Preview Helpers */,
 				E173F2562932D97E00F4A5C4 /* NativeDepictionView.swift */,
 				E173F25D2932DD2300F4A5C4 /* DepictionView.swift */,
 				E173F25F2932DD7500F4A5C4 /* DepictionViewDelegate.swift */,
 				E173F2A229338AE700F4A5C4 /* NativeDepictionTheme.swift */,
 			);
 			path = Implementation;
-			sourceTree = "<group>";
-		};
-		E173F2582932DADC00F4A5C4 /* Live Preview Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				E173F2592932DAED00F4A5C4 /* UIView+LivePreviews.swift */,
-				E173F25B2932DB0600F4A5C4 /* UIViewController+LivePreviews.swift */,
-				E173F2A429338BBD00F4A5C4 /* LivePreviewConstants.swift */,
-			);
-			path = "Live Preview Helpers";
 			sourceTree = "<group>";
 		};
 		E173F2612932E36800F4A5C4 /* Views */ = {
@@ -530,7 +511,6 @@
 			);
 			name = ExampleApp;
 			packageProductDependencies = (
-				E1CDFFAD2726296D00950705 /* Evander */,
 			);
 			productName = ExampleApp;
 			productReference = E13FFA0226B72E6A00F64440 /* ExampleApp.app */;
@@ -564,7 +544,6 @@
 			mainGroup = E13FF9F926B72E6A00F64440;
 			packageReferences = (
 				4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */,
-				E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */,
 			);
 			productRefGroup = E13FFA0326B72E6A00F64440 /* Products */;
 			projectDirPath = "";
@@ -640,13 +619,10 @@
 				E173F2A829338CB600F4A5C4 /* UIColor+Extensions.swift in Sources */,
 				E173F2382932C5F100F4A5C4 /* TableItem.swift in Sources */,
 				E173F2602932DD7500F4A5C4 /* DepictionViewDelegate.swift in Sources */,
-				E173F25A2932DAED00F4A5C4 /* UIView+LivePreviews.swift in Sources */,
 				E173F2AA2933A09D00F4A5C4 /* TextView.swift in Sources */,
 				E173F21F2932991200F4A5C4 /* View.swift in Sources */,
 				E173F2442932C89B00F4A5C4 /* SeparatorProperties.swift in Sources */,
-				E173F2A529338BBD00F4A5C4 /* LivePreviewConstants.swift in Sources */,
 				E173F24A2932CA3900F4A5C4 /* StackViewProperties.swift in Sources */,
-				E173F25C2932DB0600F4A5C4 /* UIViewController+LivePreviews.swift in Sources */,
 				E173F2332932C50300F4A5C4 /* ScreenshotsViewProperties.swift in Sources */,
 				E173F2AC2933BE1B00F4A5C4 /* TintOverrideProperty.swift in Sources */,
 				E173F2632932E3D100F4A5C4 /* HeadingView.swift in Sources */,
@@ -711,7 +687,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DepictionKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -740,7 +716,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DepictionKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -808,7 +784,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -863,7 +839,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -968,14 +944,6 @@
 				minimumVersion = 0.11.0;
 			};
 		};
-		E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/elihwyma/Evander";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -983,11 +951,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4E63061026BA5D4100144776 /* XCRemoteSwiftPackageReference "Down" */;
 			productName = Down;
-		};
-		E1CDFFAD2726296D00950705 /* Evander */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E1CDFFAC2726296C00950705 /* XCRemoteSwiftPackageReference "Evander" */;
-			productName = Evander;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

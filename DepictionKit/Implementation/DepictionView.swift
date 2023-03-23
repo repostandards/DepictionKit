@@ -14,14 +14,24 @@ internal class DepictionView: UIView {
     internal final weak var parentDelegate: DepictionViewDelegate?
     
     internal var depictionTintColor: UIColor {
-        UIColor { [weak self] traitCollection in
-            guard let self else { return .clear }
+        if #available(iOS 13.0, *) {
+            return UIColor { [weak self] traitCollection in
+                guard let self else { return .clear }
+                return self.darkMode ? self.theme.dark_theme : self.theme.light_theme
+            }
+        } else {
+            // Fallback on earlier versions
             return self.darkMode ? self.theme.dark_theme : self.theme.light_theme
         }
     }
     
     internal var darkMode: Bool {
-        self.systemTheme.darkMode ?? (traitCollection.userInterfaceStyle == .dark)
+        if #available(iOS 12.0, *) {
+            return self.systemTheme.darkMode ?? (traitCollection.userInterfaceStyle == .dark)
+        } else {
+            // Fallback on earlier versions
+            return self.systemTheme.darkMode ?? false
+        }
     }
     
     internal init(properties: ViewProperties, parentTheme: Color, systemTheme: NativeDepictionTheme, parentDelegate: DepictionViewDelegate?) {

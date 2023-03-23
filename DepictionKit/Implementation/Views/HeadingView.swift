@@ -48,22 +48,3 @@ internal class HeadingView: DepictionView {
     }
     
 }
-
-#if DEBUG
-import SwiftUI
-
-struct HeadingView_Previews: PreviewProvider {
-    static var previews: some SwiftUI.View {
-        UIViewPreview {
-            let properties = HeadingViewProperties(text: "Test Heading",
-                                                   level: 1,
-                                                   auto_wrap: true,
-                                                   font_weight: .heavy,
-                                                   alignment: .left)
-            let view = HeadingView(properties: properties, parentTheme: .init(light_theme: .systemBlue, dark_theme: .systemBlue), systemTheme: LivePreviewSystemTheme, parentDelegate: nil)
-            return view
-        }
-        .padding(15)
-    }
-}
-#endif

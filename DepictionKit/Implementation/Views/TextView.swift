@@ -160,7 +160,7 @@ extension TextView: WKUIDelegate {
             // self.delegate?.present(viewController, animated: true)
         }
     }
-
+    /*
     public func webView(_ webView: WKWebView,
                         contextMenuConfigurationForElement elementInfo: WKContextMenuElementInfo,
                         completionHandler: @escaping (UIContextMenuConfiguration?) -> Void) {
@@ -192,6 +192,7 @@ extension TextView: WKUIDelegate {
             }
         }
     }
+     */
 }
 
 extension TextView: WKNavigationDelegate {
@@ -226,18 +227,3 @@ extension TextView: WKNavigationDelegate {
         // delegate?.signalForWebView()
     }
 }
-
-#if DEBUG
-import SwiftUI
-
-struct TextView_Previews: PreviewProvider {
-    static var previews: some SwiftUI.View {
-        UIViewPreview {
-            let properties = TextViewProperties(content: "Test Content", format: .markdown)
-            let view = TextView(properties: properties, parentTheme: .init(light_theme: .systemBlue, dark_theme: .systemBlue), systemTheme: LivePreviewSystemTheme, parentDelegate: nil)
-            return view
-        }
-        .padding(15)
-    }
-}
-#endif
